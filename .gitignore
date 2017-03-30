@@ -72,5 +72,4 @@ Temporary Items
 *.db
 *.vcxproj
 *.vcxproj.filters
-*.sln
 *.config

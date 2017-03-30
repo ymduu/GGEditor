@@ -1,0 +1,27 @@
+#ifndef DEF_TERRAIN_H
+#define DEF_TERRAIN_H
+
+//地形・障害物についての情報の宣言
+#include"BattleObject.h"
+
+class Terrain :public BattleObject {
+	//型・列挙体
+
+	//定数
+
+	//変数
+protected:
+	unsigned int m_color;//地形の塗りつぶしの色(そのうちテクスチャ情報に変わると思われる)
+	bool m_breakable;//破壊できるかどうか
+
+	//関数
+public:
+	Terrain(const boost::shared_ptr<MyShape> hitJudgeShape, double x, double y, int gHandle, int kind,unsigned int color,bool breakable);
+	~Terrain();
+	void VDraw();
+	void VHitProcess(const BattleObject *potherobj);
+
+};
+
+
+#endif // !DEF_TERRAIN_H

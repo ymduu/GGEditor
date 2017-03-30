@@ -50,6 +50,8 @@ Temporary Items
 /SSR_Collaboration_BU/Debug
 /SSR_Collaboration_BU/ipch
 /SSR_Collaboration_BU/Release
+/SSR_Collaboration_BU/packages
+/SSR_Collaboration_BU/.vs
 /SSR_Collaboration_BU/SSR_Collaboration_BU.sdf
 /SSR_Collaboration_BU/SSR_Collaboration_BU/Debug
 /SSR_Collaboration_BU/SSR_Collaboration_BU/Release
@@ -71,4 +73,4 @@ Temporary Items
 *.vcxproj
 *.vcxproj.filters
 *.sln
-
+*.config

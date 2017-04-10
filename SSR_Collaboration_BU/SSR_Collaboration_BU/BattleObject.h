@@ -2,7 +2,7 @@
 #define DEF_BATTLEOBJECT_H
 
 //インクルードファイル
-#include<boost\shared_ptr.hpp>
+#include<memory>
 #include"ToolsLib.h"
 #include"MyShape.h"
 
@@ -19,7 +19,7 @@ class BattleObject {
 
 	//変数
 protected:
-	const boost::shared_ptr<MyShape> m_hitJudgeShape;//当たり判定の形状
+	const std::shared_ptr<MyShape> m_hitJudgeShape;//当たり判定の形状
 	Position2D<double> m_pos;//オブジェクトの位置
 	int m_gHandle;//オブジェクトのグラフィックハンドル
 	int m_kind;//オブジェクトの分類(暫定的にintにしている)
@@ -27,7 +27,7 @@ protected:
 	//関数
 public:
 	//コンストラクタとデストラクタ
-	BattleObject(const boost::shared_ptr<MyShape> hitJudgeShape,double x,double y,int gHandle,int kind)
+	BattleObject(const std::shared_ptr<MyShape> hitJudgeShape,double x,double y,int gHandle,int kind)
 		:m_hitJudgeShape(hitJudgeShape),m_pos(x,y),m_gHandle(gHandle),m_kind(kind){}
 	virtual ~BattleObject() {}
 

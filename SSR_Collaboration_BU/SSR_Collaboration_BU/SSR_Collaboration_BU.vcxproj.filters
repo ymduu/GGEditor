@@ -13,42 +13,75 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Shape">
+      <UniqueIdentifier>{bbdcd081-15cc-48b9-a631-467d76815576}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\BattleObject">
+      <UniqueIdentifier>{14447654-9144-4fa5-b1b6-f60d5b0fdaf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\BattleObject">
+      <UniqueIdentifier>{807f0e5e-5829-48c8-a9d2-46adf59679d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Shape">
+      <UniqueIdentifier>{c5781a18-a959-41d4-a708-71e73eeaaeff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\StageEditor">
+      <UniqueIdentifier>{3665b97c-2c27-4851-bb4a-c29cb5cc422c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\StageEditor">
+      <UniqueIdentifier>{096c65c4-c48a-4ead-bcd8-e420ec65775b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Terrain.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="input.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>ソース ファイル\BattleObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MyAngledTriangle.cpp">
+      <Filter>ソース ファイル\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="MyCircle.cpp">
+      <Filter>ソース ファイル\Shape</Filter>
+    </ClCompile>
     <ClCompile Include="MyRectangle.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="EditActionSettings.cpp">
+      <Filter>ソース ファイル\StageEditor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BattleObject.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ToolsLib.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Terrain.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="input.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="MyAngledTriangle.h">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="MyCircle.h">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
     <ClInclude Include="MyRectangle.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
     <ClInclude Include="MyShape.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ClInclude Include="BattleObject.h">
+      <Filter>ヘッダー ファイル\BattleObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>ヘッダー ファイル\BattleObject</Filter>
+    </ClInclude>
+    <ClInclude Include="EditActionSettings.h">
+      <Filter>ヘッダー ファイル\StageEditor</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

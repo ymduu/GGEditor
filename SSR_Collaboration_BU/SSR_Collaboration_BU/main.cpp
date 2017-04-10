@@ -1,13 +1,15 @@
 #define _USE_MATH_DEFINES	//math.hの定数を使うために必須
 
 #include<iostream>
-#include<boost\shared_ptr.hpp>
 #include"DxLib.h"
 
 #include<math.h>
+#include<memory>
 #include"input.h"
 #include"Terrain.h"
 #include"MyRectangle.h"
+#include"MyCircle.h"
+#include"MyAngledTriangle.h"
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//画面モードの設定
@@ -33,7 +35,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	}
 
 	/**
-	*	以下、円軌道上に等速で長方形を描画して回すデモ
+	*	以下、円軌道上に等速で直角三角形を描画して回すデモ
 	*/
 
 	//入力についての初期化
@@ -42,7 +44,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//描画させるものを宣言
 	int t = 0;
 	const int x = 200, y = 200, r = 100,maxt=330;
-	Terrain t1(boost::shared_ptr<MyShape>(new MyRectangle(50,20))
+	Terrain t1(std::shared_ptr<MyShape>(new MyAngledTriangle(-50,20))
 		, x + r*cos((double)t / maxt*M_PI), y + r*sin((double)t / maxt*M_PI)
 		,-1,0,GetColor(255,0,0),false);
 

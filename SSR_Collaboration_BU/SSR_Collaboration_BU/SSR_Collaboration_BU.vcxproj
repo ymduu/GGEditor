@@ -151,6 +151,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EditActionSettings.cpp" />
+    <ClCompile Include="EditPut.cpp" />
+    <ClCompile Include="GGEditor.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyAngledTriangle.cpp" />
@@ -162,6 +165,8 @@
   <ItemGroup>
     <ClInclude Include="EditAction.h" />
     <ClInclude Include="EditActionSettings.h" />
+    <ClInclude Include="EditPut.h" />
+    <ClInclude Include="GGEditor.h" />
     <ClInclude Include="MyAngledTriangle.h" />
     <ClInclude Include="BattleObject.h" />
     <ClInclude Include="input.h" />

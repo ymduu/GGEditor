@@ -151,9 +151,11 @@
     <ClCompile Include="MyAngledTriangle.cpp" />
     <ClCompile Include="MyCircle.cpp" />
     <ClCompile Include="MyRectangle.cpp" />
+    <ClCompile Include="MyShape.cpp" />
     <ClCompile Include="Terrain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EditAction.h" />
     <ClInclude Include="EditActionSettings.h" />
     <ClInclude Include="MyAngledTriangle.h" />
     <ClInclude Include="BattleObject.h" />

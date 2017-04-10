@@ -15,6 +15,11 @@ public:
 	MyCircle(double i_r);
 	~MyCircle();
 	void VDraw(double x, double y, unsigned int color, int fillFlag, int textureHandle);
+	//ìñÇΩÇËîªíËä÷êî
+	HitInfo HitJudge(const MyCircle *pshape);
+	HitInfo HitJudge(const MyRectangle *pshape);
+	HitInfo HitJudge(const MyAngledTriangle *pshape);
+
 };
 
 #endif // !DEF_MYCIRCLE_H

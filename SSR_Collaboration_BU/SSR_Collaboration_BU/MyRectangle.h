@@ -18,6 +18,11 @@ public:
 	MyRectangle(double i_dx,double i_dy);
 	~MyRectangle();
 	void VDraw(double x, double y, unsigned int color, int fillFlag, int textureHandle);//Œ`ó‚ğ•`‰æ‚·‚é
+	//“–‚½‚è”»’èŠÖ”
+	HitInfo HitJudge(const MyCircle *pshape);
+	HitInfo HitJudge(const MyRectangle *pshape);
+	HitInfo HitJudge(const MyAngledTriangle *pshape);
+
 };
 
 #endif // !DEF_MYRECTANGLE_H

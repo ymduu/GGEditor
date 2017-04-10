@@ -9,3 +9,15 @@ void MyCircle::VDraw(double x, double y, unsigned int color, int fillFlag, int t
 	//ひとまずテクスチャーを使わずに実装
 	DrawCircle((int)x, (int)y ,(int)r, color, fillFlag);
 }
+
+MyShape::HitInfo MyCircle::HitJudge(const MyCircle *pshape) {
+	return MyShape::HitJudge(this,pshape);
+}
+
+MyShape::HitInfo MyCircle::HitJudge(const MyRectangle *pshape) {
+	return MyShape::HitJudge(this, pshape);
+}
+
+MyShape::HitInfo MyCircle::HitJudge(const MyAngledTriangle *pshape) {
+	return MyShape::HitJudge(this, pshape);
+}

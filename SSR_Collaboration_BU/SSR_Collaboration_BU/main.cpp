@@ -5,6 +5,7 @@
 
 #include<math.h>
 #include<memory>
+#include<vector>
 #include"input.h"
 #include"Terrain.h"
 #include"MyRectangle.h"
@@ -44,9 +45,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//描画させるものを宣言
 	int t = 0;
 	const int x = 200, y = 200, r = 100,maxt=330;
-	Terrain t1(std::shared_ptr<MyShape>(new MyAngledTriangle(-50,20))
-		, x + r*cos((double)t / maxt*M_PI), y + r*sin((double)t / maxt*M_PI)
-		,-1,0,GetColor(255,0,0),false);
+	
+	std::vector<std::shared_ptr<BattleObject>> objects;
+	for (int i = 0; i < 4;i++) {
+		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyCircle(45+20*(i-2)))
+			, x+i*50 + r*cos((double)t / maxt*M_PI), y +i*50+ r*sin((double)t / maxt*M_PI)
+			, -1, 0, GetColor(255, 255, i*50), false)));
+	}
 
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0) {
 		//ゲーム本体
@@ -54,14 +59,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		t++;
 		keyboard_update();
 		//描画
-		t1.Move(x + r*cos((double)t / maxt*M_PI), y + r*sin((double)t / maxt*M_PI));
-		t1.VDraw();
+		for (int i = 0; i < 4; i++) {
+			objects[i].get()->Move(x + i * 50 + r*cos((double)t / maxt*M_PI), y + i * 50 + r*sin((double)t / maxt*M_PI));
+			objects[i].get()->VDraw();
+		}
 		//計算処理
 		//終了検出
 		if(keyboard_get(KEY_INPUT_NUMPADENTER)==1){
 			break;
 		}
 	}
+
+	//入力関連のメモリ領域開放
+	DeleteInputControler();
 
 	DxLib_End();//DXライブラリ終了処理
 	return 0;

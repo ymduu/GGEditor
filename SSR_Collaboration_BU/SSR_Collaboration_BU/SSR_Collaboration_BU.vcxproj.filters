@@ -54,6 +54,9 @@
     <ClCompile Include="EditActionSettings.cpp">
       <Filter>ソース ファイル\StageEditor</Filter>
     </ClCompile>
+    <ClCompile Include="MyShape.cpp">
+      <Filter>ソース ファイル\Shape</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ToolsLib.h">
@@ -81,6 +84,9 @@
       <Filter>ヘッダー ファイル\BattleObject</Filter>
     </ClInclude>
     <ClInclude Include="EditActionSettings.h">
+      <Filter>ヘッダー ファイル\StageEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="EditAction.h">
       <Filter>ヘッダー ファイル\StageEditor</Filter>
     </ClInclude>
   </ItemGroup>

@@ -51,9 +51,6 @@
     <ClCompile Include="MyRectangle.cpp">
       <Filter>ソース ファイル\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="EditActionSettings.cpp">
-      <Filter>ソース ファイル\StageEditor</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ToolsLib.h">

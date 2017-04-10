@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{2B347E0C-813E-43C0-919F-9F262F23E7E4}</ProjectGuid>
+    <ProjectGuid>{2D304F2F-EC31-4DD6-BFE7-1FCE751C3217}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>SSR_Collaboration_BU</RootNamespace>
+    <RootNamespace>RunGame</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,10 +70,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -82,21 +82,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\DxLib\3.17-e\addfiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>C:\DxLib\3.17-e\addfiles;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Link>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>
@@ -104,12 +89,27 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\RunGame;C:\DxLib\3.17-e\addfiles</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\SSR_Collaboration_BU;C:\DxLib\3.17-e\addfiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>..\RunGame;C:\DxLib\3.17-e\addfiles</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\SSR_Collaboration_BU;C:\DxLib\3.17-e\addfiles</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\SSR_Collaboration_BU;C:\DxLib\3.17-e\addfiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>..\SSR_Collaboration_BU;C:\DxLib\3.17-e\addfiles;%(AdditionalIncludeDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -121,14 +121,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\SSR_Collaboration_BU;C:\DxLib\3.17-e\addfiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\DxLib\3.17-e\addfiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\DxLib\3.17-e\addfiles;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\SSR_Collaboration_BU;C:\DxLib\3.17-e\addfiles;%(AdditionalIncludeDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -140,42 +140,36 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\RunGame;C:\DxLib\3.17-e\addfiles</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\SSR_Collaboration_BU;C:\DxLib\3.17-e\addfiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\RunGame;C:\DxLib\3.17-e\addfiles</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\SSR_Collaboration_BU;C:\DxLib\3.17-e\addfiles</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="EditActionSettings.cpp" />
-    <ClCompile Include="EditPut.cpp" />
-    <ClCompile Include="GGEditor.cpp" />
-    <ClCompile Include="input.cpp" />
+    <ClCompile Include="..\SSR_Collaboration_BU\input.cpp" />
+    <ClCompile Include="..\SSR_Collaboration_BU\MyAngledTriangle.cpp" />
+    <ClCompile Include="..\SSR_Collaboration_BU\MyCircle.cpp" />
+    <ClCompile Include="..\SSR_Collaboration_BU\MyRectangle.cpp" />
+    <ClCompile Include="..\SSR_Collaboration_BU\MyShape.cpp" />
+    <ClCompile Include="..\SSR_Collaboration_BU\Terrain.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MyAngledTriangle.cpp" />
-    <ClCompile Include="MyCircle.cpp" />
-    <ClCompile Include="MyRectangle.cpp" />
-    <ClCompile Include="MyShape.cpp" />
-    <ClCompile Include="Terrain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EditAction.h" />
-    <ClInclude Include="EditActionSettings.h" />
-    <ClInclude Include="EditPut.h" />
-    <ClInclude Include="GGEditor.h" />
-    <ClInclude Include="MyAngledTriangle.h" />
-    <ClInclude Include="BattleObject.h" />
-    <ClInclude Include="input.h" />
-    <ClInclude Include="MyCircle.h" />
-    <ClInclude Include="MyRectangle.h" />
-    <ClInclude Include="MyShape.h" />
-    <ClInclude Include="Terrain.h" />
-    <ClInclude Include="ToolsLib.h" />
+    <ClInclude Include="..\SSR_Collaboration_BU\BattleObject.h" />
+    <ClInclude Include="..\SSR_Collaboration_BU\input.h" />
+    <ClInclude Include="..\SSR_Collaboration_BU\MyAngledTriangle.h" />
+    <ClInclude Include="..\SSR_Collaboration_BU\MyCircle.h" />
+    <ClInclude Include="..\SSR_Collaboration_BU\MyRectangle.h" />
+    <ClInclude Include="..\SSR_Collaboration_BU\MyShape.h" />
+    <ClInclude Include="..\SSR_Collaboration_BU\Terrain.h" />
+    <ClInclude Include="..\SSR_Collaboration_BU\ToolsLib.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>

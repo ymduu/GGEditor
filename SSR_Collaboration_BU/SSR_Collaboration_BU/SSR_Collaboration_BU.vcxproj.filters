@@ -19,9 +19,6 @@
     <Filter Include="ヘッダー ファイル\BattleObject">
       <UniqueIdentifier>{14447654-9144-4fa5-b1b6-f60d5b0fdaf9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\BattleObject">
-      <UniqueIdentifier>{807f0e5e-5829-48c8-a9d2-46adf59679d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Shape">
       <UniqueIdentifier>{c5781a18-a959-41d4-a708-71e73eeaaeff}</UniqueIdentifier>
     </Filter>
@@ -31,6 +28,9 @@
     <Filter Include="ソース ファイル\StageEditor">
       <UniqueIdentifier>{096c65c4-c48a-4ead-bcd8-e420ec65775b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\BattleObject">
+      <UniqueIdentifier>{7eab2a26-570f-4283-85f5-461bb47dc1dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -38,9 +38,6 @@
     </ClCompile>
     <ClCompile Include="input.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Terrain.cpp">
-      <Filter>ソース ファイル\BattleObject</Filter>
     </ClCompile>
     <ClCompile Include="MyAngledTriangle.cpp">
       <Filter>ソース ファイル\Shape</Filter>
@@ -62,6 +59,9 @@
     </ClCompile>
     <ClCompile Include="GGEditor.cpp">
       <Filter>ソース ファイル\StageEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>ソース ファイル\BattleObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\BattleObject">
+      <UniqueIdentifier>{74620a88-fc2b-4131-969f-6c8d85f68a2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Shape">
+      <UniqueIdentifier>{53ed6d49-fffb-4b37-9795-e6cb0baa43fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\BattleObject">
+      <UniqueIdentifier>{7e2cb77d-6fd3-4dcd-92eb-e32489227f44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Shape">
+      <UniqueIdentifier>{bb7518e7-e083-4317-86ae-8a78c9edc769}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SSR_Collaboration_BU\Terrain.cpp">
+      <Filter>ソース ファイル\BattleObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SSR_Collaboration_BU\MyAngledTriangle.cpp">
+      <Filter>ソース ファイル\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SSR_Collaboration_BU\MyCircle.cpp">
+      <Filter>ソース ファイル\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SSR_Collaboration_BU\MyRectangle.cpp">
+      <Filter>ソース ファイル\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SSR_Collaboration_BU\MyShape.cpp">
+      <Filter>ソース ファイル\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SSR_Collaboration_BU\input.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\SSR_Collaboration_BU\ToolsLib.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SSR_Collaboration_BU\BattleObject.h">
+      <Filter>ヘッダー ファイル\BattleObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SSR_Collaboration_BU\Terrain.h">
+      <Filter>ヘッダー ファイル\BattleObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SSR_Collaboration_BU\MyAngledTriangle.h">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SSR_Collaboration_BU\MyCircle.h">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SSR_Collaboration_BU\MyRectangle.h">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SSR_Collaboration_BU\MyShape.h">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SSR_Collaboration_BU\input.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

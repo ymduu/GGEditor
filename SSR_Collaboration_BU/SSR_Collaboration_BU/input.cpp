@@ -2,19 +2,25 @@
 #include"DxLib.h"
 #include"input.h"
 
-//キーボード関連
+//入力関連
 static InputControler *inputControler;
 
-int keyboard_update(){
+int input_update(){
 	return inputControler->Update();
 }
 
+//キーボード関連
 int keyboard_get(int KeyCode){//KeyCodeはキーボードの名前
 	return inputControler->Get(KeyCode);
 }
 
+//マウス関連
+int mouse_get(int MouseCode){
+	return inputControler->MouseGet(MouseCode);
+}
+
 //入力情報を全て消す(どのボタンも入力されてないことにする)
-void keyboard_erase(){
+void input_erase(){
 	inputControler->InitInput();
 }
 
@@ -54,6 +60,9 @@ InputControler::InputControler(){
 	for(int i=0;i<KeyNum;i++){
 		m_keyboardFlame[i]=0;
 	}
+	for(int i=0;i<MouseButtonNum;i++){
+		m_mouseFlame[i]=0;
+	}
 	
 	m_connectmap.insert(GamepadKeyboardMap(KEY_INPUT_NUMPADENTER,PAD_INPUT_4));
 	m_connectmap.insert(GamepadKeyboardMap(KEY_INPUT_BACK,PAD_INPUT_3));
@@ -67,6 +76,7 @@ InputControler::InputControler(){
 InputControler::~InputControler(){}
 
 int InputControler::Update(){
+	//キーボードの更新
 	char tmpKey[256];
 	GetHitKeyStateAll(tmpKey);//tmpKeyだとtmpKeyの先頭のアドレスを示す
 	int tmpPad=0;
@@ -86,12 +96,34 @@ int InputControler::Update(){
 			it++;
 		}
 	}
+	//マウスの更新
+	int mouseinput=GetMouseInput();
+	for(int i=0;i<MouseButtonNum;i++){
+		if((mouseinput>>i) & 0x01){
+			m_mouseFlame[i]++;
+		}else{
+			m_mouseFlame[i]=0;
+		}
+	}
 	return 0;
 }
 
 int InputControler::Get(int KeyCode){
 	if(KeyCode>=0 && KeyCode<KeyNum){
 		return m_keyboardFlame[KeyCode];
+	}
+	return 0;
+}
+
+int InputControler::MouseGet(int MouseCode){
+	//MouseCodeの下からx個目のbitが1ならばm_mouseFlame[x-1]に入力フレーム数が格納されている
+	//つまりn回右シフトしたところ1が見えたならばm_mouseFlame[n]を返してあげれば良い
+	//ここでは、最下位bitが1のものを1bitずつ左シフトしていき、それとのAND演算によって何bit目に1があるかを検出する
+	int bit=0x01;
+	for(int i=0;i<MouseButtonNum;i++){
+		if(MouseCode & (bit<<i)){
+			return m_mouseFlame[i];
+		}
 	}
 	return 0;
 }

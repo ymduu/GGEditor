@@ -4,19 +4,14 @@
 //一般的に用いることができる便利関数・構造体をここに書く
 
 //位置についての構造体
-template <typename T> class Position2D{
-public:
+//やむどぅのが実装し終わったらこれを更新して良い。自分の作業のための暫定的なものである。
+struct Vector2D {
 	//変数
-	T x, y;
+	float x, y;
+
 	//関数
-	Position2D<T>(T i_x, T i_y) : x(i_x), y(i_y) {}
-	const Position2D<T> operator+(const T &otherobj) {
-		return Position2D<T>(x+otherobj.x,y+otherobj.y);
-	}
-
+	Vector2D(float i_x, float i_y) :x(i_x), y(i_y) {}
 };
-
-
 
 #endif // !DEF_TOOLSLIB_H
 #pragma once

@@ -20,14 +20,14 @@ class BattleObject {
 	//変数
 protected:
 	const std::shared_ptr<MyShape> m_hitJudgeShape;//当たり判定の形状
-	Position2D<double> m_pos;//オブジェクトの位置
+	Vector2D m_pos;//オブジェクトの位置
 	int m_gHandle;//オブジェクトのグラフィックハンドル
 	int m_kind;//オブジェクトの分類(暫定的にintにしている)
 
 	//関数
 public:
 	//コンストラクタとデストラクタ
-	BattleObject(const std::shared_ptr<MyShape> hitJudgeShape,double x,double y,int gHandle,int kind)
+	BattleObject(const std::shared_ptr<MyShape> hitJudgeShape,float x,float y,int gHandle,int kind)
 		:m_hitJudgeShape(hitJudgeShape),m_pos(x,y),m_gHandle(gHandle),m_kind(kind){}
 	virtual ~BattleObject() {}
 
@@ -36,7 +36,7 @@ public:
 	virtual void VHitProcess(const BattleObject *potherobj)=0;//何かに当たった時の処理
 
 	//通常関数
-	void Move(double x, double y) {
+	void Move(float x, float y) {
 		m_pos.x = x;
 		m_pos.y = y;
 	}

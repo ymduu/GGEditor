@@ -17,8 +17,8 @@ class EditActionSettings {
 
 	//変数
 protected:
-	const Position2D<double> m_leftUpPos;//ステージ自身の表示の左上の座標
-	Position2D <double> m_adjust;//描画の左右補正値(実際のステージのm_adjustの座標点を左上に合わせてエディタに表示)
+	const Vector2D m_leftUpPos;//ステージ自身の表示の左上の座標
+	Vector2D m_adjust;//描画の左右補正値(実際のステージのm_adjustの座標点を左上に合わせてエディタに表示)
 
 	std::shared_ptr<EditAction> m_pEditAction;//編集行為
 	std::weak_ptr<BattleObject> m_pBattleObject;//編集対象
@@ -28,7 +28,7 @@ protected:
 protected:
 
 public:
-	EditActionSettings(const Position2D<double> leftUpPos,std::shared_ptr<EditAction> pEditAction,std::weak_ptr<BattleObject> pBattleObject,std::shared_ptr<PosSetting> pPosSetting);
+	EditActionSettings(const Vector2D leftUpPos,std::shared_ptr<EditAction> pEditAction,std::weak_ptr<BattleObject> pBattleObject,std::shared_ptr<PosSetting> pPosSetting);
 	~EditActionSettings();
 };
 

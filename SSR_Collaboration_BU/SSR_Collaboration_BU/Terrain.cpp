@@ -2,7 +2,7 @@
 #include"Terrain.h"
 
 
-Terrain::Terrain(const std::shared_ptr<MyShape> hitJudgeShape, double x, double y, int gHandle, int kind, unsigned int color, bool breakable)
+Terrain::Terrain(const std::shared_ptr<MyShape> hitJudgeShape, float x, float y, int gHandle, int kind, unsigned int color, bool breakable)
 	:BattleObject(hitJudgeShape,x,y,gHandle,kind),m_color(color),m_breakable(breakable){}
 
 Terrain::~Terrain() {}

@@ -4,25 +4,26 @@
 #include"MyRectangle.h"
 #include"MyCircle.h"
 #include"MyAngledTriangle.h"
+#include "ToolsLib.h"
 
-MyShape::HitInfo MyShape::HitJudge(const MyShape *pshape) {
+MyShape::HitInfo MyShape::HitJudge(const MyShape *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	//ダウンキャストしてどのHitJudgeを呼べば良いかを判断する
 	{
 		const MyCircle *pCircle = dynamic_cast<const MyCircle *>(pshape);
 		if (pCircle != nullptr) {
-			return HitJudge(pCircle);
+			return HitJudge(pCircle,aMyPos,aOtherPos);
 		}
 	}
 	{
 		const MyRectangle *pRectangle = dynamic_cast<const MyRectangle *>(pshape);
 		if (pRectangle != nullptr) {
-			return HitJudge(pRectangle);
+			return HitJudge(pRectangle, aMyPos, aOtherPos);
 		}
 	}
 	{
 		const MyAngledTriangle *pAngledTriangle = dynamic_cast<const MyAngledTriangle *>(pshape);
 		if (pAngledTriangle != nullptr) {
-			return HitJudge(pAngledTriangle);
+			return HitJudge(pAngledTriangle, aMyPos, aOtherPos);
 		}
 	}
 
@@ -42,6 +43,7 @@ MyShape::HitInfo MyShape::HitJudge(const MyCircle *pshape1, const MyAngledTriang
 	return HitInfo(false);
 }
 
+//当面は動くオブジェクトは円のみとするので今の所はfalseを返すままにしておきます
 MyShape::HitInfo MyShape::HitJudge(const MyRectangle *pshape1, const MyRectangle *pshape2) {
 	return HitInfo(false);
 }

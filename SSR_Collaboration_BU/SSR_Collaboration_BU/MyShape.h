@@ -1,5 +1,6 @@
 #ifndef DEF_MYSHAPE_H
 #define DEF_MYSHAPE_H
+#include "ToolsLib.h"
 
 class MyCircle;
 class MyRectangle;
@@ -25,11 +26,11 @@ public:
 public:
 	virtual void VDraw(double x,double y,unsigned int color,int fillFlag,int textureHandle)=0;//Œ`ó‚ğ•`‰æ‚·‚é
 
-	//“–‚½‚è”»’èŠÖ”
-	HitInfo HitJudge(const MyShape *pshape);
-	virtual HitInfo HitJudge(const MyCircle *pshape) = 0;
-	virtual HitInfo HitJudge(const MyRectangle *pshape) = 0;
-	virtual HitInfo HitJudge(const MyAngledTriangle *pshape) = 0;
+	//“–‚½‚è”»’èŠÖ”Aˆø”‚ÉÀ•Wî•ñ‚ğ’Ç‰Á
+	HitInfo HitJudge(const MyShape *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
+	virtual HitInfo HitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) = 0;
+	virtual HitInfo HitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) = 0;
+	virtual HitInfo HitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) = 0;
 
 	//“–‚½‚è”»’èŠÖ”‚ÌÀ‘Ì
 	static HitInfo HitJudge(const MyCircle *pshape1, const MyCircle *pshape2);

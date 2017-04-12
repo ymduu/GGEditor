@@ -54,3 +54,15 @@ Vector2D MyRectangle::GetNearestPoint(Vector2D rectanglePos , Vector2D p)const {
 	}
 	return p;
 }
+float MyRectangle::getTop(Vector2D aPos) {
+	return aPos.y;
+}
+float MyRectangle::getBottom(Vector2D aPos) {
+	return aPos.y + dy;
+}
+float MyRectangle::getLeft(Vector2D aPos) {
+	return aPos.x;
+}
+float MyRectangle::getRight(Vector2D aPos) {
+	return aPos.x + dx;
+}

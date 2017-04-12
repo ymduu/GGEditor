@@ -26,6 +26,11 @@ public:
 	bool VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
 	//四角形そのものの座標と点を引数に取り、最近傍の点を返す
 	Vector2D GetNearestPoint(Vector2D rectanglePos , Vector2D p)const;	
+	//上下左右の座標を取得(4分木のため)
+	float getTop(Vector2D aPos);
+	float getBottom(Vector2D aPos);
+	float getLeft(Vector2D aPos);
+	float getRight(Vector2D aPos);
 
 
 };

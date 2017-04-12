@@ -43,6 +43,13 @@ bool MyShape::HitJudge(const MyCircle *pshape1, const MyCircle *pshape2, const V
 }
 
 bool MyShape::HitJudge(const MyCircle *pshape1, const MyRectangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos) {
+	//最近傍点を求める
+	Vector2D nearestPoint = pshape2->GetNearestPoint(aOtherPos, aMyPos);
+	if ((aMyPos - nearestPoint).sqSize() < pshape1->r*pshape1->r) {
+		//円の中心から最近傍点までの距離**2<半径**2なら衝突している
+		return true;
+	}
+
 	return false;
 }
 

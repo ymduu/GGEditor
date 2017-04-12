@@ -36,7 +36,7 @@ bool MyRectangle::VJudgePosintInsideShape(const Vector2D point, const Vector2D s
 }
 
 //点(円の中心を想定)から四角形に下した垂線の足の座標を求める
-Vector2D MyRectangle::GetNearestPoint(Vector2D rectanglePos , Vector2D p) {
+Vector2D MyRectangle::GetNearestPoint(Vector2D rectanglePos , Vector2D p)const {
 	if (p.x < rectanglePos.x) {
 		//もし点(円の中心を想定)が四角形の左端より左にあったら
 		p.x = rectanglePos.x;

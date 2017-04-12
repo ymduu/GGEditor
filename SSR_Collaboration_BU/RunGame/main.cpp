@@ -52,13 +52,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	std::vector< std::shared_ptr<IKD::OBJECT_FOR_TREE<BattleObject>>> spOFTVec;	//四分木に追加するオブジェクト
 
 	//デモ用に円と四角形の物体を用意
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 2; i++) {
 		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyCircle(30))
-			, (i+1)*100, 300, -1, 0, GetColor(255, 255, 255), false)));
+			, (i+1)*100, 500, -1, 0, GetColor(255, 255, 255), false)));
 	}
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 1; i++) {
 		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(100, 200))
-			, 150 * i, 10, -1, 0, GetColor(255, 255, 255), false)));
+			, 150 * (i+1), 10, -1, 0, GetColor(255, 255, 255), false)));
 	}
 	//4分木に追加、shared_ptrが持つ生ポインタは指す先が変化しないことを前提としている(大丈夫か？)
 	for (std::shared_ptr<BattleObject> sp : objects) {
@@ -72,12 +72,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	if (!LTree.Init(8, 0.0, 0.0, 800.0, 600.0))
 	{
 		MessageBox(NULL, _T("線形4分木空間の初期化に失敗しました。"), NULL, NULL);
-		return;
+		return -1;
 	}
+	char key[256];
 
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0) {
 		//ゲーム本体
 		//キー情報更新
+		clsDx();
 		t++;
 		input_update();
 
@@ -88,18 +90,42 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			BattleObject *pTmp = spOFTVec[count]->m_pObject;
 			spOFTVec[count]->Remove();		// 一度リストから外れる
 			// 再登録
-			LTree.Regist(pTmp->x - pTmp->r, pTmp->y - pTmp->r, pTmp->x + pTmp->r, pTmp->y + pTmp->r, spOFTVec[count].get());
+			LTree.Regist(pTmp->getLeft(),pTmp->getTop(),pTmp->getRight(),pTmp->getBottom(), spOFTVec[count].get());
 		}
 		
+		int ColNum = LTree.GetAllCollisionList(&ColVect)/2;
+
 		//描画
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 3; i++) {
 			//objects[i].get()->Move((float)(x + i * 50 + r*cos((float)t / maxt*M_PI)), (float)(y + i * 50 + r*sin((float)t / maxt*M_PI)));
 			objects[i].get()->VDraw();
 		}
+		//あたり判定、出力
+		BattleObject** pRoot = ColVect->getRootPtr();
+		for (int i = 0; i < ColNum; i++) {
+			if (pRoot[i * 2]->m_hitJudgeShape->HitJudge(pRoot[i*2+1]->m_hitJudgeShape.get(),pRoot[i*2]->m_pos,pRoot[i*2+1]->m_pos)) {
+				printfDx("Hit\n");
+			}
+		}
+
 		//計算処理
 		//終了検出
 		if (keyboard_get(KEY_INPUT_NUMPADENTER) == 1) {
 			break;
+		}
+		Vector2D v = objects[0]->m_pos;
+		GetHitKeyStateAll(key);
+		if (key[KEY_INPUT_DOWN] == 1) {
+			objects[0].get()->Move(v.x, v.y+move);
+		}
+		if (key[KEY_INPUT_UP] == 1) {
+			objects[0].get()->Move(v.x, v.y-move);
+		}
+		if (key[KEY_INPUT_LEFT] == 1) {
+			objects[0].get()->Move(v.x-move, v.y);
+		}
+		if (key[KEY_INPUT_RIGHT] == 1) {
+			objects[0].get()->Move(v.x+move, v.y);
 		}
 	}
 

@@ -77,5 +77,8 @@
     <ClInclude Include="..\SSR_Collaboration_BU\input.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="libQTree.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

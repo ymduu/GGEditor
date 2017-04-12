@@ -16,15 +16,15 @@ void MyAngledTriangle::VDraw(double x, double y, unsigned int color, int fillFla
 
 
 bool MyAngledTriangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
-	return MyShape::HitJudge(pshape, this);
+	return MyShape::HitJudge(pshape, this,aMyPos,aOtherPos);
 }
 
 bool MyAngledTriangle::VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
-	return MyShape::HitJudge(pshape,this);
+	return MyShape::HitJudge(pshape,this, aMyPos, aOtherPos);
 }
 
 bool MyAngledTriangle::VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
-	return MyShape::HitJudge(this, pshape);
+	return MyShape::HitJudge(this, pshape, aMyPos, aOtherPos);
 }
 
 bool MyAngledTriangle::VJudgePosintInsideShape(const Vector2D point, const Vector2D shapePos) {

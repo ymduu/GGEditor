@@ -37,6 +37,11 @@ public:
 	static bool HitJudge(const MyRectangle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
 	static bool HitJudge(const MyAngledTriangle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
 
+	//ŠOÚlŠpŒ`‚Ìã‰º¶‰E‚ğæ“¾(4•ª–Ø‚É“o˜^‚·‚é‚½‚ß)
+	virtual float getTop(Vector2D aPos) = 0;
+	virtual float getBottom(Vector2D aPos) = 0;
+	virtual float getLeft(Vector2D aPos) = 0;
+	virtual float getRight(Vector2D aPos) = 0;
 };
 
 #endif // !DEF_MYSHAPE_H

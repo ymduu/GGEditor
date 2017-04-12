@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\SSR_Collaboration_BU\BattleObject.cpp" />
     <ClCompile Include="..\SSR_Collaboration_BU\input.cpp" />
     <ClCompile Include="..\SSR_Collaboration_BU\MyAngledTriangle.cpp" />
     <ClCompile Include="..\SSR_Collaboration_BU\MyCircle.cpp" />

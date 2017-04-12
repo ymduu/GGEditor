@@ -63,6 +63,9 @@
     <ClCompile Include="Terrain.cpp">
       <Filter>ソース ファイル\BattleObject</Filter>
     </ClCompile>
+    <ClCompile Include="BattleObject.cpp">
+      <Filter>ソース ファイル\BattleObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ToolsLib.h">

@@ -132,6 +132,9 @@ void InputControler::InitInput(){
 	for(int i=0;i<KeyNum;i++){
 		m_keyboardFlame[i]=0;
 	}
+	for(int i=0;i<MouseButtonNum;i++){
+		m_mouseFlame[i]=0;
+	}
 }
 
 void InputControler::COMinput(int KeyCode){

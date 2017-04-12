@@ -34,6 +34,10 @@ public:
 	float size()const {
 		return sqrtf(x*x + y*y);
 	}
+	//ƒTƒCƒY‚Ì“ñæ‚ğ•Ô‚·
+	float sqSize()const {
+		return x*x + y*y;
+	}
 	Vector2D norm()const {
 		float siz = size();
 		return Vector2D(x / siz, y / siz);

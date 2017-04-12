@@ -11,6 +11,7 @@
 #include"MyRectangle.h"
 #include"MyCircle.h"
 #include"MyAngledTriangle.h"
+#include "libQTree.h"
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//画面モードの設定
@@ -45,29 +46,86 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	//描画させるものを宣言
 	int t = 0;
-	const int x = 200, y = 200, r = 100, maxt = 330;
+	const int x = 200, y = 200, r = 100, maxt = 330 ,move=4;
 
 	std::vector<std::shared_ptr<BattleObject>> objects;
-	for (int i = 0; i < 4; i++) {
-		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyCircle(45 + 20 * (i - 2)))
-			, (float)(x + i * 50 + r*cos((float)t / maxt*M_PI)), (float)(y + i * 50 + r*sin((float)t / maxt*M_PI))
-			, -1, 0, GetColor(255, 255, i * 50), false)));
+	std::vector< std::shared_ptr<IKD::OBJECT_FOR_TREE<BattleObject>>> spOFTVec;	//四分木に追加するオブジェクト
+
+	//デモ用に円と四角形の物体を用意
+	for (int i = 0; i < 2; i++) {
+		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyCircle(30))
+			, (i+1)*100, 500, -1, 0, GetColor(255, 255, 255), false)));
 	}
+	for (int i = 0; i < 1; i++) {
+		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(100, 200))
+			, 150 * (i+1), 10, -1, 0, GetColor(255, 255, 255), false)));
+	}
+	//4分木に追加、shared_ptrが持つ生ポインタは指す先が変化しないことを前提としている(大丈夫か？)
+	for (std::shared_ptr<BattleObject> sp : objects) {
+		std::shared_ptr<IKD::OBJECT_FOR_TREE<BattleObject>> newObj = std::make_shared<IKD::OBJECT_FOR_TREE<BattleObject>>(0);
+		newObj->m_pObject = sp.get();
+		spOFTVec.push_back(newObj);
+	}
+	
+	IKD::CLiner4TreeManager<BattleObject> LTree;
+	IKD::CollisionList<BattleObject>* ColVect;		
+	if (!LTree.Init(8, 0.0, 0.0, 800.0, 600.0))
+	{
+		MessageBox(NULL, _T("線形4分木空間の初期化に失敗しました。"), NULL, NULL);
+		return -1;
+	}
+	char key[256];
 
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0) {
 		//ゲーム本体
 		//キー情報更新
+		clsDx();
 		t++;
 		input_update();
+
+		//再登録(移動を反映させるため)
+
+		for (size_t count = 0; count < spOFTVec.size(); count++) {
+			//i=cn
+			BattleObject *pTmp = spOFTVec[count]->m_pObject;
+			spOFTVec[count]->Remove();		// 一度リストから外れる
+			// 再登録
+			LTree.Regist(pTmp->getLeft(),pTmp->getTop(),pTmp->getRight(),pTmp->getBottom(), spOFTVec[count].get());
+		}
+		
+		int ColNum = LTree.GetAllCollisionList(&ColVect)/2;
+
 		//描画
-		for (int i = 0; i < 4; i++) {
-			objects[i].get()->Move((float)(x + i * 50 + r*cos((float)t / maxt*M_PI)), (float)(y + i * 50 + r*sin((float)t / maxt*M_PI)));
+		for (int i = 0; i < 3; i++) {
+			//objects[i].get()->Move((float)(x + i * 50 + r*cos((float)t / maxt*M_PI)), (float)(y + i * 50 + r*sin((float)t / maxt*M_PI)));
 			objects[i].get()->VDraw();
 		}
+		//あたり判定、出力
+		BattleObject** pRoot = ColVect->getRootPtr();
+		for (int i = 0; i < ColNum; i++) {
+			if (pRoot[i * 2]->m_hitJudgeShape->HitJudge(pRoot[i*2+1]->m_hitJudgeShape.get(),pRoot[i*2]->m_pos,pRoot[i*2+1]->m_pos)) {
+				printfDx("Hit\n");
+			}
+		}
+
 		//計算処理
 		//終了検出
 		if (keyboard_get(KEY_INPUT_NUMPADENTER) == 1) {
 			break;
+		}
+		Vector2D v = objects[0]->m_pos;
+		GetHitKeyStateAll(key);
+		if (key[KEY_INPUT_DOWN] == 1) {
+			objects[0].get()->Move(v.x, v.y+move);
+		}
+		if (key[KEY_INPUT_UP] == 1) {
+			objects[0].get()->Move(v.x, v.y-move);
+		}
+		if (key[KEY_INPUT_LEFT] == 1) {
+			objects[0].get()->Move(v.x-move, v.y);
+		}
+		if (key[KEY_INPUT_RIGHT] == 1) {
+			objects[0].get()->Move(v.x+move, v.y);
 		}
 	}
 

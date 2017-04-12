@@ -19,9 +19,14 @@ public:
 	//図形内に点があるかどうかの判定
 	bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos);
 	//当たり判定関数
-	HitInfo VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
-	HitInfo VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
-	HitInfo VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
+	bool VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
+	bool VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
+	bool VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
+	//4分木のために上下左右の座標を取得する
+	float getTop(Vector2D aPos);
+	float getBottom(Vector2D aPos);
+	float getLeft(Vector2D aPos);
+	float getRight(Vector2D aPos);
 
 };
 

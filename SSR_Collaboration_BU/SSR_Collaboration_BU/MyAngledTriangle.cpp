@@ -15,16 +15,16 @@ void MyAngledTriangle::VDraw(double x, double y, unsigned int color, int fillFla
 }
 
 
-MyShape::HitInfo MyAngledTriangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
-	return MyShape::HitJudge(pshape, this);
+bool MyAngledTriangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
+	return MyShape::HitJudge(pshape, this,aMyPos,aOtherPos);
 }
 
-MyShape::HitInfo MyAngledTriangle::VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
-	return MyShape::HitJudge(pshape,this);
+bool MyAngledTriangle::VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
+	return MyShape::HitJudge(pshape,this, aMyPos, aOtherPos);
 }
 
-MyShape::HitInfo MyAngledTriangle::VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
-	return MyShape::HitJudge(this, pshape);
+bool MyAngledTriangle::VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
+	return MyShape::HitJudge(this, pshape, aMyPos, aOtherPos);
 }
 
 bool MyAngledTriangle::VJudgePosintInsideShape(const Vector2D point, const Vector2D shapePos) {
@@ -37,4 +37,17 @@ bool MyAngledTriangle::VJudgePosintInsideShape(const Vector2D point, const Vecto
 		return ((-vy*vx)*(sp.y*vx + vy*(sp.x - vx)) >= 0);
 	}
 	return false;
+}
+
+float MyAngledTriangle::getTop(Vector2D aPos) {
+	return aPos.y;
+}
+float MyAngledTriangle::getBottom(Vector2D aPos) {
+	return aPos.y;
+}
+float MyAngledTriangle::getLeft(Vector2D aPos) {
+	return aPos.x;
+}
+float MyAngledTriangle::getRight(Vector2D aPos) {
+	return aPos.x;
 }

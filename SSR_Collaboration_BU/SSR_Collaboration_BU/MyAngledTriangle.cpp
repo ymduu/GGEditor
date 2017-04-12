@@ -15,15 +15,15 @@ void MyAngledTriangle::VDraw(double x, double y, unsigned int color, int fillFla
 }
 
 
-MyShape::HitInfo MyAngledTriangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
+bool MyAngledTriangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	return MyShape::HitJudge(pshape, this);
 }
 
-MyShape::HitInfo MyAngledTriangle::VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
+bool MyAngledTriangle::VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	return MyShape::HitJudge(pshape,this);
 }
 
-MyShape::HitInfo MyAngledTriangle::VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
+bool MyAngledTriangle::VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	return MyShape::HitJudge(this, pshape);
 }
 

@@ -6,7 +6,7 @@
 #include"MyAngledTriangle.h"
 #include "ToolsLib.h"
 
-MyShape::HitInfo MyShape::HitJudge(const MyShape *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
+bool MyShape::HitJudge(const MyShape *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	//ダウンキャストしてどのHitJudgeを呼べば良いかを判断する
 	{
 		const MyCircle *pCircle = dynamic_cast<const MyCircle *>(pshape);
@@ -31,35 +31,35 @@ MyShape::HitInfo MyShape::HitJudge(const MyShape *pshape, const Vector2D aMyPos,
 		}
 	}
 
-	return HitInfo(false);
+	return false;
 }
 
 //当たり判定の実体
-MyShape::HitInfo MyShape::HitJudge(const MyCircle *pshape1, const MyCircle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos) {
+bool MyShape::HitJudge(const MyCircle *pshape1, const MyCircle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	if ((pshape1->r + pshape2->r)*(pshape1->r + pshape2->r) >= (aMyPos.x - aOtherPos.x)*(aMyPos.x - aOtherPos.x) + (aMyPos.y - aOtherPos.y)*(aMyPos.y - aOtherPos.y)) {
-		return HitInfo(true);
+		return true;
 	}
-	return HitInfo(false);
+	return false;
 }
 
-MyShape::HitInfo MyShape::HitJudge(const MyCircle *pshape1, const MyRectangle *pshape2) {
-	return HitInfo(false);
+bool MyShape::HitJudge(const MyCircle *pshape1, const MyRectangle *pshape2) {
+	return false;
 }
 
-MyShape::HitInfo MyShape::HitJudge(const MyCircle *pshape1, const MyAngledTriangle *pshape2) {
-	return HitInfo(false);
+bool MyShape::HitJudge(const MyCircle *pshape1, const MyAngledTriangle *pshape2) {
+	return false;
 }
 
 //当面は動くオブジェクトは円のみとするので今の所はfalseを返すままにしておきます
-MyShape::HitInfo MyShape::HitJudge(const MyRectangle *pshape1, const MyRectangle *pshape2) {
-	return HitInfo(false);
+bool MyShape::HitJudge(const MyRectangle *pshape1, const MyRectangle *pshape2) {
+	return false;
 }
 
-MyShape::HitInfo MyShape::HitJudge(const MyRectangle *pshape1, const MyAngledTriangle *pshape2) {
-	return HitInfo(false);
+bool MyShape::HitJudge(const MyRectangle *pshape1, const MyAngledTriangle *pshape2) {
+	return false;
 }
 
-MyShape::HitInfo MyShape::HitJudge(const MyAngledTriangle *pshape1, const MyAngledTriangle *pshape2) {
-	return HitInfo(false);
+bool MyShape::HitJudge(const MyAngledTriangle *pshape1, const MyAngledTriangle *pshape2) {
+	return false;
 }
 

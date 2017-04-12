@@ -42,24 +42,24 @@ bool MyShape::HitJudge(const MyCircle *pshape1, const MyCircle *pshape2, const V
 	return false;
 }
 
-bool MyShape::HitJudge(const MyCircle *pshape1, const MyRectangle *pshape2) {
+bool MyShape::HitJudge(const MyCircle *pshape1, const MyRectangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	return false;
 }
 
-bool MyShape::HitJudge(const MyCircle *pshape1, const MyAngledTriangle *pshape2) {
+bool MyShape::HitJudge(const MyCircle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	return false;
 }
 
 //当面は動くオブジェクトは円のみとするので今の所はfalseを返すままにしておきます
-bool MyShape::HitJudge(const MyRectangle *pshape1, const MyRectangle *pshape2) {
+bool MyShape::HitJudge(const MyRectangle *pshape1, const MyRectangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	return false;
 }
 
-bool MyShape::HitJudge(const MyRectangle *pshape1, const MyAngledTriangle *pshape2) {
+bool MyShape::HitJudge(const MyRectangle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	return false;
 }
 
-bool MyShape::HitJudge(const MyAngledTriangle *pshape1, const MyAngledTriangle *pshape2) {
+bool MyShape::HitJudge(const MyAngledTriangle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	return false;
 }
 

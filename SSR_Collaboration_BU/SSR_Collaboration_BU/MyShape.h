@@ -31,11 +31,11 @@ public:
 
 	//ìñÇΩÇËîªíËä÷êîÇÃé¿ëÃ
 	static bool HitJudge(const MyCircle *pshape1, const MyCircle *pshape2,const Vector2D aMyPos, const Vector2D aOtherPos);
-	static bool HitJudge(const MyCircle *pshape1, const MyRectangle *pshape2);
-	static bool HitJudge(const MyCircle *pshape1, const MyAngledTriangle *pshape2);
-	static bool HitJudge(const MyRectangle *pshape1, const MyRectangle *pshape2);
-	static bool HitJudge(const MyRectangle *pshape1, const MyAngledTriangle *pshape2);
-	static bool HitJudge(const MyAngledTriangle *pshape1, const MyAngledTriangle *pshape2);
+	static bool HitJudge(const MyCircle *pshape1, const MyRectangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
+	static bool HitJudge(const MyCircle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
+	static bool HitJudge(const MyRectangle *pshape1, const MyRectangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
+	static bool HitJudge(const MyRectangle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
+	static bool HitJudge(const MyAngledTriangle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
 
 };
 

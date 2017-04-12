@@ -24,6 +24,8 @@ public:
 	bool VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
 	bool VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
 	bool VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
+	//四角形そのものの座標と点を引数に取り、最近傍の点を返す
+	Vector2D GetNearestPoint(Vector2D rectanglePos , Vector2D p);	
 
 
 };

@@ -38,3 +38,16 @@ bool MyAngledTriangle::VJudgePosintInsideShape(const Vector2D point, const Vecto
 	}
 	return false;
 }
+
+float MyAngledTriangle::getTop(Vector2D aPos) {
+	return aPos.y;
+}
+float MyAngledTriangle::getBottom(Vector2D aPos) {
+	return aPos.y;
+}
+float MyAngledTriangle::getLeft(Vector2D aPos) {
+	return aPos.x;
+}
+float MyAngledTriangle::getRight(Vector2D aPos) {
+	return aPos.x;
+}

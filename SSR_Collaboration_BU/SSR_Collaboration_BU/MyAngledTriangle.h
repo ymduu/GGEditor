@@ -22,6 +22,11 @@ public:
 	bool VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
 	bool VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
 	bool VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
+	//4•ª–Ø‚Ì‚½‚ß‚Éã‰º¶‰E‚ÌÀ•W‚ğæ“¾‚·‚é
+	float getTop(Vector2D aPos);
+	float getBottom(Vector2D aPos);
+	float getLeft(Vector2D aPos);
+	float getRight(Vector2D aPos);
 
 };
 

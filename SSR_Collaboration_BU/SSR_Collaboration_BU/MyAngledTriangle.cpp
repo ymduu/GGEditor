@@ -1,12 +1,12 @@
 #include"DxLib.h"
 #include"MyAngledTriangle.h"
 
-MyAngledTriangle::MyAngledTriangle(double i_vx, double i_vy)
+MyAngledTriangle::MyAngledTriangle(float i_vx, float i_vy)
 	:vx(i_vx),vy(i_vy){}
 
 MyAngledTriangle::~MyAngledTriangle() {}
 
-void MyAngledTriangle::VDraw(double x, double y, unsigned int color, int fillFlag, int textureHandle) {
+void MyAngledTriangle::VDraw(float x, float y, unsigned int color, int fillFlag, int textureHandle) {
 	//ひとまずテクスチャーを使わずに実装
 	DrawTriangle((int)x,(int)y
 		,(int)(x+vx),(int)y
@@ -16,11 +16,13 @@ void MyAngledTriangle::VDraw(double x, double y, unsigned int color, int fillFla
 
 
 bool MyAngledTriangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
-	return MyShape::HitJudge(pshape, this,aMyPos,aOtherPos);
+	//ここは第二引数が自分のため、aMyPosは第四引数にしないとおかしい
+	return MyShape::HitJudge(pshape, this,aOtherPos,aMyPos);
 }
 
 bool MyAngledTriangle::VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
-	return MyShape::HitJudge(pshape,this, aMyPos, aOtherPos);
+	//ここは第二引数が自分のため、aMyPosは第四引数にしないとおかしい
+	return MyShape::HitJudge(pshape,this,aOtherPos,aMyPos);
 }
 
 bool MyAngledTriangle::VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {

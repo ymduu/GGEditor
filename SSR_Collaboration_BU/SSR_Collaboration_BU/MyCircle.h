@@ -10,12 +10,14 @@ class MyCircle :public MyShape {
 	//’è”
 	//•Ï”
 protected:
+	
+public:
+	float r;
 	//ŠÖ”
 public:
-	double r;
-	MyCircle(double i_r);
+	MyCircle(float i_r);
 	~MyCircle();
-	void VDraw(double x, double y, unsigned int color, int fillFlag, int textureHandle);
+	void VDraw(float x, float y, unsigned int color, int fillFlag, int textureHandle);
 	//}Œ`“à‚É“_‚ª‚ ‚é‚©‚Ç‚¤‚©‚Ì”»’è
 	bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos);
 	//“–‚½‚è”»’èŠÖ”

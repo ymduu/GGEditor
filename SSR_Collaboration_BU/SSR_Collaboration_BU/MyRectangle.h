@@ -11,13 +11,13 @@ class MyRectangle:public MyShape {
 
 	//•Ï”
 protected:
-	double dx, dy;//‘å‚«‚³
+	float dx, dy;//‘å‚«‚³
 
 	//ŠÖ”
 public:
-	MyRectangle(double i_dx,double i_dy);
+	MyRectangle(float i_dx,float i_dy);
 	~MyRectangle();
-	void VDraw(double x, double y, unsigned int color, int fillFlag, int textureHandle);//Œ`ó‚ğ•`‰æ‚·‚é
+	void VDraw(float x, float y, unsigned int color, int fillFlag, int textureHandle);//Œ`ó‚ğ•`‰æ‚·‚é
 	//}Œ`“à‚É“_‚ª‚ ‚é‚©‚Ç‚¤‚©‚Ì”»’è
 	bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos);
 	//“–‚½‚è”»’èŠÖ”

@@ -13,9 +13,9 @@ protected:
 	double vx, vy;//直角頂からのx,y方向の正の方向ベクトルの長さ。負の値だと負の方向に伸びている事を示している。
 	//関数
 public:
-	MyAngledTriangle(double i_vx,double i_vy);
+	MyAngledTriangle(float i_vx,float i_vy);
 	~MyAngledTriangle();
-	void VDraw(double x, double y, unsigned int color, int fillFlag, int textureHandle);
+	void VDraw(float x, float y, unsigned int color, int fillFlag, int textureHandle);
 	//図形内に点があるかどうかの判定
 	bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos);
 	//当たり判定関数

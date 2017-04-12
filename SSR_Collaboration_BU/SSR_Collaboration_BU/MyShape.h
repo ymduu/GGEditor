@@ -18,7 +18,7 @@ public:
 
 	//ŠÖ”
 public:
-	virtual void VDraw(double x,double y,unsigned int color,int fillFlag,int textureHandle)=0;//Œ`ó‚ğ•`‰æ‚·‚é
+	virtual void VDraw(float x,float y,unsigned int color,int fillFlag,int textureHandle)=0;//Œ`ó‚ğ•`‰æ‚·‚é
 
 	//}Œ`“à‚É“_‚ª‚ ‚é‚©‚Ç‚¤‚©‚Ì”»’è
 	virtual bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos)=0;

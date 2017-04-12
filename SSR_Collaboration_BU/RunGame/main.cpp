@@ -54,11 +54,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//デモ用に円と四角形の物体を用意
 	for (int i = 0; i < 2; i++) {
 		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyCircle(30))
-			, (i+1)*100, 500, -1, 0, GetColor(255, 255, 255), false)));
+			, (float)(i+1)*100, 500, -1, 0, GetColor(255, 255, 255), false)));
 	}
 	for (int i = 0; i < 1; i++) {
 		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(100, 200))
-			, 150 * (i+1), 10, -1, 0, GetColor(255, 255, 255), false)));
+			, (float)150 * (i+1), 10, -1, 0, GetColor(255, 255, 255), false)));
 	}
 	//4分木に追加、shared_ptrが持つ生ポインタは指す先が変化しないことを前提としている(大丈夫か？)
 	for (std::shared_ptr<BattleObject> sp : objects) {

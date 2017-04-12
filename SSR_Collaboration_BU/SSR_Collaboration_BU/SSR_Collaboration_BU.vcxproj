@@ -162,6 +162,7 @@
     <ClCompile Include="MyRectangle.cpp" />
     <ClCompile Include="MyShape.cpp" />
     <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="ToolsLib.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EditAction.h" />

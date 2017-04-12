@@ -38,6 +38,7 @@ public:
 	//’ÊíŠÖ”
 	void ShapeDraw(unsigned int color,int fillFlag,int dx=0,int dy=0);//“–‚½‚è”»’èŒ`ó‚ÉŠî‚Ã‚¢‚½•`‰æˆ—(dx,dy‚ÍƒYƒŒ‚Ì’l)
 	void Move(float x,float y);
+	bool JudgePointInsideShape(Vector2D point);
 };
 
 #endif // !DEF_BATTLEOBJECT_H

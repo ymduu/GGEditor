@@ -66,6 +66,9 @@
     <ClCompile Include="BattleObject.cpp">
       <Filter>ソース ファイル\BattleObject</Filter>
     </ClCompile>
+    <ClCompile Include="ToolsLib.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ToolsLib.h">

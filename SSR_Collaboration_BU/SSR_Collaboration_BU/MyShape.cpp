@@ -10,19 +10,19 @@ MyShape::HitInfo MyShape::HitJudge(const MyShape *pshape) {
 	{
 		const MyCircle *pCircle = dynamic_cast<const MyCircle *>(pshape);
 		if (pCircle != nullptr) {
-			return HitJudge(pCircle);
+			return VHitJudge(pCircle);
 		}
 	}
 	{
 		const MyRectangle *pRectangle = dynamic_cast<const MyRectangle *>(pshape);
 		if (pRectangle != nullptr) {
-			return HitJudge(pRectangle);
+			return VHitJudge(pRectangle);
 		}
 	}
 	{
 		const MyAngledTriangle *pAngledTriangle = dynamic_cast<const MyAngledTriangle *>(pshape);
 		if (pAngledTriangle != nullptr) {
-			return HitJudge(pAngledTriangle);
+			return VHitJudge(pAngledTriangle);
 		}
 	}
 

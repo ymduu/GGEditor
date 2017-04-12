@@ -16,10 +16,12 @@ public:
 	MyAngledTriangle(double i_vx,double i_vy);
 	~MyAngledTriangle();
 	void VDraw(double x, double y, unsigned int color, int fillFlag, int textureHandle);
+	//ê}å`ì‡Ç…ì_Ç™Ç†ÇÈÇ©Ç«Ç§Ç©ÇÃîªíË
+	bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos);
 	//ìñÇΩÇËîªíËä÷êî
-	HitInfo HitJudge(const MyCircle *pshape);
-	HitInfo HitJudge(const MyRectangle *pshape);
-	HitInfo HitJudge(const MyAngledTriangle *pshape);
+	HitInfo VHitJudge(const MyCircle *pshape);
+	HitInfo VHitJudge(const MyRectangle *pshape);
+	HitInfo VHitJudge(const MyAngledTriangle *pshape);
 
 };
 

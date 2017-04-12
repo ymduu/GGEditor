@@ -9,3 +9,7 @@ void BattleObject::Move(float x,float y){
 	m_pos.x=x;
 	m_pos.y=y;
 }
+
+bool BattleObject::JudgePointInsideShape(Vector2D point){
+	return m_hitJudgeShape.get()->VJudgePosintInsideShape(point,m_pos);
+}

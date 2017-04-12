@@ -50,7 +50,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	std::vector<std::shared_ptr<BattleObject>> objects;
 	for (int i = 0; i < 4; i++) {
 		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyCircle(45 + 20 * (i - 2)))
-			, x + i * 50 + r*cos((double)t / maxt*M_PI), y + i * 50 + r*sin((double)t / maxt*M_PI)
+			, (float)(x + i * 50 + r*cos((float)t / maxt*M_PI)), (float)(y + i * 50 + r*sin((float)t / maxt*M_PI))
 			, -1, 0, GetColor(255, 255, i * 50), false)));
 	}
 
@@ -58,10 +58,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		//ゲーム本体
 		//キー情報更新
 		t++;
-		keyboard_update();
+		input_update();
 		//描画
 		for (int i = 0; i < 4; i++) {
-			objects[i].get()->Move(x + i * 50 + r*cos((double)t / maxt*M_PI), y + i * 50 + r*sin((double)t / maxt*M_PI));
+			objects[i].get()->Move((float)(x + i * 50 + r*cos((float)t / maxt*M_PI)), (float)(y + i * 50 + r*sin((float)t / maxt*M_PI)));
 			objects[i].get()->VDraw();
 		}
 		//計算処理

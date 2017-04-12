@@ -7,11 +7,13 @@
 #include<string>
 
 //キーボード関連
-int keyboard_update();
+int input_update();
 
 int keyboard_get(int KeyCode);
 
-void keyboard_erase();//入力情報を全て消す(どのボタンも入力されてないことにする)
+int mouse_get(int MouseCode);
+
+void input_erase();//入力情報を全て消す(どのボタンも入力されてないことにする)
 
 void keyboard_COMinput(int KeyCode);//ボタンを押されたことにする
 
@@ -34,10 +36,12 @@ protected:
 	};
 	//定数
 	static const std::string InitFileName;
-	static const int KeyNum=256;
+	static const int KeyNum=256;//キーボードの入力キー数
+	static const int MouseButtonNum=8;//マウスの入力ボタン数
 
 	//変数
 	int m_keyboardFlame[KeyNum];//各キーボードが入力されたフレーム数
+	int m_mouseFlame[MouseButtonNum];//各マウスのボタンが入力されたフレーム数
 	std::set<GamepadKeyboardMap> m_connectmap;//ゲームパッドとキーボードの対応表
 
 	//関数
@@ -48,6 +52,7 @@ public:
 	~InputControler();
 	int Update();
 	int Get(int KeyCode);
+	int MouseGet(int MouseCode);
 	void InitInput();
 	void COMinput(int KeyCode);
 	void AddConnectMap(int KeyCode,int PadButton);

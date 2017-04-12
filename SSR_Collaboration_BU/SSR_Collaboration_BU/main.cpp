@@ -1,26 +1,18 @@
-#define _USE_MATH_DEFINES	//math.hの定数を使うために必須
-
 #include<iostream>
-#include"DxLib.h"
-
-#include<math.h>
 #include<memory>
-#include<vector>
+#include"DxLib.h"
 #include"input.h"
-#include"Terrain.h"
-#include"MyRectangle.h"
-#include"MyCircle.h"
-#include"MyAngledTriangle.h"
+#include"GGEditor.h"
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//画面モードの設定
-	SetGraphMode(800,600,16);
+	SetGraphMode(GGEditor::leftUpPosX*2+GGEditor::mapSizeX+GGEditor::buttonWidth, GGEditor::leftUpPosY * 2 + GGEditor::mapSizeY,16);
 	//タイトルメニュー文字
-	SetMainWindowText("SSR_Collaboration_BU");
+	SetMainWindowText("GGEditor");
 	//ウインドウサイズの変更
 	SetWindowSizeExtendRate(1.0);
-	//ウインドウサイズの変更をできるようにする
-	SetWindowSizeChangeEnableFlag(TRUE);
+	//ウインドウサイズの変更をできるようにしない
+	SetWindowSizeChangeEnableFlag(FALSE);
 	//アイコンの設定
 	SetWindowIconID(101);
 
@@ -42,30 +34,18 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//入力についての初期化
 	InitInputControler();
 
-	//描画させるものを宣言
-	int t = 0;
-	const int x = 200, y = 200, r = 100,maxt=330;
+	std::shared_ptr<GGEditor> ggEditor(new GGEditor());
 	
-	std::vector<std::shared_ptr<BattleObject>> objects;
-	for (int i = 0; i < 4;i++) {
-		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyCircle(45+20*(i-2)))
-			, x+i*50 + r*cos((double)t / maxt*M_PI), y +i*50+ r*sin((double)t / maxt*M_PI)
-			, -1, 0, GetColor(255, 255, i*50), false)));
-	}
-
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0) {
 		//ゲーム本体
 		//キー情報更新
-		t++;
-		keyboard_update();
+		input_update();
 		//描画
-		for (int i = 0; i < 4; i++) {
-			objects[i].get()->Move(x + i * 50 + r*cos((double)t / maxt*M_PI), y + i * 50 + r*sin((double)t / maxt*M_PI));
-			objects[i].get()->VDraw();
-		}
+		ggEditor->Draw();
 		//計算処理
+		int index = ggEditor->Calculate();
 		//終了検出
-		if(keyboard_get(KEY_INPUT_NUMPADENTER)==1){
+		if(index<0){
 			break;
 		}
 	}

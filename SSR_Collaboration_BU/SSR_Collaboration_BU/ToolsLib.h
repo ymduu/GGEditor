@@ -1,9 +1,11 @@
 #ifndef DEF_TOOLSLIB_H
 #define DEF_TOOLSLIB_H
+#include <math.h>
 
 //一般的に用いることができる便利関数・構造体をここに書く
 
 //位置についての構造体
+
 class Vector2D{
 public:
 	//変数
@@ -13,10 +15,31 @@ public:
 	const Vector2D operator+(const Vector2D &otherobj) {
 		return Vector2D(x+otherobj.x,y+otherobj.y);
 	}
-
+	const Vector2D operator-(const Vector2D &otherobj) {
+		return Vector2D(x - otherobj.x, y - otherobj.y);
+	}
+	//定数倍
+	const Vector2D operator*(float aMag) {
+		return Vector2D(x *aMag, y*aMag);
+	}
+	const Vector2D operator/(float aMag) {
+		return Vector2D(x /aMag, y/aMag);
+	}
+	float dot(const Vector2D &otherobj) {
+		return x*otherobj.x + y*otherobj.y;
+	}
+	//this cross otherobjを返します。
+	float cross(const Vector2D &otherobj) {
+		return x*otherobj.y - otherobj.x*y;
+	}
+	float size() {
+		return sqrtf(x*x + y*y);
+	}
+	Vector2D norm() {
+		float siz = size();
+		return Vector2D(x / siz, y / siz);
+	}
 };
-
-
 
 #endif // !DEF_TOOLSLIB_H
 #pragma once

@@ -11,14 +11,14 @@ void MyRectangle::VDraw(double x, double y, unsigned int color, int fillFlag, in
 	DrawBox((int)x,(int)y,(int)(x+dx),(int)(y+dy),color,fillFlag);
 }
 
-MyShape::HitInfo MyRectangle::HitJudge(const MyCircle *pshape) {
+MyShape::HitInfo MyRectangle::HitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	return MyShape::HitJudge(pshape,this);
 }
 
-MyShape::HitInfo MyRectangle::HitJudge(const MyRectangle *pshape) {
+MyShape::HitInfo MyRectangle::HitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	return MyShape::HitJudge(this,pshape);
 }
 
-MyShape::HitInfo MyRectangle::HitJudge(const MyAngledTriangle *pshape) {
+MyShape::HitInfo MyRectangle::HitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	return MyShape::HitJudge(this, pshape);
 }

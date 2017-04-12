@@ -10,9 +10,9 @@ class MyCircle :public MyShape {
 	//’è”
 	//•Ï”
 protected:
-	double r;
 	//ŠÖ”
 public:
+	double r;
 	MyCircle(double i_r);
 	~MyCircle();
 	void VDraw(double x, double y, unsigned int color, int fillFlag, int textureHandle);

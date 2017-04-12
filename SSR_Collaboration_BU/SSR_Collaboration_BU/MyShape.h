@@ -33,7 +33,7 @@ public:
 	virtual HitInfo HitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) = 0;
 
 	//ìñÇΩÇËîªíËä÷êîÇÃé¿ëÃ
-	static HitInfo HitJudge(const MyCircle *pshape1, const MyCircle *pshape2);
+	static HitInfo HitJudge(const MyCircle *pshape1, const MyCircle *pshape2,const Vector2D aMyPos, const Vector2D aOtherPos);
 	static HitInfo HitJudge(const MyCircle *pshape1, const MyRectangle *pshape2);
 	static HitInfo HitJudge(const MyCircle *pshape1, const MyAngledTriangle *pshape2);
 	static HitInfo HitJudge(const MyRectangle *pshape1, const MyRectangle *pshape2);

@@ -31,7 +31,10 @@ MyShape::HitInfo MyShape::HitJudge(const MyShape *pshape, const Vector2D aMyPos,
 }
 
 //“–‚½‚è”»’è‚ÌŽÀ‘Ì
-MyShape::HitInfo MyShape::HitJudge(const MyCircle *pshape1, const MyCircle *pshape2) {
+MyShape::HitInfo MyShape::HitJudge(const MyCircle *pshape1, const MyCircle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos) {
+	if ((pshape1->r + pshape2->r)*(pshape1->r + pshape2->r) >= (aMyPos.x - aOtherPos.x)*(aMyPos.x - aOtherPos.x) + (aMyPos.y - aOtherPos.y)*(aMyPos.y - aOtherPos.y)) {
+		return HitInfo(true);
+	}
 	return HitInfo(false);
 }
 

@@ -11,19 +11,23 @@ MyShape::HitInfo MyShape::HitJudge(const MyShape *pshape, const Vector2D aMyPos,
 	{
 		const MyCircle *pCircle = dynamic_cast<const MyCircle *>(pshape);
 		if (pCircle != nullptr) {
-			return HitJudge(pCircle,aMyPos,aOtherPos);
+			return VHitJudge(pCircle,aMyPos,aOtherPos);
+
 		}
 	}
 	{
 		const MyRectangle *pRectangle = dynamic_cast<const MyRectangle *>(pshape);
 		if (pRectangle != nullptr) {
-			return HitJudge(pRectangle, aMyPos, aOtherPos);
+
+			return VHitJudge(pRectangle, aMyPos, aOtherPos);
+
 		}
 	}
 	{
 		const MyAngledTriangle *pAngledTriangle = dynamic_cast<const MyAngledTriangle *>(pshape);
 		if (pAngledTriangle != nullptr) {
-			return HitJudge(pAngledTriangle, aMyPos, aOtherPos);
+			return VHitJudge(pAngledTriangle, aMyPos, aOtherPos);
+
 		}
 	}
 

@@ -32,14 +32,13 @@ public:
 	virtual ~BattleObject() {}
 
 	//仮想関数
-	virtual void VDraw()=0;//描画処理
+	virtual void VDraw(int x=0,int y=0)=0;//描画処理(位置ずらし含める)
 	virtual void VHitProcess(const BattleObject *potherobj)=0;//何かに当たった時の処理
 
 	//通常関数
-	void Move(float x, float y) {
-		m_pos.x = x;
-		m_pos.y = y;
-	}
+	void ShapeDraw(unsigned int color,int fillFlag,int dx=0,int dy=0);//当たり判定形状に基づいた描画処理(dx,dyはズレの値)
+	void Move(float x,float y);
+	bool JudgePointInsideShape(Vector2D point);
 };
 
 #endif // !DEF_BATTLEOBJECT_H

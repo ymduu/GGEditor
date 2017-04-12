@@ -22,12 +22,16 @@ protected:
 	EditActionSettings m_actionSettings;//現在行おうとしている編集行為のまとめ
 
 	//関数
+protected:
+	//マウスを左クリックした時の動作
+	void ProcessMapPush(int mouseX,int mouseY);//マップ画面を押した時の動作
+
 public:
 	//コンストラクタとデストラクタ
 	GGEditor();
 	~GGEditor();
 
-	//毎ループ更新部分
+	//毎ループ動作部分
 	int Calculate();
 	void Draw();
 };

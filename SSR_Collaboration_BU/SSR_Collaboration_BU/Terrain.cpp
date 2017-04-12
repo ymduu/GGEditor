@@ -7,8 +7,8 @@ Terrain::Terrain(const std::shared_ptr<MyShape> hitJudgeShape, float x, float y,
 
 Terrain::~Terrain() {}
 
-void Terrain::VDraw() {
-	m_hitJudgeShape->VDraw(m_pos.x,m_pos.y,m_color,TRUE,-1);
+void Terrain::VDraw(int x,int y) {
+	m_hitJudgeShape->VDraw(x+m_pos.x,y+m_pos.y,m_color,TRUE,-1);
 }
 
 void Terrain::VHitProcess(const BattleObject *potherobj) {

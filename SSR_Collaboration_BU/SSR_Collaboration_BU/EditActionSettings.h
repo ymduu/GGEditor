@@ -17,7 +17,6 @@ class EditActionSettings {
 
 	//変数
 protected:
-	const Vector2D m_leftUpPos;//ステージ自身の表示の左上の座標
 	Vector2D m_adjust;//描画の左右補正値(実際のステージのm_adjustの座標点を左上に合わせてエディタに表示)
 
 	std::shared_ptr<EditAction> m_pEditAction;//編集行為
@@ -28,8 +27,15 @@ protected:
 protected:
 
 public:
-	EditActionSettings(const Vector2D leftUpPos,std::shared_ptr<EditAction> pEditAction,std::weak_ptr<BattleObject> pBattleObject,std::shared_ptr<PosSetting> pPosSetting);
+	//コンストラクタとデストラクタ
+	EditActionSettings(std::shared_ptr<EditAction> pEditAction,std::weak_ptr<BattleObject> pBattleObject,std::shared_ptr<PosSetting> pPosSetting);
 	~EditActionSettings();
+	//メンバ関数のコピーを返す関数
+	Vector2D GetMAdjust(){
+		return m_adjust;
+	}
+	//普通の関数
+	void PushScrollBar(float scrollpx,float maxX,float maxY,int mouseX,int mouseY,int leftUpPosX,int leftUpPosY,int mapSizeX,int mapSizeY);//マップのスクロールバーを押した時の処理
 };
 
 #endif // !DEF_EDITACTIONSETTINGS_H

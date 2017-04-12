@@ -11,14 +11,26 @@ void MyRectangle::VDraw(double x, double y, unsigned int color, int fillFlag, in
 	DrawBox((int)x,(int)y,(int)(x+dx),(int)(y+dy),color,fillFlag);
 }
 
-MyShape::HitInfo MyRectangle::HitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
+MyShape::HitInfo MyRectangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	return MyShape::HitJudge(pshape,this);
 }
 
-MyShape::HitInfo MyRectangle::HitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
+MyShape::HitInfo MyRectangle::VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	return MyShape::HitJudge(this,pshape);
 }
 
-MyShape::HitInfo MyRectangle::HitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
+MyShape::HitInfo MyRectangle::VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	return MyShape::HitJudge(this, pshape);
+}
+
+bool MyRectangle::VJudgePosintInsideShape(const Vector2D point, const Vector2D shapePos) {
+	//dx‚Ì³•‰‚É‚æ‚Á‚ÄðŒŽ®‚ª•Ï‚í‚é(‚¤‚Ü‚¢•û–@‚ ‚é‹C‚ª‚·‚é‚ñ‚¾‚¯‚Ç‚È‚ )
+	//dx>=0
+	//	(point.x-shapePos.x)>=0
+	//	(point.x-shapePos.x)<=dx
+	//dx<0
+	//	(point.x-shapePos.x)<=0
+	//	(point.x-shapePos.x)>=dx
+	Vector2D sp = point - shapePos;
+	return (sp.x >= min(0, dx) && sp.x <= max(0, dx) && sp.y >= min(0, dy) && sp.y <= max(0, dy));
 }

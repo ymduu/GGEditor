@@ -17,6 +17,7 @@ const int GGEditor::mapSizeY = 600;
 const int GGEditor::leftUpPosX = 25;
 const int GGEditor::leftUpPosY = 25;
 const int GGEditor::buttonWidth = 400;
+const std::string GGEditor::actButtonStr[actButtonHeightNum*actButtonWidthNum]={"put","remove","move","expand"};
 
 //関数定義
 GGEditor::GGEditor()
@@ -24,6 +25,10 @@ GGEditor::GGEditor()
 		,std::weak_ptr<BattleObject>(std::shared_ptr<BattleObject>(nullptr))
 		,std::shared_ptr<PosSetting>(nullptr))
 {
+	//フォント
+	m_font=CreateFontToHandle("メイリオ",16,1);
+
+	//実験用
 	m_objects.push_back(std::shared_ptr<BattleObject>(
 		new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,40))
 			,20+m_actionSettings.GetMAdjust().x
@@ -80,9 +85,12 @@ GGEditor::GGEditor()
 		));
 }
 
-GGEditor::~GGEditor() {}
+GGEditor::~GGEditor() {
+	//フォント
+	DeleteFontToHandle(m_font);
+}
 
-//マウスを左クリックした時の動作
+//マウスを左クリックした時の動作群
 void GGEditor::ProcessMapPush(int mouseX,int mouseY){
 	//ゲーム画面上の座標に変換(残りは描画補正値m_adjustのみを適用すればよい)
 	mouseX-=leftUpPosX;
@@ -126,6 +134,10 @@ int GGEditor::Calculate() {
 }
 
 void GGEditor::Draw() {
+	clsDx();
+	for(auto o:m_objects){
+		printfDx("%d\n",o.get());
+	}
 	//マップ周りのスクロールボタンの描画
 	{
 		//ひとまず中抜き長方形の描画とする
@@ -156,5 +168,20 @@ void GGEditor::Draw() {
 	//入力されている動作のボタンの描画
 
 	//右側の作業フレームの描画
+	{
+		const int bx=leftUpPosX*2+mapSizeX,by=0;//ボタン群の位置
+		const int bdx=buttonWidth/actButtonWidthNum,bdy=(leftUpPosY*2+mapSizeY)/4/actButtonHeightNum;//ボタンの大きさ
+		//動作ボタン群の描画
+		for(unsigned int y=0;y<actButtonHeightNum;y++){
+			for(unsigned int x=0;x<actButtonWidthNum;x++){
+				SetDrawBlendMode(DX_BLENDMODE_ALPHA,128);
+				DrawBox(bx+x*bdx,by+y*bdy,bx+(x+1)*bdx,by+(y+1)*bdy,GetColor(192,192,192),TRUE);//内枠(ちょい透過させる)
+				SetDrawBlendMode(DX_BLENDMODE_NOBLEND,255);
+				DrawBox(bx+x*bdx,by+y*bdy,bx+(x+1)*bdx,by+(y+1)*bdy,GetColor(192,192,64),FALSE);//外枠
+				//文字
+				DrawStringCenterBaseToHandle(bx+x*bdx+bdx/2,by+y*bdy+bdy/2,actButtonStr[x+y*actButtonHeightNum].c_str(),GetColor(255,255,255),m_font,true);
+			}
+		}
+	}
 
 }

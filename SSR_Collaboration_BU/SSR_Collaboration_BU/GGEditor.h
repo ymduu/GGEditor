@@ -1,6 +1,7 @@
 #ifndef DEF_GGEDITOR_H
 #define DEF_GGEDITOR_H
 
+#include<string>
 #include<vector>
 #include<memory>
 #include"EditActionSettings.h"
@@ -9,17 +10,24 @@
 //ステージエディタ自身
 class GGEditor {
 	//列挙体・型
+protected:
+	
 
 	//定数
 public:
 	static const int mapSizeX,mapSizeY;//マップの表示部分の大きさ
 	static const int leftUpPosX,leftUpPosY;//マップの左上の座標
 	static const int buttonWidth;//ボタン部分の横幅
+	static const int actButtonHeightNum=2,actButtonWidthNum=2;//「動作」ボタンの縦横の数
+	static const std::string actButtonStr[actButtonHeightNum*actButtonWidthNum];//「動作」ボタンに書く文字列
 
 	//変数
 protected:
 	std::vector<std::shared_ptr<BattleObject>> m_objects;//マップ上に設置しているオブジェクト一覧
 	EditActionSettings m_actionSettings;//現在行おうとしている編集行為のまとめ
+
+	//描画用データ
+	int m_font;//フォント
 
 	//関数
 protected:

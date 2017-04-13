@@ -9,14 +9,17 @@ class EditAction {
 
 	//変数
 protected:
+	int m_buttonX,m_buttonY,m_buttonDX,m_buttonDY;//ボタンの位置と大きさ
+	unsigned int m_pushedColor;//ボタンが押されている時の色
 
 	//関数
 public:
-	EditAction() {}
+	EditAction(int buttonX,int buttonY,int buttonDX,int buttonDY,unsigned int pushedColor)
+		:m_buttonX(buttonX),m_buttonY(buttonY),m_buttonDX(buttonDX),m_buttonDY(buttonDY),m_pushedColor(pushedColor){}
 	virtual ~EditAction() {}
 
 	virtual void VProcessAction()=0;//編集行為を実行する
-	virtual void VDrawPushedButton() = 0;//該当するボタンが押されているように表示する関数
+	void DrawPushedButton();//該当するボタンが押されているように表示する関数
 };
 
 

@@ -60,6 +60,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(100, 200))
 			, (float)150 * (i+1), 10, -1, 0, GetColor(255, 255, 255), false)));
 	}
+	for (int i = 0; i < 1; i++) {
+		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyAngledTriangle(200, 100))
+			, (float)350 * (i+1), 80, -1, 0, GetColor(255, 255, 255), false)));
+	}
 	//4分木に追加、shared_ptrが持つ生ポインタは指す先が変化しないことを前提としている(大丈夫か？)
 	for (std::shared_ptr<BattleObject> sp : objects) {
 		std::shared_ptr<IKD::OBJECT_FOR_TREE<BattleObject>> newObj = std::make_shared<IKD::OBJECT_FOR_TREE<BattleObject>>(0);
@@ -96,7 +100,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		int ColNum = LTree.GetAllCollisionList(&ColVect)/2;
 
 		//描画
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 4; i++) {
 			//objects[i].get()->Move((float)(x + i * 50 + r*cos((float)t / maxt*M_PI)), (float)(y + i * 50 + r*sin((float)t / maxt*M_PI)));
 			objects[i].get()->VDraw();
 		}

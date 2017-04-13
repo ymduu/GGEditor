@@ -27,6 +27,7 @@ public:
 	float getBottom(Vector2D aPos)const;
 	float getLeft(Vector2D aPos)const;
 	float getRight(Vector2D aPos)const;
+	Vector2D GetNearestPoint(Vector2D trianglePos, Vector2D p)const;
 
 };
 

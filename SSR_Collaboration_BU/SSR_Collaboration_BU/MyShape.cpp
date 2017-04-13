@@ -52,6 +52,11 @@ bool MyShape::HitJudge(const MyCircle *pshape1, const MyRectangle *pshape2, cons
 }
 
 bool MyShape::HitJudge(const MyCircle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos) {
+	Vector2D nearestPoint = pshape2->GetNearestPoint(aOtherPos, aMyPos);
+	if ((aMyPos - nearestPoint).sqSize() < pshape1->r*pshape1->r) {
+		//‰~‚Ì’†S‚©‚çÅ‹ß–T“_‚Ü‚Å‚Ì‹——£**2<”¼Œa**2‚È‚çÕ“Ë‚µ‚Ä‚¢‚é
+		return true;
+	}
 	return false;
 }
 

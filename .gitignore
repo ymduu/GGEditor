@@ -56,6 +56,9 @@ Temporary Items
 /SSR_Collaboration_BU/SSR_Collaboration_BU/Debug
 /SSR_Collaboration_BU/SSR_Collaboration_BU/Release
 /SSR_Collaboration_BU/SSR_Collaboration_BU/Log.txt
+/SSR_Collaboration_BU/RunGame/Debug
+/SSR_Collaboration_BU/RunGame/Release
+/SSR_Collaboration_BU/RunGame/Log.txt
 
 #exclude by file type
 *.tlog

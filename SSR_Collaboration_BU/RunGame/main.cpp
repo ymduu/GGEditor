@@ -54,11 +54,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//デモ用に円と四角形の物体を用意
 	for (int i = 0; i < 2; i++) {
 		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyCircle(30))
-			, (i+1)*100, 500, -1, 0, GetColor(255, 255, 255), false)));
+			, (float)(i+1)*100, 500, -1, 0, GetColor(255, 255, 255), false)));
 	}
 	for (int i = 0; i < 1; i++) {
 		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(100, 200))
-			, 150 * (i+1), 10, -1, 0, GetColor(255, 255, 255), false)));
+			, (float)150 * (i+1), 10, -1, 0, GetColor(255, 255, 255), false)));
+	}
+	for (int i = 0; i < 2; i++) {
+		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyAngledTriangle(200, 100))
+			, (float)250 * (i+1), 80, -1, 0, GetColor(255, 255, 255), false)));
 	}
 	//4分木に追加、shared_ptrが持つ生ポインタは指す先が変化しないことを前提としている(大丈夫か？)
 	for (std::shared_ptr<BattleObject> sp : objects) {
@@ -96,14 +100,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		int ColNum = LTree.GetAllCollisionList(&ColVect)/2;
 
 		//描画
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 5; i++) {
 			//objects[i].get()->Move((float)(x + i * 50 + r*cos((float)t / maxt*M_PI)), (float)(y + i * 50 + r*sin((float)t / maxt*M_PI)));
 			objects[i].get()->VDraw();
 		}
 		//あたり判定、出力
 		BattleObject** pRoot = ColVect->getRootPtr();
 		for (int i = 0; i < ColNum; i++) {
-			if (pRoot[i * 2]->m_hitJudgeShape->HitJudge(pRoot[i*2+1]->m_hitJudgeShape.get(),pRoot[i*2]->m_pos,pRoot[i*2+1]->m_pos)) {
+			if (pRoot[i * 2]->getHitJudgeShape()->HitJudge(pRoot[i*2+1]->getHitJudgeShape().get(),pRoot[i*2]->getPos(),pRoot[i*2+1]->getPos())) {
 				printfDx("Hit\n");
 			}
 		}
@@ -113,7 +117,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		if (keyboard_get(KEY_INPUT_NUMPADENTER) == 1) {
 			break;
 		}
-		Vector2D v = objects[0]->m_pos;
+		Vector2D v = objects[0]->getPos();
 		GetHitKeyStateAll(key);
 		if (key[KEY_INPUT_DOWN] == 1) {
 			objects[0].get()->Move(v.x, v.y+move);

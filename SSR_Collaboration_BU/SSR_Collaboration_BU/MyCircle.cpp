@@ -10,15 +10,15 @@ void MyCircle::VDraw(float x, float y, unsigned int color, int fillFlag, int tex
 	DrawCircle((int)x, (int)y ,(int)r, color, fillFlag);
 }
 
-bool MyCircle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
+MyShape::HitInfo MyCircle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	return MyShape::HitJudge(this,pshape,aMyPos,aOtherPos);
 }
 
-bool MyCircle::VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
+MyShape::HitInfo MyCircle::VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	return MyShape::HitJudge(this, pshape,aMyPos,aOtherPos);
 }
 
-bool MyCircle::VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
+MyShape::HitInfo MyCircle::VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	return MyShape::HitJudge(this, pshape,aMyPos,aOtherPos);
 }
 

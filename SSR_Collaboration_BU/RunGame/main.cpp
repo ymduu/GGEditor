@@ -63,6 +63,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		objects.push_back(std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyAngledTriangle(200, 100))
 			, (float)250 * (i+1), 80, -1, 0, GetColor(255, 255, 255), false)));
 	}
+	objects[0]->fixFlag = true;
 	//4分木に追加、shared_ptrが持つ生ポインタは指す先が変化しないことを前提としている(大丈夫か？)
 	for (std::shared_ptr<BattleObject> sp : objects) {
 		std::shared_ptr<IKD::OBJECT_FOR_TREE<BattleObject>> newObj = std::make_shared<IKD::OBJECT_FOR_TREE<BattleObject>>(0);
@@ -126,6 +127,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		BattleObject** pRoot = ColVect->getRootPtr();
 		for (int i = 0; i < ColNum; i++) {
 			MyShape::HitInfo res = pRoot[i * 2]->getHitJudgeShape()->HitJudge(pRoot[i * 2 + 1]->getHitJudgeShape().get(), pRoot[i * 2]->getPos(), pRoot[i * 2 + 1]->getPos());
+			if (pRoot[i * 2 + 1]->fixFlag) {
+				res = pRoot[i * 2+1]->getHitJudgeShape()->HitJudge(pRoot[i * 2 ]->getHitJudgeShape().get(), pRoot[i * 2+1]->getPos(), pRoot[i * 2 ]->getPos());
+			}
 			if (res.judge) {
 				printfDx("Hit\n");
 				fix = fix + res.fixVec;

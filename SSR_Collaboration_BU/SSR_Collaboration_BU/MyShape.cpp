@@ -1,12 +1,10 @@
-//popopo
-
 #include"MyShape.h"
 #include"MyRectangle.h"
 #include"MyCircle.h"
 #include"MyAngledTriangle.h"
 #include "ToolsLib.h"
 
-bool MyShape::HitJudge(const MyShape *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
+bool MyShape::HitJudge(const MyShape *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const {
 	//ダウンキャストしてどのHitJudgeを呼べば良いかを判断する
 	{
 		const MyCircle *pCircle = dynamic_cast<const MyCircle *>(pshape);

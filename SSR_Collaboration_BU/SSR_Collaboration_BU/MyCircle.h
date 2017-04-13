@@ -17,18 +17,17 @@ public:
 public:
 	MyCircle(float i_r);
 	~MyCircle();
-	void VDraw(float x, float y, unsigned int color, int fillFlag, int textureHandle);
+	void VDraw(float x, float y, unsigned int color, int fillFlag, int textureHandle)const;
 	//ê}å`ì‡Ç…ì_Ç™Ç†ÇÈÇ©Ç«Ç§Ç©ÇÃîªíË
-	bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos);
+	bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos)const;
 	//ìñÇΩÇËîªíËä÷êî
-
-	bool VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
-	bool VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
-	bool VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos);
-	float getTop(Vector2D aPos);
-	float getBottom(Vector2D aPos);
-	float getLeft(Vector2D aPos);
-	float getRight(Vector2D aPos);
+	bool VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const;
+	bool VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const;
+	bool VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const;
+	float getTop(Vector2D aPos)const;
+	float getBottom(Vector2D aPos)const;
+	float getLeft(Vector2D aPos)const;
+	float getRight(Vector2D aPos)const;
 
 };
 

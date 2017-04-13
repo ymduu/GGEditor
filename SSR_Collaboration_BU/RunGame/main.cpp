@@ -24,7 +24,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	SetWindowSizeChangeEnableFlag(TRUE);
 	//ÉAÉCÉRÉìÇÃê›íË
 	SetWindowIconID(101);
-	VECTOR po,poi;
 
 	if (ChangeWindowMode(TRUE) != 0) {
 		return 0;

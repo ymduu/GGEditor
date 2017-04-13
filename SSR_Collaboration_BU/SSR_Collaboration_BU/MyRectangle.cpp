@@ -11,16 +11,16 @@ void MyRectangle::VDraw(float x, float y, unsigned int color, int fillFlag, int 
 	DrawBox((int)x,(int)y,(int)(x+dx),(int)(y+dy),color,fillFlag);
 }
 
-bool MyRectangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
+MyShape::HitInfo MyRectangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	//‚±‚±‚Í‘æ“ñˆø”‚ª©•ª‚Ì‚½‚ßAaMyPos‚Í‘ælˆø”‚É‚µ‚È‚¢‚Æ‚¨‚©‚µ‚¢
 	return MyShape::HitJudge(pshape,this,aOtherPos, aMyPos);
 }
 
-bool MyRectangle::VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
+MyShape::HitInfo MyRectangle::VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	return MyShape::HitJudge(this,pshape,aMyPos,aOtherPos);
 }
 
-bool MyRectangle::VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
+MyShape::HitInfo MyRectangle::VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	return MyShape::HitJudge(this, pshape,aMyPos,aOtherPos);
 }
 

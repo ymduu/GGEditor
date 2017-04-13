@@ -1,12 +1,10 @@
-//popopo
-
 #include"MyShape.h"
 #include"MyRectangle.h"
 #include"MyCircle.h"
 #include"MyAngledTriangle.h"
 #include "ToolsLib.h"
 
-bool MyShape::HitJudge(const MyShape *pshape, const Vector2D aMyPos, const Vector2D aOtherPos) {
+bool MyShape::HitJudge(const MyShape *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const {
 	//ダウンキャストしてどのHitJudgeを呼べば良いかを判断する
 	{
 		const MyCircle *pCircle = dynamic_cast<const MyCircle *>(pshape);
@@ -54,6 +52,11 @@ bool MyShape::HitJudge(const MyCircle *pshape1, const MyRectangle *pshape2, cons
 }
 
 bool MyShape::HitJudge(const MyCircle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos) {
+	Vector2D nearestPoint = pshape2->GetNearestPoint(aOtherPos, aMyPos);
+	if ((aMyPos - nearestPoint).sqSize() < pshape1->r*pshape1->r) {
+		//円の中心から最近傍点までの距離**2<半径**2なら衝突している
+		return true;
+	}
 	return false;
 }
 

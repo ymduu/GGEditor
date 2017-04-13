@@ -26,3 +26,9 @@ float BattleObject::getLeft() {
 float BattleObject::getRight() {
 	return m_hitJudgeShape->getRight(m_pos);
 }
+Vector2D BattleObject::getPos() {
+	return m_pos;
+}
+std::shared_ptr<MyShape> BattleObject::getHitJudgeShape() {
+	return m_hitJudgeShape;
+}

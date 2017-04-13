@@ -103,7 +103,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		//‚ ‚½‚è”»’èAo—Í
 		BattleObject** pRoot = ColVect->getRootPtr();
 		for (int i = 0; i < ColNum; i++) {
-			if (pRoot[i * 2]->m_hitJudgeShape->HitJudge(pRoot[i*2+1]->m_hitJudgeShape.get(),pRoot[i*2]->m_pos,pRoot[i*2+1]->m_pos)) {
+			if (pRoot[i * 2]->getHitJudgeShape()->HitJudge(pRoot[i*2+1]->getHitJudgeShape().get(),pRoot[i*2]->getPos(),pRoot[i*2+1]->getPos())) {
 				printfDx("Hit\n");
 			}
 		}
@@ -113,7 +113,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		if (keyboard_get(KEY_INPUT_NUMPADENTER) == 1) {
 			break;
 		}
-		Vector2D v = objects[0]->m_pos;
+		Vector2D v = objects[0]->getPos();
 		GetHitKeyStateAll(key);
 		if (key[KEY_INPUT_DOWN] == 1) {
 			objects[0].get()->Move(v.x, v.y+move);

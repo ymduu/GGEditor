@@ -103,33 +103,42 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			//objects[i].get()->Move((float)(x + i * 50 + r*cos((float)t / maxt*M_PI)), (float)(y + i * 50 + r*sin((float)t / maxt*M_PI)));
 			objects[i].get()->VDraw();
 		}
+
+		//移動させる
+		Vector2D v = objects[0]->getPos();
+		GetHitKeyStateAll(key);
+		if (key[KEY_INPUT_DOWN] == 1) {
+			objects[0].get()->Move(v.x, v.y + move);
+		}
+		if (key[KEY_INPUT_UP] == 1) {
+			objects[0].get()->Move(v.x, v.y - move);
+		}
+		if (key[KEY_INPUT_LEFT] == 1) {
+			objects[0].get()->Move(v.x - move, v.y);
+		}
+		if (key[KEY_INPUT_RIGHT] == 1) {
+			objects[0].get()->Move(v.x + move, v.y);
+		}
+
 		//あたり判定、出力
+		Vector2D fix(0.0f, 0.0f);
+		v = objects[0]->getPos();
 		BattleObject** pRoot = ColVect->getRootPtr();
 		for (int i = 0; i < ColNum; i++) {
-			if (pRoot[i * 2]->getHitJudgeShape()->HitJudge(pRoot[i*2+1]->getHitJudgeShape().get(),pRoot[i*2]->getPos(),pRoot[i*2+1]->getPos())) {
+			MyShape::HitInfo res = pRoot[i * 2]->getHitJudgeShape()->HitJudge(pRoot[i * 2 + 1]->getHitJudgeShape().get(), pRoot[i * 2]->getPos(), pRoot[i * 2 + 1]->getPos());
+			if (res.judge) {
 				printfDx("Hit\n");
+				fix = fix + res.fixVec;
 			}
 		}
+		objects[0].get()->Move(v.x + fix.x, v.y + fix.y);
 
 		//計算処理
 		//終了検出
 		if (keyboard_get(KEY_INPUT_NUMPADENTER) == 1) {
 			break;
 		}
-		Vector2D v = objects[0]->getPos();
-		GetHitKeyStateAll(key);
-		if (key[KEY_INPUT_DOWN] == 1) {
-			objects[0].get()->Move(v.x, v.y+move);
-		}
-		if (key[KEY_INPUT_UP] == 1) {
-			objects[0].get()->Move(v.x, v.y-move);
-		}
-		if (key[KEY_INPUT_LEFT] == 1) {
-			objects[0].get()->Move(v.x-move, v.y);
-		}
-		if (key[KEY_INPUT_RIGHT] == 1) {
-			objects[0].get()->Move(v.x+move, v.y);
-		}
+
 	}
 
 	//入力関連のメモリ領域開放

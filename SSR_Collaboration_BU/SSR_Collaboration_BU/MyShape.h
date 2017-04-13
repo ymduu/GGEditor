@@ -30,7 +30,7 @@ public:
 	virtual void VDraw(float x,float y,unsigned int color,int fillFlag,int textureHandle)const=0;//形状を描画する
 
 	//図形内に点があるかどうかの判定
-	virtual HitInfo VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos)const=0;
+	virtual bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos)const=0;
 	
 	//当たり判定関数、引数に座標情報を追加
 	HitInfo HitJudge(const MyShape *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const;

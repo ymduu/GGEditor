@@ -36,7 +36,7 @@ MyShape::HitInfo MyShape::HitJudge(const MyShape *pshape, const Vector2D aMyPos,
 MyShape::HitInfo MyShape::HitJudge(const MyCircle *pshape1, const MyCircle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos) {
 	if ((pshape1->r + pshape2->r)*(pshape1->r + pshape2->r) >= (aMyPos.x - aOtherPos.x)*(aMyPos.x - aOtherPos.x) + (aMyPos.y - aOtherPos.y)*(aMyPos.y - aOtherPos.y)) {
 		//めり込み量を計算
-		float fixSize = (pshape1->r+pshape2->r-(aMyPos - aOtherPos).size())/2;
+		float fixSize = (pshape1->r+pshape2->r-(aMyPos - aOtherPos).size());
 		//補正ベクトルを計算(自分向きのベクトルを返す、これを足すことで補正ができる)
 		Vector2D fixVec = (aMyPos - aOtherPos).norm()*fixSize;
 		return HitInfo(true,fixVec);

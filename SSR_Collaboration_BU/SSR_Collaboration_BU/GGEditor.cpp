@@ -4,12 +4,14 @@
 
 #include"DxLib.h"
 #include"GGEditor.h"
+#include"input.h"
 
 #include"Terrain.h"
 #include"MyRectangle.h"
 #include"MyCircle.h"
 #include"MyAngledTriangle.h"
-#include"input.h"
+
+#include"EditPut.h"
 
 //定数の定義
 const int GGEditor::mapSizeX = 800;
@@ -21,68 +23,14 @@ const std::string GGEditor::actButtonStr[actButtonHeightNum*actButtonWidthNum]={
 
 //関数定義
 GGEditor::GGEditor()
-	:m_actionSettings(std::shared_ptr<EditAction>(nullptr)
-		,std::weak_ptr<BattleObject>(std::shared_ptr<BattleObject>(nullptr))
+	:m_actionSettings(std::shared_ptr<EditAction>(new EditPut(leftUpPosX*2+mapSizeX,0,buttonWidth/actButtonWidthNum,(leftUpPosY*2+mapSizeY)/4/actButtonHeightNum,GetColor(255,255,0)))
+		,std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,40)),0,0,-1,0,GetColor(128,128,128),false))
 		,std::shared_ptr<PosSetting>(nullptr))
 {
 	//フォント
 	m_font=CreateFontToHandle("メイリオ",16,1);
 
-	//実験用
-	m_objects.push_back(std::shared_ptr<BattleObject>(
-		new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,40))
-			,20+m_actionSettings.GetMAdjust().x
-			,20+m_actionSettings.GetMAdjust().y
-			,-1,0,GetColor(128,128,128),false)
-		));
-	m_objects.push_back(std::shared_ptr<BattleObject>(
-		new Terrain(std::shared_ptr<MyShape>(new MyRectangle(-40,40))
-			,180+m_actionSettings.GetMAdjust().x
-			,180+m_actionSettings.GetMAdjust().y
-			,-1,0,GetColor(128,128,128),false)
-		));
-	m_objects.push_back(std::shared_ptr<BattleObject>(
-		new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,-40))
-			,190+m_actionSettings.GetMAdjust().x
-			,120+m_actionSettings.GetMAdjust().y
-			,-1,0,GetColor(128,128,128),false)
-		));
-	m_objects.push_back(std::shared_ptr<BattleObject>(
-		new Terrain(std::shared_ptr<MyShape>(new MyRectangle(-40,-40))
-			,280+m_actionSettings.GetMAdjust().x
-			,280+m_actionSettings.GetMAdjust().y
-			,-1,0,GetColor(128,128,128),false)
-		));
-	m_objects.push_back(std::shared_ptr<BattleObject>(
-		new Terrain(std::shared_ptr<MyShape>(new MyCircle(40))
-			,390+m_actionSettings.GetMAdjust().x
-			,390+m_actionSettings.GetMAdjust().y
-			,-1,0,GetColor(128,128,128),false)
-		));
-	m_objects.push_back(std::shared_ptr<BattleObject>(
-		new Terrain(std::shared_ptr<MyShape>(new MyAngledTriangle(30,40))
-			,620+m_actionSettings.GetMAdjust().x
-			,620+m_actionSettings.GetMAdjust().y
-			,-1,0,GetColor(128,128,128),false)
-		));
-	m_objects.push_back(std::shared_ptr<BattleObject>(
-		new Terrain(std::shared_ptr<MyShape>(new MyAngledTriangle(-30,40))
-			,780+m_actionSettings.GetMAdjust().x
-			,780+m_actionSettings.GetMAdjust().y
-			,-1,0,GetColor(128,128,128),false)
-		));
-	m_objects.push_back(std::shared_ptr<BattleObject>(
-		new Terrain(std::shared_ptr<MyShape>(new MyAngledTriangle(40,-30))
-			,790+m_actionSettings.GetMAdjust().x
-			,720+m_actionSettings.GetMAdjust().y
-			,-1,0,GetColor(128,128,128),false)
-		));
-	m_objects.push_back(std::shared_ptr<BattleObject>(
-		new Terrain(std::shared_ptr<MyShape>(new MyAngledTriangle(-40,-50))
-			,880+m_actionSettings.GetMAdjust().x
-			,880+m_actionSettings.GetMAdjust().y
-			,-1,0,GetColor(128,128,128),false)
-		));
+	
 }
 
 GGEditor::~GGEditor() {
@@ -96,12 +44,7 @@ void GGEditor::ProcessMapPush(int mouseX,int mouseY){
 	mouseX-=leftUpPosX;
 	mouseY-=leftUpPosY;
 	//動作
-	m_objects.push_back(std::shared_ptr<BattleObject>(
-		new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,40))
-			,((float)mouseX)+m_actionSettings.GetMAdjust().x
-			,((float)mouseY)+m_actionSettings.GetMAdjust().y
-			,-1,0,GetColor(128,128,128),false)
-		));
+	m_actionSettings.PracticeEdit(Vector2D((float)mouseX,(float)mouseY));
 }
 
 //毎ループ動作部分の関数
@@ -135,7 +78,7 @@ int GGEditor::Calculate() {
 
 void GGEditor::Draw() {
 	clsDx();
-	for(auto o:m_objects){
+	for(auto o:*m_actionSettings.GetPMObject()){
 		printfDx("%d\n",o.get());
 	}
 	//マップ周りのスクロールボタンの描画
@@ -156,7 +99,7 @@ void GGEditor::Draw() {
 	SetDrawArea(leftUpPosX,leftUpPosY,leftUpPosX+mapSizeX, leftUpPosY + mapSizeY);
 	bool firstflag=true;
 	Vector2D mouse=GetMousePointVector2D()-Vector2D((float)leftUpPosX,(float)leftUpPosY)+m_actionSettings.GetMAdjust();//マウスの位置(補正値を考慮しマップ上の座標で表す)
-	for (std::shared_ptr<BattleObject> obj : m_objects) {
+	for (std::shared_ptr<BattleObject> obj : *m_actionSettings.GetPMObject()) {
 		obj.get()->VDraw(leftUpPosX-(int)m_actionSettings.GetMAdjust().x,leftUpPosY-(int)m_actionSettings.GetMAdjust().y);
 		//マウスが被っている図形には枠を描画しフォーカスを表現
 		if(firstflag && obj.get()->JudgePointInsideShape(mouse)){

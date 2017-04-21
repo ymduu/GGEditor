@@ -23,8 +23,7 @@ public:
 
 	//変数
 protected:
-	std::vector<std::shared_ptr<BattleObject>> m_objects;//マップ上に設置しているオブジェクト一覧
-	EditActionSettings m_actionSettings;//現在行おうとしている編集行為のまとめ
+	EditActionSettings m_actionSettings;//現在行おうとしている編集行為と編集データのまとめ
 
 	//描画用データ
 	int m_font;//フォント

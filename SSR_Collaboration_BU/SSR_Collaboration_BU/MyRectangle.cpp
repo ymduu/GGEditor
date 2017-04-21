@@ -11,6 +11,10 @@ void MyRectangle::VDraw(float x, float y, unsigned int color, int fillFlag, int 
 	DrawBox((int)x,(int)y,(int)(x+dx),(int)(y+dy),color,fillFlag);
 }
 
+std::shared_ptr<MyShape> MyRectangle::VCopy()const{
+	return std::shared_ptr<MyShape>(new MyRectangle(dx,dy));
+}
+
 bool MyRectangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	//‚±‚±‚Í‘æ“ñˆø”‚ª©•ª‚Ì‚½‚ßAaMyPos‚Í‘ælˆø”‚É‚µ‚È‚¢‚Æ‚¨‚©‚µ‚¢
 	return MyShape::HitJudge(pshape,this,aOtherPos, aMyPos);

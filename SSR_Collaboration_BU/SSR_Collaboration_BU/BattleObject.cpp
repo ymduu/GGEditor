@@ -5,9 +5,12 @@ void BattleObject::ShapeDraw(unsigned int color,int fillFlag,int dx,int dy){
 	m_hitJudgeShape->VDraw(dx+m_pos.x,dy+m_pos.y,color,fillFlag,-1);
 }
 
-void BattleObject::Move(float x,float y){
-	m_pos.x=x;
-	m_pos.y=y;
+void BattleObject::Move(Vector2D v){
+	m_pos=m_pos+v;
+}
+
+void BattleObject::Warp(Vector2D v){
+	m_pos=v;
 }
 
 bool BattleObject::JudgePointInsideShape(Vector2D point){

@@ -20,7 +20,7 @@ public:
 	~Terrain();
 	void VDraw(int x,int y);//•`‰æˆ—
 	void VHitProcess(const BattleObject *potherobj);
-
+	std::shared_ptr<BattleObject> VCopy()const;
 };
 
 

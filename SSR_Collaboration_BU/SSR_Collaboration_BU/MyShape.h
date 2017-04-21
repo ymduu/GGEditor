@@ -1,7 +1,7 @@
 #ifndef DEF_MYSHAPE_H
 #define DEF_MYSHAPE_H
-#include "ToolsLib.h"
 
+#include<memory>
 #include"ToolsLib.h"
 
 class MyCircle;
@@ -19,6 +19,7 @@ public:
 	//関数
 public:
 	virtual void VDraw(float x,float y,unsigned int color,int fillFlag,int textureHandle)const=0;//形状を描画する
+	virtual std::shared_ptr<MyShape> VCopy()const=0;//内容が同じでポインタの位置のみが異なるオブジェクトのポインタを返す
 
 	//図形内に点があるかどうかの判定
 	virtual bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos)const=0;

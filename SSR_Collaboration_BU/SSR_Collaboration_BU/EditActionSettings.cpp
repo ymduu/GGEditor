@@ -2,11 +2,77 @@
 #include"EditActionSettings.h"
 
 #include"DxLib.h"
+#include"EditAction.h"
+#include"Terrain.h"
+#include"MyAngledTriangle.h"
+#include"MyCircle.h"
+#include"MyRectangle.h"
 
-EditActionSettings::EditActionSettings(std::shared_ptr<EditAction> pEditAction, std::weak_ptr<BattleObject> pBattleObject, std::shared_ptr<PosSetting> pPosSetting)
-	:m_adjust(0,0),m_pEditAction(pEditAction),m_pBattleObject(pBattleObject),m_pPosSetting(pPosSetting){}
+EditActionSettings::EditActionSettings(std::shared_ptr<EditAction> pEditAction, std::shared_ptr<BattleObject> pBattleObject, std::shared_ptr<PosSetting> pPosSetting)
+	:m_adjust(0,0),m_pEditAction(pEditAction),m_pBattleObject(pBattleObject),m_pPosSetting(pPosSetting)
+{
+	//実験用
+	m_objects.push_back(std::shared_ptr<BattleObject>(
+		new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,40))
+			,20+GetMAdjust().x
+			,20+GetMAdjust().y
+			,-1,0,GetColor(128,128,128),false)
+		));
+	m_objects.push_back(std::shared_ptr<BattleObject>(
+		new Terrain(std::shared_ptr<MyShape>(new MyRectangle(-40,40))
+			,180+GetMAdjust().x
+			,180+GetMAdjust().y
+			,-1,0,GetColor(128,128,128),false)
+		));
+	m_objects.push_back(std::shared_ptr<BattleObject>(
+		new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,-40))
+			,190+GetMAdjust().x
+			,120+GetMAdjust().y
+			,-1,0,GetColor(128,128,128),false)
+		));
+	m_objects.push_back(std::shared_ptr<BattleObject>(
+		new Terrain(std::shared_ptr<MyShape>(new MyRectangle(-40,-40))
+			,280+GetMAdjust().x
+			,280+GetMAdjust().y
+			,-1,0,GetColor(128,128,128),false)
+		));
+	m_objects.push_back(std::shared_ptr<BattleObject>(
+		new Terrain(std::shared_ptr<MyShape>(new MyCircle(40))
+			,390+GetMAdjust().x
+			,390+GetMAdjust().y
+			,-1,0,GetColor(128,128,128),false)
+		));
+	m_objects.push_back(std::shared_ptr<BattleObject>(
+		new Terrain(std::shared_ptr<MyShape>(new MyAngledTriangle(30,40))
+			,620+GetMAdjust().x
+			,620+GetMAdjust().y
+			,-1,0,GetColor(128,128,128),false)
+		));
+	m_objects.push_back(std::shared_ptr<BattleObject>(
+		new Terrain(std::shared_ptr<MyShape>(new MyAngledTriangle(-30,40))
+			,780+GetMAdjust().x
+			,780+GetMAdjust().y
+			,-1,0,GetColor(128,128,128),false)
+		));
+	m_objects.push_back(std::shared_ptr<BattleObject>(
+		new Terrain(std::shared_ptr<MyShape>(new MyAngledTriangle(40,-30))
+			,790+GetMAdjust().x
+			,720+GetMAdjust().y
+			,-1,0,GetColor(128,128,128),false)
+		));
+	m_objects.push_back(std::shared_ptr<BattleObject>(
+		new Terrain(std::shared_ptr<MyShape>(new MyAngledTriangle(-40,-50))
+			,880+GetMAdjust().x
+			,880+GetMAdjust().y
+			,-1,0,GetColor(128,128,128),false)
+		));
+}
 
 EditActionSettings::~EditActionSettings() {}
+
+void EditActionSettings::PracticeEdit(Vector2D point){
+	m_pEditAction.get()->VProcessAction(point,*this);
+}
 
 void EditActionSettings::PushScrollBar(float scrollpx,float maxX,float maxY,int mouseX,int mouseY,int leftUpPosX,int leftUpPosY,int mapSizeX,int mapSizeY){
 	if(mouseY*leftUpPosX-mouseX*leftUpPosY<0 && (mouseY-leftUpPosY)*leftUpPosX+(mouseX-(mapSizeX+leftUpPosX))*leftUpPosY<0){
@@ -22,4 +88,12 @@ void EditActionSettings::PushScrollBar(float scrollpx,float maxX,float maxY,int 
 		//下部分(1より上、2より上)
 		m_adjust.y=fmin(maxY-mapSizeY,m_adjust.y+scrollpx);
 	}
+}
+
+void EditActionSettings::PutObject(Vector2D point){
+	//オブジェクトを現在のマウスの位置に合わせてから設置
+	m_pBattleObject.get()->Warp(point+m_adjust);
+	m_objects.push_back(m_pBattleObject);
+	//m_pBattleObjectをそのままにすると同じポインタのオブジェクトを違う場所に置こうとしてしまうので、ポインタは新しくする
+	m_pBattleObject=m_pBattleObject->VCopy();
 }

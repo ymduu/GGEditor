@@ -1,6 +1,9 @@
 #ifndef DEF_EDITACTION_H
 #define DEF_EDITACTION_H
 
+#include"ToolsLib.h"
+class EditActionSettings;
+
 //編集行為を表すクラスのインターフェース
 class EditAction {
 	//型・列挙体
@@ -18,7 +21,7 @@ public:
 		:m_buttonX(buttonX),m_buttonY(buttonY),m_buttonDX(buttonDX),m_buttonDY(buttonDY),m_pushedColor(pushedColor){}
 	virtual ~EditAction() {}
 
-	virtual void VProcessAction()=0;//編集行為を実行する
+	virtual void VProcessAction(Vector2D point,EditActionSettings &settings)=0;//マップ上の点の座標を取得しsettingsに対し編集行為を実行する
 	void DrawPushedButton();//該当するボタンが押されているように表示する関数
 };
 

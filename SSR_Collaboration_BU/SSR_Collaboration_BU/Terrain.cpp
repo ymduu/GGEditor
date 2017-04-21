@@ -14,3 +14,7 @@ void Terrain::VDraw(int x,int y) {
 void Terrain::VHitProcess(const BattleObject *potherobj) {
 	//Œ»Žž“_‚Å‚Í“Á‚É‰½‚à‚µ‚È‚¢
 }
+
+std::shared_ptr<BattleObject> Terrain::VCopy()const{
+	return std::shared_ptr<BattleObject>(new Terrain(m_hitJudgeShape.get()->VCopy(),m_pos.x,m_pos.y,m_gHandle,m_kind,m_color,m_breakable));
+}

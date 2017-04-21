@@ -28,18 +28,21 @@ protected:
 
 	//関数
 public:
-	//コンストラクタとデストラクタ
+	//コンストラクタとデストラクタとコピーコンストラクタ
 	BattleObject(const std::shared_ptr<MyShape> hitJudgeShape,float x,float y,int gHandle,int kind)
 		:m_hitJudgeShape(hitJudgeShape),m_pos(x,y),m_gHandle(gHandle),m_kind(kind){}
-	virtual ~BattleObject() {}
 
+	virtual ~BattleObject() {}
+	
 	//仮想関数
 	virtual void VDraw(int x=0,int y=0)=0;//描画処理(位置ずらし含める)
 	virtual void VHitProcess(const BattleObject *potherobj)=0;//何かに当たった時の処理
+	virtual std::shared_ptr<BattleObject> VCopy()const=0;//同じオブジェクトを複製する(ポインタのみ異なる)
 
 	//通常関数
 	void ShapeDraw(unsigned int color,int fillFlag,int dx=0,int dy=0);//当たり判定形状に基づいた描画処理(dx,dyはズレの値)
-	void Move(float x,float y);
+	void Move(Vector2D v);//ベクトルvだけ動かす(バトルの時等で用いる)
+	void Warp(Vector2D v);//ベクトルvへ動かす(ステージ編集で用いる)
 	bool JudgePointInsideShape(Vector2D point);
 	float getTop();
 	float getBottom();

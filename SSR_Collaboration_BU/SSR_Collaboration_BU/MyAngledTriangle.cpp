@@ -14,6 +14,9 @@ void MyAngledTriangle::VDraw(float x, float y, unsigned int color, int fillFlag,
 		,color, fillFlag);
 }
 
+std::shared_ptr<MyShape> MyAngledTriangle::VCopy()const{
+	return std::shared_ptr<MyShape>(new MyAngledTriangle(vx,vy));
+}
 
 bool MyAngledTriangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	//‚±‚±‚Í‘æ“ñˆø”‚ª©•ª‚Ì‚½‚ßAaMyPos‚Í‘ælˆø”‚É‚µ‚È‚¢‚Æ‚¨‚©‚µ‚¢

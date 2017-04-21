@@ -10,6 +10,10 @@ void MyCircle::VDraw(float x, float y, unsigned int color, int fillFlag, int tex
 	DrawCircle((int)x, (int)y ,(int)r, color, fillFlag);
 }
 
+std::shared_ptr<MyShape> MyCircle::VCopy()const{
+	return std::shared_ptr<MyShape>(new MyCircle(r));
+}
+
 bool MyCircle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	return MyShape::HitJudge(this,pshape,aMyPos,aOtherPos);
 }

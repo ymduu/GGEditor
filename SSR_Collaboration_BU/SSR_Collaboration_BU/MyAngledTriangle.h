@@ -16,6 +16,8 @@ public:
 	MyAngledTriangle(float i_vx,float i_vy);
 	~MyAngledTriangle();
 	void VDraw(float x, float y, unsigned int color, int fillFlag, int textureHandle)const;
+	std::shared_ptr<MyShape> VCopy()const;//内容が同じでポインタの位置のみが異なるオブジェクトのポインタを返す
+
 	//図形内に点があるかどうかの判定
 	bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos)const;
 	//当たり判定関数

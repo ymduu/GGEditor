@@ -24,7 +24,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	SetWindowSizeChangeEnableFlag(TRUE);
 	//アイコンの設定
 	SetWindowIconID(101);
-	VECTOR po,poi;
 
 	if (ChangeWindowMode(TRUE) != 0) {
 		return 0;
@@ -46,7 +45,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	//描画させるものを宣言
 	int t = 0;
-	const int x = 200, y = 200, r = 100, maxt = 330 ,move=4;
+	const int x = 200,y = 200,r = 100,maxt = 330;
+	const float move=4;
 
 	std::vector<std::shared_ptr<BattleObject>> objects;
 	std::vector< std::shared_ptr<IKD::OBJECT_FOR_TREE<BattleObject>>> spOFTVec;	//四分木に追加するオブジェクト
@@ -120,16 +120,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		Vector2D v = objects[0]->getPos();
 		GetHitKeyStateAll(key);
 		if (key[KEY_INPUT_DOWN] == 1) {
-			objects[0].get()->Move(v.x, v.y+move);
+			objects[0].get()->Move(Vector2D(0,move));
 		}
 		if (key[KEY_INPUT_UP] == 1) {
-			objects[0].get()->Move(v.x, v.y-move);
+			objects[0].get()->Move(Vector2D(0,-move));
 		}
 		if (key[KEY_INPUT_LEFT] == 1) {
-			objects[0].get()->Move(v.x-move, v.y);
+			objects[0].get()->Move(Vector2D(-move,0));
 		}
 		if (key[KEY_INPUT_RIGHT] == 1) {
-			objects[0].get()->Move(v.x+move, v.y);
+			objects[0].get()->Move(Vector2D(move,0));
 		}
 	}
 

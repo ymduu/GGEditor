@@ -17,7 +17,7 @@ protected:
 public:
 	static const int mapSizeX,mapSizeY;//マップの表示部分の大きさ
 	static const int leftUpPosX,leftUpPosY;//マップの左上の座標
-	static const int buttonWidth;//ボタン部分の横幅
+	static const int buttonWidth,buttonHeight;//ボタン部分の横幅,縦幅
 	static const int actButtonHeightNum=2,actButtonWidthNum=2;//「動作」ボタンの縦横の数
 	static const std::string actButtonStr[actButtonHeightNum*actButtonWidthNum];//「動作」ボタンに書く文字列
 
@@ -41,6 +41,12 @@ public:
 	//毎ループ動作部分
 	int Calculate();
 	void Draw();
+
+	//静的関数
+private:
+	static std::shared_ptr<EditAction> EditPutFactory();//オブジェクト設置の編集行為を作る関数
+	static std::shared_ptr<EditAction> EditRemoveFactory();//オブジェクト削除の編集行為を作る関数
+
 };
 
 #endif // !DEF_GGEDITOR_H

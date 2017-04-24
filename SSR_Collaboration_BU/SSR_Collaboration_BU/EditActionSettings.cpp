@@ -70,6 +70,17 @@ EditActionSettings::EditActionSettings(std::shared_ptr<EditAction> pEditAction, 
 
 EditActionSettings::~EditActionSettings() {}
 
+std::vector<std::shared_ptr<BattleObject>>::iterator EditActionSettings::GetMousePointedObject(Vector2D point){
+	std::vector<std::shared_ptr<BattleObject>>::iterator it=m_objects.begin(),ite=m_objects.end();
+	for(;it!=ite;it++) {
+		//マウスが被っている図形には枠を描画しフォーカスを表現
+		if(it->get()->JudgePointInsideShape(point)){
+			break;
+		}
+	}
+	return it;
+}
+
 void EditActionSettings::PracticeEdit(Vector2D point){
 	m_pEditAction.get()->VProcessAction(point,*this);
 }
@@ -90,10 +101,22 @@ void EditActionSettings::PushScrollBar(float scrollpx,float maxX,float maxY,int 
 	}
 }
 
+void EditActionSettings::DrawEditButtonPushed()const{
+	m_pEditAction.get()->DrawPushedButton();
+}
+
 void EditActionSettings::PutObject(Vector2D point){
 	//オブジェクトを現在のマウスの位置に合わせてから設置
 	m_pBattleObject.get()->Warp(point+m_adjust);
 	m_objects.push_back(m_pBattleObject);
 	//m_pBattleObjectをそのままにすると同じポインタのオブジェクトを違う場所に置こうとしてしまうので、ポインタは新しくする
 	m_pBattleObject=m_pBattleObject->VCopy();
+}
+
+void EditActionSettings::RemoveObject(Vector2D point){
+	//取り除くオブジェクトを探す
+	std::vector<std::shared_ptr<BattleObject>>::iterator it=GetMousePointedObject(point+m_adjust);
+	if(it!=m_objects.end()){
+		m_objects.erase(it);
+	}
 }

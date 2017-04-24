@@ -12,6 +12,7 @@
 #include"MyAngledTriangle.h"
 
 #include"EditPut.h"
+#include"EditRemove.h"
 
 //定数の定義
 const int GGEditor::mapSizeX = 800;
@@ -19,11 +20,23 @@ const int GGEditor::mapSizeY = 600;
 const int GGEditor::leftUpPosX = 25;
 const int GGEditor::leftUpPosY = 25;
 const int GGEditor::buttonWidth = 400;
+const int GGEditor::buttonHeight=(leftUpPosY*2+mapSizeY)/4;
 const std::string GGEditor::actButtonStr[actButtonHeightNum*actButtonWidthNum]={"put","remove","move","expand"};
 
 //関数定義
+//静的関数
+std::shared_ptr<EditAction> GGEditor::EditPutFactory(){
+	return std::shared_ptr<EditAction>(new EditPut(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0,0,buttonWidth/actButtonWidthNum,buttonHeight/actButtonHeightNum,GetColor(255,255,0)));
+}
+
+std::shared_ptr<EditAction> GGEditor::EditRemoveFactory(){
+	return std::shared_ptr<EditAction>(new EditRemove(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1,0,buttonWidth/actButtonWidthNum,buttonHeight/actButtonHeightNum,GetColor(255,255,0)));
+}
+
+
+//動的関数
 GGEditor::GGEditor()
-	:m_actionSettings(std::shared_ptr<EditAction>(new EditPut(leftUpPosX*2+mapSizeX,0,buttonWidth/actButtonWidthNum,(leftUpPosY*2+mapSizeY)/4/actButtonHeightNum,GetColor(255,255,0)))
+	:m_actionSettings(EditPutFactory()
 		,std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,40)),0,0,-1,0,GetColor(128,128,128),false))
 		,std::shared_ptr<PosSetting>(nullptr))
 {
@@ -68,6 +81,16 @@ int GGEditor::Calculate() {
 			scroll=20;
 		}
 		m_actionSettings.PushScrollBar(scroll,2000,2000,mouseX,mouseY,leftUpPosX,leftUpPosY,mapSizeX,mapSizeY);
+	} else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseY>=0 && mouseY<buttonHeight/actButtonHeightNum*1){
+		//設置ボタンにマウスがある場合
+		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
+			m_actionSettings.m_pEditAction=EditPutFactory();
+		}
+	} else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*2 && mouseY>=0 && mouseY<buttonHeight/actButtonHeightNum*1){
+		//設置ボタンにマウスがある場合
+		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
+			m_actionSettings.m_pEditAction=EditRemoveFactory();
+		}
 	}
 	//キーボード入力受付
 	if (keyboard_get(KEY_INPUT_NUMPADENTER) == 1) {
@@ -108,8 +131,10 @@ void GGEditor::Draw() {
 		}
 	}
 	SetDrawAreaFull();
-	//入力されている動作のボタンの描画
 
+	//入力されている動作のボタンの描画
+	m_actionSettings.DrawEditButtonPushed();
+	
 	//右側の作業フレームの描画
 	{
 		const int bx=leftUpPosX*2+mapSizeX,by=0;//ボタン群の位置

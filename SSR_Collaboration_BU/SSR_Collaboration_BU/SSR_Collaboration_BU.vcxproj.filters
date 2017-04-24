@@ -72,6 +72,9 @@
     <ClCompile Include="EditAction.cpp">
       <Filter>ソース ファイル\StageEditor</Filter>
     </ClCompile>
+    <ClCompile Include="EditRemove.cpp">
+      <Filter>ソース ファイル\StageEditor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ToolsLib.h">
@@ -108,6 +111,12 @@
       <Filter>ヘッダー ファイル\StageEditor</Filter>
     </ClInclude>
     <ClInclude Include="GGEditor.h">
+      <Filter>ヘッダー ファイル\StageEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="EditMove.h">
+      <Filter>ヘッダー ファイル\StageEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="EditRemove.h">
       <Filter>ヘッダー ファイル\StageEditor</Filter>
     </ClInclude>
   </ItemGroup>

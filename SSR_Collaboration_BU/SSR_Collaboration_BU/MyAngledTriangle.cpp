@@ -18,17 +18,17 @@ std::shared_ptr<MyShape> MyAngledTriangle::VCopy()const{
 	return std::shared_ptr<MyShape>(new MyAngledTriangle(vx,vy));
 }
 
-bool MyAngledTriangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
+MyShape::HitInfo MyAngledTriangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	//ここは第二引数が自分のため、aMyPosは第四引数にしないとおかしい
 	return MyShape::HitJudge(pshape, this,aOtherPos,aMyPos);
 }
 
-bool MyAngledTriangle::VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
+MyShape::HitInfo MyAngledTriangle::VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	//ここは第二引数が自分のため、aMyPosは第四引数にしないとおかしい
 	return MyShape::HitJudge(pshape,this,aOtherPos,aMyPos);
 }
 
-bool MyAngledTriangle::VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
+MyShape::HitInfo MyAngledTriangle::VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	return MyShape::HitJudge(this, pshape, aMyPos, aOtherPos);
 }
 

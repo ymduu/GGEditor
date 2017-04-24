@@ -13,7 +13,16 @@ class MyShape {
 	//型・列挙体
 public:
 	//定数
-
+	struct HitInfo {
+		//当たり判定を行った後に返す情報
+		bool judge;
+		Vector2D fixVec;	//補正ベクトル
+		
+				//コンストラクタ
+		HitInfo(bool i_judge,Vector2D v)
+			:judge(i_judge),fixVec(Vector2D(v.x,v.y)) {}
+		
+	};
 	//変数
 
 	//関数
@@ -25,18 +34,18 @@ public:
 	virtual bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos)const=0;
 	
 	//当たり判定関数、引数に座標情報を追加
-	bool HitJudge(const MyShape *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const;
-	virtual bool VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const = 0;
-	virtual bool VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const = 0;
-	virtual bool VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const = 0;
+	HitInfo HitJudge(const MyShape *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const;
+	virtual HitInfo VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const = 0;
+	virtual HitInfo VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const = 0;
+	virtual HitInfo VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const = 0;
 
 	//当たり判定関数の実体
-	static bool HitJudge(const MyCircle *pshape1, const MyCircle *pshape2,const Vector2D aMyPos, const Vector2D aOtherPos);
-	static bool HitJudge(const MyCircle *pshape1, const MyRectangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
-	static bool HitJudge(const MyCircle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
-	static bool HitJudge(const MyRectangle *pshape1, const MyRectangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
-	static bool HitJudge(const MyRectangle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
-	static bool HitJudge(const MyAngledTriangle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
+	static HitInfo HitJudge(const MyCircle *pshape1, const MyCircle *pshape2,const Vector2D aMyPos, const Vector2D aOtherPos);
+	static HitInfo HitJudge(const MyCircle *pshape1, const MyRectangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
+	static HitInfo HitJudge(const MyCircle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
+	static HitInfo HitJudge(const MyRectangle *pshape1, const MyRectangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
+	static HitInfo HitJudge(const MyRectangle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
+	static HitInfo HitJudge(const MyAngledTriangle *pshape1, const MyAngledTriangle *pshape2, const Vector2D aMyPos, const Vector2D aOtherPos);
 
 	//外接四角形の上下左右を取得(4分木に登録するため)
 	virtual float getTop(Vector2D aPos)const = 0;

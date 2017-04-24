@@ -23,9 +23,9 @@ public:
 	//ê}å`ì‡Ç…ì_Ç™Ç†ÇÈÇ©Ç«Ç§Ç©ÇÃîªíË
 	bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos)const;
 	//ìñÇΩÇËîªíËä÷êî
-	bool VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const;
-	bool VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const;
-	bool VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const;
+	MyShape::HitInfo VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const;
+	MyShape::HitInfo VHitJudge(const MyRectangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const;
+	MyShape::HitInfo VHitJudge(const MyAngledTriangle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const;
 	float getTop(Vector2D aPos)const;
 	float getBottom(Vector2D aPos)const;
 	float getLeft(Vector2D aPos)const;

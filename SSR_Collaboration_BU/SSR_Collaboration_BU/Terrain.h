@@ -18,7 +18,7 @@ protected:
 public:
 	Terrain(const std::shared_ptr<MyShape> hitJudgeShape, float x, float y, int gHandle, int kind,unsigned int color,bool breakable);
 	~Terrain();
-	void VDraw(int x,int y);//•`‰æˆ—
+	void VDraw(Vector2D point,Vector2D adjust);//•`‰æˆ—
 	void VHitProcess(const BattleObject *potherobj);
 	std::shared_ptr<BattleObject> VCopy()const;
 };

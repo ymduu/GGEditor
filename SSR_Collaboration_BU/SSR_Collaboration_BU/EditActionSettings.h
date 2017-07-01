@@ -50,7 +50,7 @@ public:
 	void DrawEditButtonPushed()const;//現在選択されている編集ボタンに対して押されている様子を描画する
 	void PutObject(Vector2D point);//現在マウスを指している位置にオブジェクトを設置する
 	void RemoveObject(Vector2D point);//現在マウスを指している位置にあるオブジェクトを取り除く(vectorの頭の方から取り除かれる)
-
+	void SetEditObject(Vector2D point);//現在マウスを指している位置にあるオブジェクトを編集対象に設定する
 
 };
 

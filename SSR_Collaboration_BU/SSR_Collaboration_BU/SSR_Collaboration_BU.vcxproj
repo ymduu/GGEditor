@@ -154,6 +154,7 @@
     <ClCompile Include="BattleObject.cpp" />
     <ClCompile Include="EditAction.cpp" />
     <ClCompile Include="EditActionSettings.cpp" />
+    <ClCompile Include="EditMove.cpp" />
     <ClCompile Include="EditPut.cpp" />
     <ClCompile Include="EditRemove.cpp" />
     <ClCompile Include="GGEditor.cpp" />

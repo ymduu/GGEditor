@@ -46,6 +46,7 @@ public:
 private:
 	static std::shared_ptr<EditAction> EditPutFactory();//オブジェクト設置の編集行為を作る関数
 	static std::shared_ptr<EditAction> EditRemoveFactory();//オブジェクト削除の編集行為を作る関数
+	static std::shared_ptr<EditAction> EditMoveFactory();//オブジェクト移動の編集行為を作る関数
 
 };
 

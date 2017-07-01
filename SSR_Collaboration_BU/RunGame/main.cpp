@@ -102,7 +102,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		//•`‰æ
 		for (int i = 0; i < 5; i++) {
 			//objects[i].get()->Move((float)(x + i * 50 + r*cos((float)t / maxt*M_PI)), (float)(y + i * 50 + r*sin((float)t / maxt*M_PI)));
-			objects[i].get()->VDraw();
+			objects[i].get()->VDraw(Vector2D(0,0));
 		}
 
 		//ˆÚ“®‚³‚¹‚é

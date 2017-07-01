@@ -31,6 +31,12 @@
     <Filter Include="ソース ファイル\BattleObject">
       <UniqueIdentifier>{7eab2a26-570f-4283-85f5-461bb47dc1dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\StageEditor\EditAction">
+      <UniqueIdentifier>{599af77b-873d-4cf0-892e-93a9b1b0ca79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\StageEditor\EditAction">
+      <UniqueIdentifier>{8496f0c0-aae9-4177-b0b0-02b8b881e21d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,9 +57,6 @@
     <ClCompile Include="MyShape.cpp">
       <Filter>ソース ファイル\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="EditPut.cpp">
-      <Filter>ソース ファイル\StageEditor</Filter>
-    </ClCompile>
     <ClCompile Include="EditActionSettings.cpp">
       <Filter>ソース ファイル\StageEditor</Filter>
     </ClCompile>
@@ -70,10 +73,16 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="EditAction.cpp">
-      <Filter>ソース ファイル\StageEditor</Filter>
+      <Filter>ソース ファイル\StageEditor\EditAction</Filter>
+    </ClCompile>
+    <ClCompile Include="EditMove.cpp">
+      <Filter>ソース ファイル\StageEditor\EditAction</Filter>
+    </ClCompile>
+    <ClCompile Include="EditPut.cpp">
+      <Filter>ソース ファイル\StageEditor\EditAction</Filter>
     </ClCompile>
     <ClCompile Include="EditRemove.cpp">
-      <Filter>ソース ファイル\StageEditor</Filter>
+      <Filter>ソース ファイル\StageEditor\EditAction</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,23 +110,23 @@
     <ClInclude Include="Terrain.h">
       <Filter>ヘッダー ファイル\BattleObject</Filter>
     </ClInclude>
-    <ClInclude Include="EditActionSettings.h">
-      <Filter>ヘッダー ファイル\StageEditor</Filter>
-    </ClInclude>
     <ClInclude Include="EditAction.h">
-      <Filter>ヘッダー ファイル\StageEditor</Filter>
-    </ClInclude>
-    <ClInclude Include="EditPut.h">
       <Filter>ヘッダー ファイル\StageEditor</Filter>
     </ClInclude>
     <ClInclude Include="GGEditor.h">
       <Filter>ヘッダー ファイル\StageEditor</Filter>
     </ClInclude>
+    <ClInclude Include="EditActionSettings.h">
+      <Filter>ヘッダー ファイル\StageEditor\EditAction</Filter>
+    </ClInclude>
     <ClInclude Include="EditMove.h">
-      <Filter>ヘッダー ファイル\StageEditor</Filter>
+      <Filter>ヘッダー ファイル\StageEditor\EditAction</Filter>
+    </ClInclude>
+    <ClInclude Include="EditPut.h">
+      <Filter>ヘッダー ファイル\StageEditor\EditAction</Filter>
     </ClInclude>
     <ClInclude Include="EditRemove.h">
-      <Filter>ヘッダー ファイル\StageEditor</Filter>
+      <Filter>ヘッダー ファイル\StageEditor\EditAction</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

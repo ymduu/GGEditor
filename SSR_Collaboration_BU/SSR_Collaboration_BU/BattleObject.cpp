@@ -1,6 +1,10 @@
 #include"DxLib.h"
 #include"BattleObject.h"
 
+void BattleObject::VDraw(Vector2D adjust){
+	VDraw(m_pos,adjust);
+}
+
 void BattleObject::ShapeDraw(unsigned int color,int fillFlag,int dx,int dy){
 	m_hitJudgeShape->VDraw(dx+m_pos.x,dy+m_pos.y,color,fillFlag,-1);
 }

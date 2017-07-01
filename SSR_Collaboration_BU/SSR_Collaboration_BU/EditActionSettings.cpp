@@ -106,11 +106,13 @@ void EditActionSettings::DrawEditButtonPushed()const{
 }
 
 void EditActionSettings::PutObject(Vector2D point){
-	//オブジェクトを現在のマウスの位置に合わせてから設置
-	m_pBattleObject.get()->Warp(point+m_adjust);
-	m_objects.push_back(m_pBattleObject);
-	//m_pBattleObjectをそのままにすると同じポインタのオブジェクトを違う場所に置こうとしてしまうので、ポインタは新しくする
-	m_pBattleObject=m_pBattleObject->VCopy();
+	if(m_pBattleObject.get()!=nullptr){
+		//オブジェクトを現在のマウスの位置に合わせてから設置
+		m_pBattleObject.get()->Warp(point+m_adjust);
+		m_objects.push_back(m_pBattleObject);
+		//m_pBattleObjectをそのままにすると同じポインタのオブジェクトを違う場所に置こうとしてしまうので、ポインタは新しくする
+		m_pBattleObject=m_pBattleObject->VCopy();
+	}
 }
 
 void EditActionSettings::RemoveObject(Vector2D point){
@@ -118,5 +120,12 @@ void EditActionSettings::RemoveObject(Vector2D point){
 	std::vector<std::shared_ptr<BattleObject>>::iterator it=GetMousePointedObject(point+m_adjust);
 	if(it!=m_objects.end()){
 		m_objects.erase(it);
+	}
+}
+
+void EditActionSettings::SetEditObject(Vector2D point){
+	std::vector<std::shared_ptr<BattleObject>>::iterator it=GetMousePointedObject(point);
+	if(it!=m_objects.end()){
+		m_pBattleObject=*it;
 	}
 }

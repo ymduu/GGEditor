@@ -13,6 +13,7 @@
 
 #include"EditPut.h"
 #include"EditRemove.h"
+#include"EditMove.h"
 
 //定数の定義
 const int GGEditor::mapSizeX = 800;
@@ -31,6 +32,10 @@ std::shared_ptr<EditAction> GGEditor::EditPutFactory(){
 
 std::shared_ptr<EditAction> GGEditor::EditRemoveFactory(){
 	return std::shared_ptr<EditAction>(new EditRemove(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1,0,buttonWidth/actButtonWidthNum,buttonHeight/actButtonHeightNum,GetColor(255,255,0)));
+}
+
+std::shared_ptr<EditAction> GGEditor::EditMoveFactory(){
+	return std::shared_ptr<EditAction>(new EditMove(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0,buttonHeight/actButtonHeightNum*1,buttonWidth/actButtonWidthNum,buttonHeight/actButtonHeightNum,GetColor(255,255,0)));
 }
 
 
@@ -85,11 +90,19 @@ int GGEditor::Calculate() {
 		//設置ボタンにマウスがある場合
 		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
 			m_actionSettings.m_pEditAction=EditPutFactory();
+			m_actionSettings.m_pBattleObject=std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,40)),0,0,-1,0,GetColor(128,128,128),false));
 		}
 	} else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*2 && mouseY>=0 && mouseY<buttonHeight/actButtonHeightNum*1){
-		//設置ボタンにマウスがある場合
+		//除外ボタンにマウスがある場合
 		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
 			m_actionSettings.m_pEditAction=EditRemoveFactory();
+			m_actionSettings.m_pBattleObject=std::shared_ptr<BattleObject>(nullptr);
+		}
+	} else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseY>=buttonHeight/actButtonHeightNum*1 && mouseY<buttonHeight/actButtonHeightNum*2){
+		//変更ボタンにマウスがある場合
+		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
+			m_actionSettings.m_pEditAction=EditMoveFactory();
+			m_actionSettings.m_pBattleObject=std::shared_ptr<BattleObject>(nullptr);
 		}
 	}
 	//キーボード入力受付
@@ -120,15 +133,29 @@ void GGEditor::Draw() {
 	//マップの描画
 	//マップ描画出来る範囲を制限
 	SetDrawArea(leftUpPosX,leftUpPosY,leftUpPosX+mapSizeX, leftUpPosY + mapSizeY);
+	//マップ全体の描画
 	bool firstflag=true;
 	Vector2D mouse=GetMousePointVector2D()-Vector2D((float)leftUpPosX,(float)leftUpPosY)+m_actionSettings.GetMAdjust();//マウスの位置(補正値を考慮しマップ上の座標で表す)
-	for (std::shared_ptr<BattleObject> obj : *m_actionSettings.GetPMObject()) {
-		obj.get()->VDraw(leftUpPosX-(int)m_actionSettings.GetMAdjust().x,leftUpPosY-(int)m_actionSettings.GetMAdjust().y);
-		//マウスが被っている図形には枠を描画しフォーカスを表現
+	for (const std::shared_ptr<BattleObject> &obj : *m_actionSettings.GetPMObject()) {
+		//obj.get()->VDraw(leftUpPosX-(int)m_actionSettings.GetMAdjust().x,leftUpPosY-(int)m_actionSettings.GetMAdjust().y);
+		obj.get()->VDraw(Vector2D((float)leftUpPosX,(float)leftUpPosY)-m_actionSettings.GetMAdjust());
+		//マウスが被っている図形には黄色い枠を描画しフォーカスを表現
 		if(firstflag && obj.get()->JudgePointInsideShape(mouse)){
 			obj.get()->ShapeDraw(GetColor(255,255,0),FALSE,leftUpPosX-(int)m_actionSettings.GetMAdjust().x,leftUpPosY-(int)m_actionSettings.GetMAdjust().y);
 			firstflag=false;
 		}
+		//選択中の図形については赤い枠を描画しフォーカスを表現
+		if(obj.get()==m_actionSettings.m_pBattleObject.get()){
+			obj.get()->ShapeDraw(GetColor(255,0,0),FALSE,leftUpPosX-(int)m_actionSettings.GetMAdjust().x,leftUpPosY-(int)m_actionSettings.GetMAdjust().y);
+		}
+	}
+	//編集するBattleObjectをマップに仮想的に描画
+	if(m_actionSettings.m_pBattleObject.get()!=nullptr){
+		int mode,pal;
+		GetDrawBlendMode(&mode,&pal);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA,128);
+		m_actionSettings.m_pBattleObject.get()->VDraw(GetMousePointVector2D(),Vector2D(0,0));
+		SetDrawBlendMode(mode,pal);
 	}
 	SetDrawAreaFull();
 

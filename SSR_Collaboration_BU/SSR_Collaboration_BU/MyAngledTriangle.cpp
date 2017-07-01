@@ -58,27 +58,100 @@ float MyAngledTriangle::getRight(Vector2D aPos)const{
 }
 
 Vector2D MyAngledTriangle::GetNearestPoint(Vector2D trianglePos, Vector2D p)const {
-	bool top = false, left = false;
+	bool top = false, left = false,right=false,bottom=false;
 	
-	if (p.x < getLeft(trianglePos)) {
-		//もし点(円の中心を想定)が三角形の左端より左にあったら
-		p.x = getLeft(trianglePos);
-		left = true;
-	}
-	//yにも同様の処理をする
-	if (p.y < getTop(trianglePos)) {
-		p.y = getTop(trianglePos);
-		top = true;
-	}
-	if (left || top) {
-		if (p.x > getRight(trianglePos)) {
-			//もし点が三角形の右端より右にあったら
-			p.x = getRight(trianglePos);
+	if (vx > 0 && vy > 0) {
+		//三角形の形状により場合分け
+		if (p.x < getLeft(trianglePos)) {
+			//もし点(円の中心を想定)が三角形の左端より左にあったら
+			p.x = getLeft(trianglePos);
+			left = true;
 		}
+		//yにも同様の処理をする
+		if (p.y < getTop(trianglePos)) {
+			p.y = getTop(trianglePos);
+			top = true;
+		}
+		if (left || top) {
+			if (p.x > getRight(trianglePos)) {
+				//もし点が三角形の右端より右にあったら
+				p.x = getRight(trianglePos);
+			}
+			if (p.y > getBottom(trianglePos)) {
+				p.y = getBottom(trianglePos);
+			}
+			return p;
+		}
+	}
+
+	if (vx > 0 && vy < 0) {
+		//三角形の形状により場合分け
+		if (p.x < getLeft(trianglePos)) {
+			//もし点(円の中心を想定)が三角形の左端より左にあったら
+			p.x = getLeft(trianglePos);
+			left = true;
+		}
+		//yにも同様の処理をする
 		if (p.y > getBottom(trianglePos)) {
 			p.y = getBottom(trianglePos);
+			bottom = true;
 		}
-		return p;
+		if (left || bottom) {
+			if (p.x > getRight(trianglePos)) {
+				//もし点が三角形の右端より右にあったら
+				p.x = getRight(trianglePos);
+			}
+			if (p.y < getTop(trianglePos)) {
+				p.y = getTop(trianglePos);
+			}
+			return p;
+		}
+	}
+	if (vx < 0 && vy > 0) {
+		//三角形の形状により場合分け
+		if (p.x > getRight(trianglePos)) {
+			//もし点(円の中心を想定)が三角形の右端より右にあったら
+			p.x = getRight(trianglePos);
+			right = true;
+		}
+		//yにも同様の処理をする
+		if (p.y < getTop(trianglePos)) {
+			p.y = getTop(trianglePos);
+			top = true;
+		}
+		if (right || top) {
+			if (p.x < getLeft(trianglePos)) {
+				//もし点が三角形の左端より左にあったら
+				p.x = getLeft(trianglePos);
+			}
+			if (p.y > getBottom(trianglePos)) {
+				p.y = getBottom(trianglePos);
+			}
+			return p;
+		}
+	}
+	if (vx < 0 && vy < 0) {
+		//三角形の形状により場合分け
+		if (p.x > getRight(trianglePos)) {
+			//もし点(円の中心を想定)が三角形の右端より右にあったら
+			p.x = getRight(trianglePos);
+			right = true;
+		}
+		//yにも同様の処理をする
+		if (p.y > getBottom(trianglePos)) {
+			p.y = getBottom(trianglePos);
+			bottom = true;
+		}
+		if (right || bottom) {
+			if (p.x < getLeft(trianglePos)) {
+				//もし点が三角形の左端より左にあったら
+				p.x = getLeft(trianglePos);
+			}
+			if (p.y < getTop(trianglePos)) {
+				p.y = getTop(trianglePos);
+			}
+			return p;
+		}
 	}
 	//左側にも上側にもない場合、斜辺との最近傍点を求める
 	Vector2D endPoint1(trianglePos.x,trianglePos.y+vy), endPoint2(trianglePos.x+vx,trianglePos.y);

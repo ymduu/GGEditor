@@ -28,11 +28,13 @@ protected:
 
 	//関数
 public:
-	//コンストラクタとデストラクタとコピーコンストラクタ
+	//補正される側か？(プレイヤーキャラか？)
+	bool fixFlag;
+	//コンストラクタとデストラクタ
 	BattleObject(const std::shared_ptr<MyShape> hitJudgeShape,float x,float y,int gHandle,int kind)
-		:m_hitJudgeShape(hitJudgeShape),m_pos(x,y),m_gHandle(gHandle),m_kind(kind){}
-
+		:m_hitJudgeShape(hitJudgeShape),m_pos(x,y),m_gHandle(gHandle),m_kind(kind),fixFlag(false){}
 	virtual ~BattleObject() {}
+
 	
 	//仮想関数
 	void VDraw(Vector2D adjust=Vector2D(0,0));//描画処理(位置ずらし含める)

@@ -18,7 +18,8 @@ public:
 	EditRemove(int buttonX,int buttonY,int buttonDX,int buttonDY,unsigned int pushedColor);
 	~EditRemove(){}
 
-	void VProcessAction(Vector2D point,EditActionSettings &settings);
+	void VNonPressEditing(Vector2D point,EditActionSettings &settings)const;//マウスを押していない時も編集を行う編集行為について、そのような編集行為を行う
+	void VProcessAction(Vector2D point,EditActionSettings &settings)const;
 };
 
 #endif // !DEF_EDITMOVE_H

@@ -9,7 +9,7 @@
 #include"MyRectangle.h"
 
 EditActionSettings::EditActionSettings(std::shared_ptr<EditAction> pEditAction, std::shared_ptr<BattleObject> pBattleObject, std::shared_ptr<PosSetting> pPosSetting)
-	:m_adjust(0,0),m_pEditAction(pEditAction),m_pBattleObject(pBattleObject),m_pPosSetting(pPosSetting)
+	:m_adjust(0,0),m_pEditAction(pEditAction),m_pBattleObject(pBattleObject),m_pPosSetting(pPosSetting),m_pOriginObject(std::shared_ptr<BattleObject>(nullptr))
 {
 	//実験用
 	m_objects.push_back(std::shared_ptr<BattleObject>(
@@ -82,7 +82,13 @@ std::vector<std::shared_ptr<BattleObject>>::iterator EditActionSettings::GetMous
 }
 
 void EditActionSettings::PracticeEdit(Vector2D point){
-	m_pEditAction.get()->VProcessAction(point,*this);
+	//マウス座標をマップ実座標に変換してから編集
+	m_pEditAction.get()->VProcessAction(point+m_adjust,*this);
+}
+
+void EditActionSettings::PracticeNonPressEdit(Vector2D point){
+	//マウス座標をマップ実座標に変換してから編集
+	m_pEditAction.get()->VNonPressEditing(point+m_adjust,*this);
 }
 
 void EditActionSettings::PushScrollBar(float scrollpx,float maxX,float maxY,int mouseX,int mouseY,int leftUpPosX,int leftUpPosY,int mapSizeX,int mapSizeY){
@@ -108,7 +114,7 @@ void EditActionSettings::DrawEditButtonPushed()const{
 void EditActionSettings::PutObject(Vector2D point){
 	if(m_pBattleObject.get()!=nullptr){
 		//オブジェクトを現在のマウスの位置に合わせてから設置
-		m_pBattleObject.get()->Warp(point+m_adjust);
+		m_pBattleObject.get()->Warp(point);
 		m_objects.push_back(m_pBattleObject);
 		//m_pBattleObjectをそのままにすると同じポインタのオブジェクトを違う場所に置こうとしてしまうので、ポインタは新しくする
 		m_pBattleObject=m_pBattleObject->VCopy();
@@ -117,15 +123,29 @@ void EditActionSettings::PutObject(Vector2D point){
 
 void EditActionSettings::RemoveObject(Vector2D point){
 	//取り除くオブジェクトを探す
-	std::vector<std::shared_ptr<BattleObject>>::iterator it=GetMousePointedObject(point+m_adjust);
+	std::vector<std::shared_ptr<BattleObject>>::iterator it=GetMousePointedObject(point);
 	if(it!=m_objects.end()){
 		m_objects.erase(it);
 	}
 }
 
 void EditActionSettings::SetEditObject(Vector2D point){
-	std::vector<std::shared_ptr<BattleObject>>::iterator it=GetMousePointedObject(point+m_adjust);
+	std::vector<std::shared_ptr<BattleObject>>::iterator it=GetMousePointedObject(point);
 	if(it!=m_objects.end()){
 		m_pBattleObject=*it;
+		m_pOriginObject=it->get()->VCopy();
 	}
+}
+
+void EditActionSettings::CancelEditing(){
+	//エディタで変更できるのは位置と大きさのみ
+	if(m_pBattleObject.get()!=nullptr && m_pOriginObject.get()!=nullptr){
+		m_pBattleObject.get()->Warp(m_pOriginObject.get()->getPos());
+		m_pBattleObject.get()->Resize(m_pOriginObject.get()->getResizeVec());
+	}
+}
+
+void EditActionSettings::InitEditObject(){
+	m_pBattleObject=std::shared_ptr<BattleObject>(nullptr);
+	m_pOriginObject=std::shared_ptr<BattleObject>(nullptr);
 }

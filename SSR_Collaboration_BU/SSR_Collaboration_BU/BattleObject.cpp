@@ -1,11 +1,11 @@
 #include"DxLib.h"
 #include"BattleObject.h"
 
-void BattleObject::VDraw(Vector2D adjust){
+void BattleObject::VDraw(Vector2D adjust)const{
 	VDraw(m_pos,adjust);
 }
 
-void BattleObject::ShapeDraw(unsigned int color,int fillFlag,int dx,int dy){
+void BattleObject::ShapeDraw(unsigned int color,int fillFlag,int dx,int dy)const{
 	m_hitJudgeShape->VDraw(dx+m_pos.x,dy+m_pos.y,color,fillFlag,-1);
 }
 
@@ -22,25 +22,30 @@ void BattleObject::Resize(Vector2D v){
 	m_hitJudgeShape.get()->Resize(v-m_pos);
 }
 
-bool BattleObject::JudgePointInsideShape(Vector2D point){
+bool BattleObject::JudgePointInsideShape(Vector2D point)const{
 	return m_hitJudgeShape.get()->VJudgePosintInsideShape(point,m_pos);
 }
 
-float BattleObject::getTop() {
+float BattleObject::getTop()const {
 	return m_hitJudgeShape->getTop(m_pos);
 }
-float BattleObject::getBottom() {
+float BattleObject::getBottom()const {
 	return m_hitJudgeShape->getBottom(m_pos);
 }
-float BattleObject::getLeft() {
+float BattleObject::getLeft()const {
 	return m_hitJudgeShape->getLeft(m_pos);
 }
-float BattleObject::getRight() {
+float BattleObject::getRight()const {
 	return m_hitJudgeShape->getRight(m_pos);
 }
-Vector2D BattleObject::getPos() {
+Vector2D BattleObject::getPos()const {
 	return m_pos;
 }
-std::shared_ptr<MyShape> BattleObject::getHitJudgeShape() {
+std::shared_ptr<MyShape> BattleObject::getHitJudgeShape()const {
 	return m_hitJudgeShape;
 }
+Vector2D BattleObject::getResizeVec()const{
+	//m_hitJudgeShapeのものはオブジェクトの位置を考慮していないのでそれを足して返す
+	return m_hitJudgeShape.get()->GetRetResize()+m_pos;
+}
+

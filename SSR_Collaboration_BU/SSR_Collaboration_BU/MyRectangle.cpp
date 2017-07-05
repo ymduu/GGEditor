@@ -20,6 +20,10 @@ void MyRectangle::Resize(Vector2D v){
 	dy=v.y;
 }
 
+Vector2D MyRectangle::GetRetResize()const{
+	return Vector2D(dx,dy);
+}
+
 MyShape::HitInfo MyRectangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	//‚±‚±‚Í‘æ“ñˆø”‚ª©•ª‚Ì‚½‚ßAaMyPos‚Í‘ælˆø”‚É‚µ‚È‚¢‚Æ‚¨‚©‚µ‚¢
 	return MyShape::HitJudge(pshape,this,aOtherPos, aMyPos);

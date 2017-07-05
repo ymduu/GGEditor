@@ -17,7 +17,8 @@ public:
 	EditMove(int buttonX,int buttonY,int buttonDX,int buttonDY,unsigned int pushedColor);
 	~EditMove() {}
 
-	void VProcessAction(Vector2D point,EditActionSettings &settings);//編集行為を実行する
+	void VNonPressEditing(Vector2D point,EditActionSettings &settings)const;//マウスを押していない時も編集を行う編集行為について、そのような編集行為を行う
+	void VProcessAction(Vector2D point,EditActionSettings &settings)const;//編集行為を実行する
 };
 
 

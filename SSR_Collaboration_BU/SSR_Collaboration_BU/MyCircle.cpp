@@ -19,6 +19,11 @@ void MyCircle::Resize(Vector2D v){
 	r=v.size();
 }
 
+Vector2D MyCircle::GetRetResize()const{
+	//’·‚³r‚ÌƒxƒNƒgƒ‹‚ð•Ô‚¹‚Î‚È‚ñ‚Å‚à‚æ‚¢
+	return Vector2D(r,0);
+}
+
 MyShape::HitInfo MyCircle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	return MyShape::HitJudge(this,pshape,aMyPos,aOtherPos);
 }

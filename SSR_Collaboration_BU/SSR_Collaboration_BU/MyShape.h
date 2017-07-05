@@ -29,6 +29,7 @@ public:
 public:
 	virtual void VDraw(float x,float y,unsigned int color,int fillFlag,int textureHandle)const=0;//形状を描画する
 	virtual std::shared_ptr<MyShape> VCopy()const=0;//内容が同じでポインタの位置のみが異なるオブジェクトのポインタを返す
+	virtual void Resize(Vector2D v)=0;//図形を表現するベクトルを用いて図形の大きさを変更する
 
 	//図形内に点があるかどうかの判定
 	virtual bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos)const=0;

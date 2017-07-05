@@ -46,6 +46,7 @@ public:
 	void ShapeDraw(unsigned int color,int fillFlag,int dx=0,int dy=0);//当たり判定形状に基づいた描画処理(dx,dyはズレの値)
 	void Move(Vector2D v);//ベクトルvだけ動かす(バトルの時等で用いる)
 	void Warp(Vector2D v);//ベクトルvへ動かす(ステージ編集で用いる)
+	void Resize(Vector2D v);//位置ベクトルvを参考に大きさを変更する(ステージ編集で用いる)
 	bool JudgePointInsideShape(Vector2D point);
 	float getTop();
 	float getBottom();

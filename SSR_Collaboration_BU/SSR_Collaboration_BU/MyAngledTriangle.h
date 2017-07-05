@@ -17,6 +17,7 @@ public:
 	~MyAngledTriangle();
 	void VDraw(float x, float y, unsigned int color, int fillFlag, int textureHandle)const;
 	std::shared_ptr<MyShape> VCopy()const;//内容が同じでポインタの位置のみが異なるオブジェクトのポインタを返す
+	void Resize(Vector2D v);//逆の直角三角形をくっつけた時の２直角項を結んだのベクトルを用いて大きさを変更する
 
 	//図形内に点があるかどうかの判定
 	bool VJudgePosintInsideShape(const Vector2D point,const Vector2D shapePos)const;

@@ -84,6 +84,9 @@
     <ClCompile Include="EditRemove.cpp">
       <Filter>ソース ファイル\StageEditor\EditAction</Filter>
     </ClCompile>
+    <ClCompile Include="EditResize.cpp">
+      <Filter>ソース ファイル\StageEditor\EditAction</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ToolsLib.h">
@@ -110,14 +113,8 @@
     <ClInclude Include="Terrain.h">
       <Filter>ヘッダー ファイル\BattleObject</Filter>
     </ClInclude>
-    <ClInclude Include="EditAction.h">
-      <Filter>ヘッダー ファイル\StageEditor</Filter>
-    </ClInclude>
     <ClInclude Include="GGEditor.h">
       <Filter>ヘッダー ファイル\StageEditor</Filter>
-    </ClInclude>
-    <ClInclude Include="EditActionSettings.h">
-      <Filter>ヘッダー ファイル\StageEditor\EditAction</Filter>
     </ClInclude>
     <ClInclude Include="EditMove.h">
       <Filter>ヘッダー ファイル\StageEditor\EditAction</Filter>
@@ -127,6 +124,15 @@
     </ClInclude>
     <ClInclude Include="EditRemove.h">
       <Filter>ヘッダー ファイル\StageEditor\EditAction</Filter>
+    </ClInclude>
+    <ClInclude Include="EditResize.h">
+      <Filter>ヘッダー ファイル\StageEditor\EditAction</Filter>
+    </ClInclude>
+    <ClInclude Include="EditAction.h">
+      <Filter>ヘッダー ファイル\StageEditor\EditAction</Filter>
+    </ClInclude>
+    <ClInclude Include="EditActionSettings.h">
+      <Filter>ヘッダー ファイル\StageEditor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

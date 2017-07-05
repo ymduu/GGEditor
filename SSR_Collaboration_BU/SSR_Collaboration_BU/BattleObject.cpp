@@ -17,6 +17,11 @@ void BattleObject::Warp(Vector2D v){
 	m_pos=v;
 }
 
+void BattleObject::Resize(Vector2D v){
+	//基準点からマウスを結んだベクトルを引数に渡す
+	m_hitJudgeShape.get()->Resize(v-m_pos);
+}
+
 bool BattleObject::JudgePointInsideShape(Vector2D point){
 	return m_hitJudgeShape.get()->VJudgePosintInsideShape(point,m_pos);
 }

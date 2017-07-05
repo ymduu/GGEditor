@@ -157,6 +157,7 @@
     <ClCompile Include="EditMove.cpp" />
     <ClCompile Include="EditPut.cpp" />
     <ClCompile Include="EditRemove.cpp" />
+    <ClCompile Include="EditResize.cpp" />
     <ClCompile Include="GGEditor.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="EditMove.h" />
     <ClInclude Include="EditPut.h" />
     <ClInclude Include="EditRemove.h" />
+    <ClInclude Include="EditResize.h" />
     <ClInclude Include="GGEditor.h" />
     <ClInclude Include="MyAngledTriangle.h" />
     <ClInclude Include="BattleObject.h" />

@@ -14,6 +14,7 @@
 #include"EditPut.h"
 #include"EditRemove.h"
 #include"EditMove.h"
+#include"EditResize.h"
 
 //定数の定義
 const int GGEditor::mapSizeX = 800;
@@ -38,6 +39,9 @@ std::shared_ptr<EditAction> GGEditor::EditMoveFactory(){
 	return std::shared_ptr<EditAction>(new EditMove(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0,buttonHeight/actButtonHeightNum*1,buttonWidth/actButtonWidthNum,buttonHeight/actButtonHeightNum,GetColor(255,255,0)));
 }
 
+std::shared_ptr<EditAction> GGEditor::EditResizeFactory(){
+	return std::shared_ptr<EditAction>(new EditResize(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1,buttonHeight/actButtonHeightNum*1,buttonWidth/actButtonWidthNum,buttonHeight/actButtonHeightNum,GetColor(255,255,0)));
+}
 
 //動的関数
 GGEditor::GGEditor()
@@ -102,6 +106,12 @@ int GGEditor::Calculate() {
 		//変更ボタンにマウスがある場合
 		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
 			m_actionSettings.m_pEditAction=EditMoveFactory();
+			m_actionSettings.m_pBattleObject=std::shared_ptr<BattleObject>(nullptr);
+		}
+	} else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*2 && mouseY>=buttonHeight/actButtonHeightNum*1 && mouseY<buttonHeight/actButtonHeightNum*2){
+		//サイズ変更ボタンにマウスがある場合
+		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
+			m_actionSettings.m_pEditAction=EditResizeFactory();
 			m_actionSettings.m_pBattleObject=std::shared_ptr<BattleObject>(nullptr);
 		}
 	}

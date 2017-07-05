@@ -124,7 +124,7 @@ void EditActionSettings::RemoveObject(Vector2D point){
 }
 
 void EditActionSettings::SetEditObject(Vector2D point){
-	std::vector<std::shared_ptr<BattleObject>>::iterator it=GetMousePointedObject(point);
+	std::vector<std::shared_ptr<BattleObject>>::iterator it=GetMousePointedObject(point+m_adjust);
 	if(it!=m_objects.end()){
 		m_pBattleObject=*it;
 	}

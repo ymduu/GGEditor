@@ -14,6 +14,11 @@ std::shared_ptr<MyShape> MyCircle::VCopy()const{
 	return std::shared_ptr<MyShape>(new MyCircle(r));
 }
 
+void MyCircle::Resize(Vector2D v){
+	//v‚Ì’·‚³‚ð”¼Œa‚É‚µ‚Ä‚ ‚°‚ê‚Î—Ç‚¢
+	r=v.size();
+}
+
 MyShape::HitInfo MyCircle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	return MyShape::HitJudge(this,pshape,aMyPos,aOtherPos);
 }

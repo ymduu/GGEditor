@@ -18,6 +18,11 @@ std::shared_ptr<MyShape> MyAngledTriangle::VCopy()const{
 	return std::shared_ptr<MyShape>(new MyAngledTriangle(vx,vy));
 }
 
+void MyAngledTriangle::Resize(Vector2D v){
+	vx=v.x;
+	vy=v.y;
+}
+
 MyShape::HitInfo MyAngledTriangle::VHitJudge(const MyCircle *pshape, const Vector2D aMyPos, const Vector2D aOtherPos)const{
 	//‚±‚±‚Í‘æ“ñˆø”‚ª©•ª‚Ì‚½‚ßAaMyPos‚Í‘ælˆø”‚É‚µ‚È‚¢‚Æ‚¨‚©‚µ‚¢
 	return MyShape::HitJudge(pshape, this,aOtherPos,aMyPos);

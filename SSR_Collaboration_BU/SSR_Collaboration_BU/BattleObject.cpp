@@ -9,6 +9,10 @@ void BattleObject::ShapeDraw(unsigned int color,int fillFlag,int dx,int dy)const
 	m_hitJudgeShape->VDraw(dx+m_pos.x,dy+m_pos.y,color,fillFlag,-1);
 }
 
+void BattleObject::PosDraw(unsigned int color,int fillFlag,int size,int dx,int dy)const{
+	DrawCircle(dx+m_pos.x,dy+m_pos.y,size,color,fillFlag);
+}
+
 void BattleObject::Move(Vector2D v){
 	m_pos=m_pos+v;
 }

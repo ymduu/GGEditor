@@ -177,11 +177,13 @@ void GGEditor::Draw() {
 		//マウスが被っている図形には黄色い枠を描画しフォーカスを表現
 		if(firstflag && obj.get()->JudgePointInsideShape(mouse)){
 			obj.get()->ShapeDraw(GetColor(255,255,0),FALSE,(int)(adjust.x),(int)(adjust.y));
+			obj.get()->PosDraw(GetColor(255,255,0),TRUE,2,(int)(adjust.x),(int)(adjust.y));
 			firstflag=false;
 		}
 		//選択中の図形については赤い枠を描画しフォーカスを表現
 		if(obj.get()==m_actionSettings.m_pBattleObject.get()){
 			obj.get()->ShapeDraw(GetColor(255,0,0),FALSE,(int)(adjust.x),(int)(adjust.y));
+			obj.get()->PosDraw(GetColor(255,0,0),TRUE,2,(int)(adjust.x),(int)(adjust.y));
 		}
 	}
 	

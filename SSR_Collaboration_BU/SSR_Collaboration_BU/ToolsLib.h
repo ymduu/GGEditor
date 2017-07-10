@@ -49,7 +49,8 @@ public:
 //マウスの位置をVector2D型で返す関数
 Vector2D GetMousePointVector2D();
 
-
+//背景のカラーコードを返す関数
+unsigned int GetBackgroundColor();
 
 //描画関連
 //画面全体を描画範囲にする

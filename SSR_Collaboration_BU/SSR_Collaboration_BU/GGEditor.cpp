@@ -15,6 +15,7 @@
 #include"EditRemove.h"
 #include"EditMove.h"
 #include"EditResize.h"
+#include"ScrollBar.h"
 
 //定数の定義
 const int GGEditor::mapSizeX = 800;
@@ -49,6 +50,40 @@ GGEditor::GGEditor()
 		,std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,40)),0,0,-1,0,GetColor(128,128,128),false))
 		,std::shared_ptr<PosSetting>(nullptr))
 {
+	//ボタン一覧
+	//上スクロールボタン
+	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new ScrollBar::ScrollButton(
+		Vector2D(0,0)
+		,Vector2D((float)(leftUpPosX*2+mapSizeX),0)
+		,Vector2D((float)(leftUpPosX+mapSizeX),(float)leftUpPosY)
+		,Vector2D((float)leftUpPosX,(float)leftUpPosY)
+		,Vector2D(0,-1)
+	)));
+	//左スクロールボタン
+	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new ScrollBar::ScrollButton(
+		Vector2D(0,0)
+		,Vector2D((float)leftUpPosX,(float)leftUpPosY)
+		,Vector2D((float)leftUpPosX,(float)(leftUpPosY+mapSizeY))
+		,Vector2D(0,(float)(leftUpPosY*2+mapSizeY))
+		,Vector2D(-1,0)
+	)));
+	//右スクロールボタン
+	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new ScrollBar::ScrollButton(
+		Vector2D((float)(leftUpPosX*2+mapSizeX),0)
+		,Vector2D((float)(leftUpPosX*2+mapSizeX),(float)(leftUpPosY*2+mapSizeY))
+		,Vector2D((float)(leftUpPosX+mapSizeX),(float)(leftUpPosY+mapSizeY))
+		,Vector2D((float)(leftUpPosX+mapSizeX),(float)leftUpPosY)
+		,Vector2D(1,0)
+	)));
+	//下スクロールボタン
+	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new ScrollBar::ScrollButton(
+		Vector2D((float)leftUpPosX,(float)(leftUpPosY+mapSizeY))
+		,Vector2D((float)(leftUpPosX+mapSizeX),(float)(leftUpPosY+mapSizeY))
+		,Vector2D((float)(leftUpPosX*2+mapSizeX),(float)(leftUpPosY*2+mapSizeY))
+		,Vector2D(0,(float)(leftUpPosY*2+mapSizeY))
+		,Vector2D(0,1)
+	)));
+
 	//フォント
 	m_font=CreateFontToHandle("メイリオ",16,1);
 
@@ -85,43 +120,43 @@ int GGEditor::Calculate() {
 	GetMousePoint(&mouseX, &mouseY);
 	//マウス入力受付
 	NonPressEdit(mouseX,mouseY);
+
+	//ボタン群の入力判定
+	for(std::shared_ptr<ButtonHaving::Button> &pb:m_buttons){
+		if(pb.get()->JudgeButtonPushed() && pb.get()->JudgeInButton(GetMousePointVector2D())){
+			pb.get()->PushedProcess(m_actionSettings);
+			break;
+		}
+	}
+
 	//左クリックをされたら
 	if(mouseX>=leftUpPosX && mouseX<leftUpPosX+mapSizeX && mouseY>=leftUpPosY && mouseY<leftUpPosY+mapSizeY){
 		//マップ画面内にマウスがある場合
 		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
 			ProcessMapPush(mouseX,mouseY);
 		}
-	} else if(mouseX>=0 && mouseX<leftUpPosX*2+mapSizeX && mouseY>=0 && mouseY<leftUpPosY*2+mapSizeY){
-		//マップ画面(この場合は上に当てはまるのでありえない)かスクロールバーにマウスがある場合
-		float scroll=0;//スクロールするピクセル数
-		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
-			scroll=5;
-		} else if(mouse_get(MOUSE_INPUT_LEFT)>30){
-			scroll=20;
-		}
-		m_actionSettings.PushScrollBar(scroll,2000,2000,mouseX,mouseY,leftUpPosX,leftUpPosY,mapSizeX,mapSizeY);
-	} else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseY>=0 && mouseY<buttonHeight/actButtonHeightNum*1){
+	}else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseY>=0 && mouseY<buttonHeight/actButtonHeightNum*1){
 		//設置ボタンにマウスがある場合
 		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
 			m_actionSettings.CancelEditing();
 			m_actionSettings.m_pEditAction=EditPutFactory();
 			m_actionSettings.m_pBattleObject=std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,40)),0,0,-1,0,GetColor(128,128,128),false));
 		}
-	} else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*2 && mouseY>=0 && mouseY<buttonHeight/actButtonHeightNum*1){
+	}else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*2 && mouseY>=0 && mouseY<buttonHeight/actButtonHeightNum*1){
 		//除外ボタンにマウスがある場合
 		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
 			m_actionSettings.CancelEditing();
 			m_actionSettings.m_pEditAction=EditRemoveFactory();
 			m_actionSettings.InitEditObject();
 		}
-	} else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseY>=buttonHeight/actButtonHeightNum*1 && mouseY<buttonHeight/actButtonHeightNum*2){
+	}else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseY>=buttonHeight/actButtonHeightNum*1 && mouseY<buttonHeight/actButtonHeightNum*2){
 		//変更ボタンにマウスがある場合
 		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
 			m_actionSettings.CancelEditing();
 			m_actionSettings.m_pEditAction=EditMoveFactory();
 			m_actionSettings.InitEditObject();
 		}
-	} else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*2 && mouseY>=buttonHeight/actButtonHeightNum*1 && mouseY<buttonHeight/actButtonHeightNum*2){
+	}else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*2 && mouseY>=buttonHeight/actButtonHeightNum*1 && mouseY<buttonHeight/actButtonHeightNum*2){
 		//サイズ変更ボタンにマウスがある場合
 		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
 			m_actionSettings.CancelEditing();
@@ -130,7 +165,7 @@ int GGEditor::Calculate() {
 		}
 	}
 	//キーボード入力受付
-	if (keyboard_get(KEY_INPUT_NUMPADENTER) == 1) {
+	if(keyboard_get(KEY_INPUT_NUMPADENTER) == 1){
 		return -1;
 	}
 	return 0;
@@ -142,19 +177,7 @@ void GGEditor::Draw() {
 		printfDx("%d\n",o.get());
 	}
 	printfDx("%d\n",m_actionSettings.m_pBattleObject.get());
-	//マップ周りのスクロールボタンの描画
-	{
-		//ひとまず中抜き長方形の描画とする
-		int r,g,b;
-		GetBackgroundColor(&r,&g,&b);
-		DrawBox(0,0,leftUpPosX*2+mapSizeX,leftUpPosY*2+mapSizeY,GetColor(192,192,192),TRUE);
-		DrawBox(leftUpPosX,leftUpPosY,leftUpPosX+mapSizeX,leftUpPosY+mapSizeY,GetColor(r,g,b),TRUE);
-		//更に斜め線も
-		DrawLine(0,0,leftUpPosX,leftUpPosY,GetColor(0,0,0));//左上
-		DrawLine(0,leftUpPosY*2+mapSizeY,leftUpPosX,leftUpPosY+mapSizeY,GetColor(0,0,0));//左下
-		DrawLine(leftUpPosX*2+mapSizeX,0,leftUpPosX+mapSizeX,leftUpPosY,GetColor(0,0,0));//右上
-		DrawLine(leftUpPosX+mapSizeX,leftUpPosY+mapSizeY,leftUpPosX*2+mapSizeX,leftUpPosY*2+mapSizeY,GetColor(0,0,0));//右下
-	}
+
 	//マップの描画
 	//マップ描画出来る範囲を制限
 	SetDrawArea(leftUpPosX,leftUpPosY,leftUpPosX+mapSizeX, leftUpPosY + mapSizeY);
@@ -200,6 +223,11 @@ void GGEditor::Draw() {
 	//入力されている動作のボタンの描画
 	m_actionSettings.DrawEditButtonPushed();
 	
+	//ボタン群の描画
+	for(std::shared_ptr<ButtonHaving::Button> &pb:m_buttons){
+		pb.get()->ButtonDraw(m_font);
+	}
+
 	//右側の作業フレームの描画
 	{
 		const int bx=leftUpPosX*2+mapSizeX,by=0;//ボタン群の位置

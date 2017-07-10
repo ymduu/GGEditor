@@ -2,6 +2,7 @@
 #include"EditActionSettings.h"
 
 #include"DxLib.h"
+#include"GGEditor.h"
 #include"EditAction.h"
 #include"Terrain.h"
 #include"MyAngledTriangle.h"
@@ -105,6 +106,16 @@ void EditActionSettings::PushScrollBar(float scrollpx,float maxX,float maxY,int 
 		//下部分(1より上、2より上)
 		m_adjust.y=fmin(maxY-mapSizeY,m_adjust.y+scrollpx);
 	}
+}
+
+void EditActionSettings::PushScrollBar(Vector2D move){
+	//最大値最小値を考慮する
+	Vector2D a=m_adjust+move;
+	float maxX=2000-(float)GGEditor::mapSizeX,maxY=2000-(float)GGEditor::mapSizeY;
+	m_adjust=Vector2D(
+		a.x>=0 ? (a.x<maxX ? a.x : maxX) : 0
+		,a.y>=0 ? (a.y<maxY ? a.y : maxY) : 0
+	);
 }
 
 void EditActionSettings::DrawEditButtonPushed()const{

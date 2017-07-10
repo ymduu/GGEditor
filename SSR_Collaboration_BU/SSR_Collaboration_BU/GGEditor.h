@@ -6,6 +6,7 @@
 #include<memory>
 #include"EditActionSettings.h"
 #include"ToolsLib.h"
+#include"ButtonHaving.h"
 
 //ステージエディタ自身
 class GGEditor {
@@ -25,8 +26,13 @@ public:
 protected:
 	EditActionSettings m_actionSettings;//現在行おうとしている編集行為と編集データのまとめ
 
+	//ボタン一覧
+	std::vector<std::shared_ptr<ButtonHaving::Button>> m_buttons;
+	
 	//描画用データ
 	int m_font;//フォント
+
+
 
 	//関数
 protected:

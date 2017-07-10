@@ -1,8 +1,7 @@
 #ifndef DEF_EDITACTION_H
 #define DEF_EDITACTION_H
 
-#include"ToolsLib.h"
-class EditActionSettings;
+#include"ButtonHaving.h"
 
 //編集行為を表すクラスのインターフェース
 class EditAction {

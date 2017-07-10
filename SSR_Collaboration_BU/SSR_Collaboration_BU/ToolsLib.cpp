@@ -12,6 +12,12 @@ Vector2D GetMousePointVector2D(){
 	return Vector2D((float)x,(float)y);
 }
 
+//背景のカラーコードを返す関数
+unsigned int GetBackgroundColor(){
+	int r,g,b;
+	GetBackgroundColor(&r,&g,&b);
+	return GetColor(r,g,b);
+}
 
 //描画関連
 //画面全体を描画範囲にする

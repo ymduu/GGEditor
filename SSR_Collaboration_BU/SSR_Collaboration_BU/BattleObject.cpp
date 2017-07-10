@@ -10,7 +10,7 @@ void BattleObject::ShapeDraw(unsigned int color,int fillFlag,int dx,int dy)const
 }
 
 void BattleObject::PosDraw(unsigned int color,int fillFlag,int size,int dx,int dy)const{
-	DrawCircle(dx+m_pos.x,dy+m_pos.y,size,color,fillFlag);
+	DrawCircle(dx+(int)m_pos.x,dy+(int)m_pos.y,size,color,fillFlag);
 }
 
 void BattleObject::Move(Vector2D v){

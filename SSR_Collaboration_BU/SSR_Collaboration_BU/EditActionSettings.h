@@ -55,6 +55,7 @@ public:
 	void PracticeNonPressEdit(Vector2D point);
 	//普通の関数
 	void PushScrollBar(float scrollpx,float maxX,float maxY,int mouseX,int mouseY,int leftUpPosX,int leftUpPosY,int mapSizeX,int mapSizeY);//マップのスクロールバーを押した時の処理
+	void PushScrollBar(Vector2D move);
 	void DrawEditButtonPushed()const;//現在選択されている編集ボタンに対して押されている様子を描画する
 	void PutObject(Vector2D point);//現在マウスを指している位置にオブジェクトを設置する
 	void RemoveObject(Vector2D point);//現在マウスを指している位置にあるオブジェクトを取り除く(vectorの頭の方から取り除かれる)

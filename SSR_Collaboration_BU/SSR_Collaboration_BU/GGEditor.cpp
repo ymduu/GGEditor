@@ -158,37 +158,6 @@ int GGEditor::Calculate() {
 			ProcessMapPush(mouseX,mouseY);
 		}
 	}
-/*
-	else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseY>=0 && mouseY<buttonHeight/actButtonHeightNum*1){
-		//設置ボタンにマウスがある場合
-		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
-			m_actionSettings.CancelEditing();
-			m_actionSettings.m_pEditAction=EditPutFactory();
-			m_actionSettings.m_pBattleObject=std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,40)),0,0,-1,0,GetColor(128,128,128),false));
-		}
-	}else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*2 && mouseY>=0 && mouseY<buttonHeight/actButtonHeightNum*1){
-		//除外ボタンにマウスがある場合
-		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
-			m_actionSettings.CancelEditing();
-			m_actionSettings.m_pEditAction=EditRemoveFactory();
-			m_actionSettings.InitEditObject();
-		}
-	}else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseY>=buttonHeight/actButtonHeightNum*1 && mouseY<buttonHeight/actButtonHeightNum*2){
-		//変更ボタンにマウスがある場合
-		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
-			m_actionSettings.CancelEditing();
-			m_actionSettings.m_pEditAction=EditMoveFactory();
-			m_actionSettings.InitEditObject();
-		}
-	}else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*2 && mouseY>=buttonHeight/actButtonHeightNum*1 && mouseY<buttonHeight/actButtonHeightNum*2){
-		//サイズ変更ボタンにマウスがある場合
-		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
-			m_actionSettings.CancelEditing();
-			m_actionSettings.m_pEditAction=EditResizeFactory();
-			m_actionSettings.InitEditObject();
-		}
-	}
-//*/
 
 	//キーボード入力受付
 	if(keyboard_get(KEY_INPUT_NUMPADENTER) == 1){
@@ -256,23 +225,5 @@ void GGEditor::Draw() {
 		pb.get()->ButtonDraw(m_font,TRUE);
 	}
 
-	//右側の作業フレームの描画
 
-/*
-	{
-		const int bx=leftUpPosX*2+mapSizeX,by=0;//ボタン群の位置
-		const int bdx=buttonWidth/actButtonWidthNum,bdy=(leftUpPosY*2+mapSizeY)/4/actButtonHeightNum;//ボタンの大きさ
-		//動作ボタン群の描画
-		for(unsigned int y=0;y<actButtonHeightNum;y++){
-			for(unsigned int x=0;x<actButtonWidthNum;x++){
-				SetDrawBlendMode(DX_BLENDMODE_ALPHA,128);
-				DrawBox(bx+x*bdx,by+y*bdy,bx+(x+1)*bdx,by+(y+1)*bdy,GetColor(192,192,192),TRUE);//内枠(ちょい透過させる)
-				SetDrawBlendMode(DX_BLENDMODE_NOBLEND,255);
-				DrawBox(bx+x*bdx,by+y*bdy,bx+(x+1)*bdx,by+(y+1)*bdy,GetColor(192,192,64),FALSE);//外枠
-				//文字
-				DrawStringCenterBaseToHandle(bx+x*bdx+bdx/2,by+y*bdy+bdy/2,actButtonStr[x+y*actButtonHeightNum].c_str(),GetColor(255,255,255),m_font,true);
-			}
-		}
-	}
-//*/
 }

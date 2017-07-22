@@ -13,7 +13,7 @@ class ButtonHaving{
 public:
 	struct Button{
 		//Factoryクラス兼描画クラス
-		virtual void ButtonDraw(int font)const=0;//ボタン自体を描画する
+		virtual void ButtonDraw(int font,int fillFlag)const=0;//ボタン自体を描画する
 		virtual bool JudgeInButton(Vector2D point)const=0;//ボタンの中にあるかの判定
 		virtual bool JudgeButtonPushed()const=0;//ボタンが押されたかを判定する
 		virtual void PushedProcess(EditActionSettings &settings)const=0;//ボタンが押された時に行う処理

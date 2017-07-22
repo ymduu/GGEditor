@@ -172,7 +172,9 @@ int GGEditor::Calculate() {
 }
 
 void GGEditor::Draw() {
+	//デバッグ描画
 	clsDx();
+	printfDx("(%f,%f)\n",GetMousePointVector2D().x,GetMousePointVector2D().y);
 	for(auto o:*m_actionSettings.GetPMObject()){
 		printfDx("%d\n",o.get());
 	}
@@ -225,7 +227,7 @@ void GGEditor::Draw() {
 	
 	//ボタン群の描画
 	for(std::shared_ptr<ButtonHaving::Button> &pb:m_buttons){
-		pb.get()->ButtonDraw(m_font);
+		pb.get()->ButtonDraw(m_font,TRUE);
 	}
 
 	//右側の作業フレームの描画

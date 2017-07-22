@@ -6,6 +6,11 @@
 //設置場所を動かす行為を記述するクラス
 class EditMove:public EditAction{
 	//型・列挙体
+public:
+	struct EditMoveButton:public EditActionButton{
+		EditMoveButton(Vector2D point,Vector2D vec);
+		void PushedProcess(EditActionSettings &settings)const;//ボタンが押された時の処理
+	};
 
 	//定数
 

@@ -1,7 +1,26 @@
+#include"DxLib.h"
 #include"EditMove.h"
 #include"EditActionSettings.h"
 #include"BattleObject.h"
 
+//---------------------EditMove::EditMoveButton---------------------
+EditMove::EditMoveButton::EditMoveButton(Vector2D point,Vector2D vec)
+	:EditActionButton(point,vec,"move"){}
+
+void EditMove::EditMoveButton::PushedProcess(EditActionSettings &settings)const{
+	settings.CancelEditing();
+	settings.m_pEditAction=std::shared_ptr<EditAction>(new EditMove(
+		(int)m_point.x
+		,(int)m_point.y
+		,(int)m_vec.x
+		,(int)m_vec.y
+		,GetColor(255,255,0)));;
+	settings.InitEditObject();
+}
+
+
+
+//---------------------EditMove---------------------
 EditMove::EditMove(int buttonX,int buttonY,int buttonDX,int buttonDY,unsigned int pushedColor)
 	:EditAction(buttonX,buttonY,buttonDX,buttonDY,pushedColor){}
 
@@ -23,3 +42,5 @@ void EditMove::VProcessAction(Vector2D point,EditActionSettings &settings)const{
 		settings.SetEditObject(point);
 	}
 }
+
+

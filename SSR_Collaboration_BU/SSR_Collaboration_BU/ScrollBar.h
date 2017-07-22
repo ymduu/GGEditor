@@ -20,7 +20,7 @@ public:
 		ScrollButton(Vector2D p1,Vector2D p2,Vector2D p3,Vector2D p4,Vector2D v);
 		void ButtonDraw(int font,int fillFlag)const;//ボタン自体を描画する
 		bool JudgeInButton(Vector2D point)const;//ボタンの中にあるかの判定
-		bool JudgeButtonPushed()const;//ボタンが押されたかを判定する
+		bool JudgeButtonPushed()const;//ボタンを押す動作がされたかを判定する
 		void PushedProcess(EditActionSettings &settings)const;//ボタンが押された時に行う処理
 	};
 	//定数

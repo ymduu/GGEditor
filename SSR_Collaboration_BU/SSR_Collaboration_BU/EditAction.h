@@ -4,9 +4,22 @@
 #include"ButtonHaving.h"
 
 //編集行為を表すクラスのインターフェース
-class EditAction {
+class EditAction:public ButtonHaving{
 	//型・列挙体
-
+public:
+	struct EditActionButton:public Button{
+		//このクラスの図形は全て長方形
+		//変数
+		Vector2D m_point;//左上の頂点の座標
+		Vector2D m_vec;//対角線のベクトル
+		std::string m_str;//ボタン内に描画する文字列
+		//関数
+		EditActionButton(Vector2D point,Vector2D vec,const std::string &str);
+		void ButtonDraw(int font,int fillFlag)const;//ボタン自体を描画する
+		bool JudgeInButton(Vector2D point)const;//ボタンの中にあるかの判定
+		bool JudgeButtonPushed()const;//ボタンを押す動作がされたかを判定する
+		//void PushedProcess(EditActionSettings &settings)const;//継承先で実装
+	};
 	//定数
 
 	//変数

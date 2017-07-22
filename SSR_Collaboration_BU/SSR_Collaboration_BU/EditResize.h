@@ -5,6 +5,11 @@
 
 class EditResize:public EditAction{
 	//Œ^E—ñ‹“‘Ì
+public:
+	struct EditResizeButton:public EditActionButton{
+		EditResizeButton(Vector2D point,Vector2D vec);
+		void PushedProcess(EditActionSettings &settings)const;//ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Ìˆ—
+	};
 
 	//’è”
 

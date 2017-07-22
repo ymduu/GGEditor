@@ -6,6 +6,11 @@
 //画面にオブジェクトを置く行為を記述するクラス
 class EditPut :public EditAction {
 	//型・列挙体
+public:
+	struct EditPutButton:public EditActionButton{
+		EditPutButton(Vector2D point,Vector2D vec);
+		void PushedProcess(EditActionSettings &settings)const;//ボタンが押された時の処理
+	};
 
 	//定数
 

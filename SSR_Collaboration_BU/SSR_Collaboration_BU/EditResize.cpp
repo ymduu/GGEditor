@@ -1,7 +1,26 @@
+#include"DxLib.h"
 #include"EditResize.h"
 #include"EditActionSettings.h"
 #include"BattleObject.h"
 
+//---------------------EditResize::EditResizeButton---------------------
+EditResize::EditResizeButton::EditResizeButton(Vector2D point,Vector2D vec)
+	:EditActionButton(point,vec,"resize"){}
+
+void EditResize::EditResizeButton::PushedProcess(EditActionSettings &settings)const{
+	settings.CancelEditing();
+	settings.m_pEditAction=std::shared_ptr<EditAction>(new EditResize(
+		(int)m_point.x
+		,(int)m_point.y
+		,(int)m_vec.x
+		,(int)m_vec.y
+		,GetColor(255,255,0)));;
+	settings.InitEditObject();
+}
+
+
+
+//---------------------EditResize---------------------
 EditResize::EditResize(int buttonX,int buttonY,int buttonDX,int buttonDY,unsigned int pushedColor)
 	:EditAction(buttonX,buttonY,buttonDX,buttonDY,pushedColor){}
 

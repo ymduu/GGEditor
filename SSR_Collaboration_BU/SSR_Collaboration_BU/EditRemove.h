@@ -5,6 +5,11 @@
 //オブジェクトを取り除く操作を記述したクラス
 class EditRemove:public EditAction{
 	//型・列挙体
+public:
+	struct EditRemoveButton:public EditActionButton{
+		EditRemoveButton(Vector2D point,Vector2D vec);
+		void PushedProcess(EditActionSettings &settings)const;//ボタンが押された時の処理
+	};
 
 	//定数
 

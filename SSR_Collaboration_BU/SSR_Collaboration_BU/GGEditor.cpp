@@ -84,6 +84,28 @@ GGEditor::GGEditor()
 		,Vector2D(0,1)
 	)));
 
+	//putボタン
+	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new EditPut::EditPutButton(
+		Vector2D((float)(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0),0)
+		,Vector2D((float)(buttonWidth/actButtonWidthNum),(float)(buttonHeight/actButtonHeightNum))
+	)));
+	//removeボタン
+	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new EditRemove::EditRemoveButton(
+		Vector2D((float)(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1),0)
+		,Vector2D((float)(buttonWidth/actButtonWidthNum),(float)(buttonHeight/actButtonHeightNum))
+	)));
+	//moveボタン
+	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new EditMove::EditMoveButton(
+		Vector2D((float)(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0),(float)(buttonHeight/actButtonHeightNum*1))
+		,Vector2D((float)(buttonWidth/actButtonWidthNum),(float)(buttonHeight/actButtonHeightNum))
+	)));
+	//resizeボタン
+	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new EditResize::EditResizeButton(
+		Vector2D((float)(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1),(float)(buttonHeight/actButtonHeightNum*1))
+		,Vector2D((float)(buttonWidth/actButtonWidthNum),(float)(buttonHeight/actButtonHeightNum))
+	)));
+
+
 	//フォント
 	m_font=CreateFontToHandle("メイリオ",16,1);
 
@@ -135,7 +157,9 @@ int GGEditor::Calculate() {
 		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
 			ProcessMapPush(mouseX,mouseY);
 		}
-	}else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseY>=0 && mouseY<buttonHeight/actButtonHeightNum*1){
+	}
+/*
+	else if(mouseX>=leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0 && mouseX<leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1 && mouseY>=0 && mouseY<buttonHeight/actButtonHeightNum*1){
 		//設置ボタンにマウスがある場合
 		if(mouse_get(MOUSE_INPUT_LEFT)==1) {
 			m_actionSettings.CancelEditing();
@@ -164,6 +188,8 @@ int GGEditor::Calculate() {
 			m_actionSettings.InitEditObject();
 		}
 	}
+//*/
+
 	//キーボード入力受付
 	if(keyboard_get(KEY_INPUT_NUMPADENTER) == 1){
 		return -1;
@@ -178,7 +204,7 @@ void GGEditor::Draw() {
 	for(auto o:*m_actionSettings.GetPMObject()){
 		printfDx("%d\n",o.get());
 	}
-	printfDx("%d\n",m_actionSettings.m_pBattleObject.get());
+	printfDx("m_pBattleObject:%d\n",m_actionSettings.m_pBattleObject.get());
 
 	//マップの描画
 	//マップ描画出来る範囲を制限
@@ -231,6 +257,8 @@ void GGEditor::Draw() {
 	}
 
 	//右側の作業フレームの描画
+
+/*
 	{
 		const int bx=leftUpPosX*2+mapSizeX,by=0;//ボタン群の位置
 		const int bdx=buttonWidth/actButtonWidthNum,bdy=(leftUpPosY*2+mapSizeY)/4/actButtonHeightNum;//ボタンの大きさ
@@ -246,5 +274,5 @@ void GGEditor::Draw() {
 			}
 		}
 	}
-
+//*/
 }

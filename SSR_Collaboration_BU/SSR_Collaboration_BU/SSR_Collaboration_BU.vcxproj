@@ -185,6 +185,7 @@
     <ClInclude Include="MyRectangle.h" />
     <ClInclude Include="MyShape.h" />
     <ClInclude Include="ScrollBar.h" />
+    <ClInclude Include="ShapeFactory.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="ToolsLib.h" />
   </ItemGroup>

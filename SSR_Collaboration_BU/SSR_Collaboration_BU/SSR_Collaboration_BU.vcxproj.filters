@@ -43,6 +43,9 @@
     <Filter Include="ソース ファイル\StageEditor\ButtonHaving\EditAction">
       <UniqueIdentifier>{8496f0c0-aae9-4177-b0b0-02b8b881e21d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\StageEditor\ButtonHaving\ShapeFactory">
+      <UniqueIdentifier>{c83af13f-477f-426d-a548-67c1d4dc237b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -148,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="ScrollBar.h">
       <Filter>ヘッダー ファイル\StageEditor\ButtonHaving</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeFactory.h">
+      <Filter>ヘッダー ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

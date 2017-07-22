@@ -22,8 +22,6 @@ void EditPut::EditPutButton::PushedProcess(EditActionSettings &settings)const{
 	settings.m_pBattleObject=std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,40)),0,0,-1,0,GetColor(128,128,128),false));
 }
 
-
-
 //---------------------EditMove---------------------
 EditPut::EditPut(int buttonX,int buttonY,int buttonDX,int buttonDY,unsigned int pushedColor)
 	:EditAction(buttonX,buttonY,buttonDX,buttonDY,pushedColor){}

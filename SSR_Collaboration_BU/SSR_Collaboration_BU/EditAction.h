@@ -34,7 +34,7 @@ public:
 	virtual ~EditAction() {}
 	virtual void VNonPressEditing(Vector2D point,EditActionSettings &settings)const=0;//マウスを押していない時も編集を行う編集行為について、そのような編集行為を行う
 	virtual void VProcessAction(Vector2D point,EditActionSettings &settings)const=0;//マップ上の点の座標を取得しsettingsに対し編集行為を実行する
-	void DrawPushedButton();//該当するボタンが押されているように表示する関数
+	void DrawPushedButton()const;//該当するボタンが押されているように表示する関数
 };
 
 

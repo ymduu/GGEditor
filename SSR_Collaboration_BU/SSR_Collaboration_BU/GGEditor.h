@@ -6,6 +6,7 @@
 #include<memory>
 #include"EditActionSettings.h"
 #include"ToolsLib.h"
+#include"ButtonHaving.h"
 
 //ステージエディタ自身
 class GGEditor {
@@ -25,13 +26,20 @@ public:
 protected:
 	EditActionSettings m_actionSettings;//現在行おうとしている編集行為と編集データのまとめ
 
+	//ボタン一覧
+	std::vector<std::shared_ptr<ButtonHaving::Button>> m_buttons;
+	
 	//描画用データ
 	int m_font;//フォント
+
+
 
 	//関数
 protected:
 	//マウスを左クリックした時の動作
 	void ProcessMapPush(int mouseX,int mouseY);//マップ画面を押した時の動作
+	//常に行う編集行為
+	void NonPressEdit(int mouseX,int mouseY);
 
 public:
 	//コンストラクタとデストラクタ
@@ -47,7 +55,7 @@ private:
 	static std::shared_ptr<EditAction> EditPutFactory();//オブジェクト設置の編集行為を作る関数
 	static std::shared_ptr<EditAction> EditRemoveFactory();//オブジェクト削除の編集行為を作る関数
 	static std::shared_ptr<EditAction> EditMoveFactory();//オブジェクト移動の編集行為を作る関数
-
+	static std::shared_ptr<EditAction> EditResizeFactory();//オブジェクトサイズ変更の編集行為を作る関数
 };
 
 #endif // !DEF_GGEDITOR_H

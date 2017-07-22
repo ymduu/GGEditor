@@ -52,7 +52,7 @@ MyShape::HitInfo MyShape::HitJudge(const MyCircle *pshape1, const MyRectangle *p
 		//めり込み量を計算
 		float fixSize = pshape1->r-(aMyPos - nearestPoint).size();
 		//補正ベクトルを計算(自分向きのベクトルを返す、これを足すことで補正ができる)
-		Vector2D fixVec = (aMyPos - nearestPoint).norm()*fixSize*0.97;
+		Vector2D fixVec = (aMyPos - nearestPoint).norm()*fixSize*(float)0.97;
 		return HitInfo(true,fixVec);
 	}
 

@@ -7,7 +7,7 @@ Terrain::Terrain(const std::shared_ptr<MyShape> hitJudgeShape, float x, float y,
 
 Terrain::~Terrain() {}
 
-void Terrain::VDraw(Vector2D point,Vector2D adjust) {
+void Terrain::VDraw(Vector2D point,Vector2D adjust)const{
 	m_hitJudgeShape->VDraw(adjust.x+point.x,adjust.y+point.y,m_color,TRUE,-1);
 }
 

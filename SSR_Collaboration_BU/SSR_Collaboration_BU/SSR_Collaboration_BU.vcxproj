@@ -157,6 +157,7 @@
     <ClCompile Include="EditMove.cpp" />
     <ClCompile Include="EditPut.cpp" />
     <ClCompile Include="EditRemove.cpp" />
+    <ClCompile Include="EditResize.cpp" />
     <ClCompile Include="GGEditor.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -164,15 +165,18 @@
     <ClCompile Include="MyCircle.cpp" />
     <ClCompile Include="MyRectangle.cpp" />
     <ClCompile Include="MyShape.cpp" />
+    <ClCompile Include="ScrollBar.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="ToolsLib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ButtonHaving.h" />
     <ClInclude Include="EditAction.h" />
     <ClInclude Include="EditActionSettings.h" />
     <ClInclude Include="EditMove.h" />
     <ClInclude Include="EditPut.h" />
     <ClInclude Include="EditRemove.h" />
+    <ClInclude Include="EditResize.h" />
     <ClInclude Include="GGEditor.h" />
     <ClInclude Include="MyAngledTriangle.h" />
     <ClInclude Include="BattleObject.h" />
@@ -180,6 +184,7 @@
     <ClInclude Include="MyCircle.h" />
     <ClInclude Include="MyRectangle.h" />
     <ClInclude Include="MyShape.h" />
+    <ClInclude Include="ScrollBar.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="ToolsLib.h" />
   </ItemGroup>

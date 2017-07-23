@@ -15,6 +15,9 @@
 #include"EditRemove.h"
 #include"EditMove.h"
 #include"EditResize.h"
+
+#include"RectangleFactory.h"
+
 #include"ScrollBar.h"
 
 //定数の定義
@@ -24,6 +27,10 @@ const int GGEditor::leftUpPosX = 25;
 const int GGEditor::leftUpPosY = 25;
 const int GGEditor::buttonWidth = 400;
 const int GGEditor::buttonHeight=(leftUpPosY*2+mapSizeY)/4;
+const int GGEditor::shapeButtonHeightNum=1;
+const int GGEditor::shapeButtonWidthNum=3;
+const int GGEditor::shapeButtonHeight=GGEditor::buttonHeight/2;
+const int GGEditor::shapeButtonWidth=GGEditor::buttonWidth;
 const std::string GGEditor::actButtonStr[actButtonHeightNum*actButtonWidthNum]={"put","remove","move","expand"};
 
 //関数定義
@@ -46,11 +53,19 @@ std::shared_ptr<EditAction> GGEditor::EditResizeFactory(){
 
 //動的関数
 GGEditor::GGEditor()
-	:m_actionSettings(EditPutFactory()
+	:m_actionSettings(
+		//EditPutFactory()
+		std::shared_ptr<EditAction>(nullptr)
 		,std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,40)),0,0,-1,0,GetColor(128,128,128),false))
+		//,std::shared_ptr<ShapeFactory>(new RectangleFactory(Vector2D((float)(leftUpPosX*2+mapSizeX+shapeButtonWidth/shapeButtonWidthNum*0),(float)(buttonHeight+shapeButtonHeight/shapeButtonHeightNum*0)),Vector2D((float)(shapeButtonWidth/shapeButtonWidthNum),(float)(shapeButtonHeight/shapeButtonHeightNum)),GetColor(255,255,0)))
+		,std::shared_ptr<ShapeFactory>(nullptr)
 		,std::shared_ptr<PosSetting>(nullptr))
 {
 	//ボタン一覧
+	
+	//最初から押されているようにするボタンをリストアップしながら行う
+	std::shared_ptr<ButtonHaving::Button> pPutButton,pRectangleFactoryButton;
+	
 	//上スクロールボタン
 	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new ScrollBar::ScrollButton(
 		Vector2D(0,0)
@@ -89,6 +104,7 @@ GGEditor::GGEditor()
 		Vector2D((float)(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0),0)
 		,Vector2D((float)(buttonWidth/actButtonWidthNum),(float)(buttonHeight/actButtonHeightNum))
 	)));
+	pPutButton=m_buttons.back();//最初から押されているようにするボタン
 	//removeボタン
 	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new EditRemove::EditRemoveButton(
 		Vector2D((float)(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1),0)
@@ -105,7 +121,20 @@ GGEditor::GGEditor()
 		,Vector2D((float)(buttonWidth/actButtonWidthNum),(float)(buttonHeight/actButtonHeightNum))
 	)));
 
+	//RectangleFactoryボタン
+	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new RectangleFactory::RectangleFactoryButton(
+		Vector2D(
+			(float)(leftUpPosX*2+mapSizeX+shapeButtonWidth/shapeButtonWidthNum*0)
+			,(float)(buttonHeight+shapeButtonHeight/shapeButtonHeightNum*0)
+		)
+		,Vector2D((float)(shapeButtonWidth/shapeButtonWidthNum),(float)(shapeButtonHeight/shapeButtonHeightNum))
+	)));
+	pRectangleFactoryButton=m_buttons.back();//最初から押されているようにする
 
+	//最初から押されているようにするボタンを押す(順番に注意！)
+	pRectangleFactoryButton->PushedProcess(m_actionSettings);
+	pPutButton->PushedProcess(m_actionSettings);
+	
 	//フォント
 	m_font=CreateFontToHandle("メイリオ",16,1);
 
@@ -219,6 +248,9 @@ void GGEditor::Draw() {
 
 	//入力されている動作のボタンの描画
 	m_actionSettings.DrawEditButtonPushed();
+
+	//入力されている図形設定ボタンの描画
+	m_actionSettings.DrawShapeFactoryButtonPushed();
 	
 	//ボタン群の描画
 	for(std::shared_ptr<ButtonHaving::Button> &pb:m_buttons){

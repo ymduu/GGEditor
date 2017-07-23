@@ -18,8 +18,13 @@ protected:
 public:
 	static const int mapSizeX,mapSizeY;//マップの表示部分の大きさ
 	static const int leftUpPosX,leftUpPosY;//マップの左上の座標
-	static const int buttonWidth,buttonHeight;//ボタン部分の横幅,縦幅
+	
+	static const int buttonWidth,buttonHeight;//「動作」ボタン部分全体での横幅,縦幅
 	static const int actButtonHeightNum=2,actButtonWidthNum=2;//「動作」ボタンの縦横の数
+	
+	static const int shapeButtonWidth,shapeButtonHeight;//「図形設定」ボタン部分の横幅,縦幅
+	static const int shapeButtonWidthNum,shapeButtonHeightNum;//「図形設定」ボタンの横縦の数
+	
 	static const std::string actButtonStr[actButtonHeightNum*actButtonWidthNum];//「動作」ボタンに書く文字列
 
 	//変数

@@ -1,5 +1,7 @@
 #ifndef DEF_SHAPEFACTORY_H
 
+#include<memory>
+#include"MyShape.h"
 #include"ButtonHaving.h"
 
 //当たり判定図形を作るクラス
@@ -12,7 +14,7 @@ public:
 		Vector2D m_point;//左上の座標
 		Vector2D m_vec;//対角線
 		//関数
-		ShapeFactoryButton(Vector2D point,Vector2D vec,const std::string &str);
+		ShapeFactoryButton(Vector2D point,Vector2D vec);
 		//void ButtonDraw(int font,int fillFlag)const;//継承先で実装
 		bool JudgeInButton(Vector2D point)const;//ボタンの中にあるかの判定
 		bool JudgeButtonPushed()const;//ボタンを押す動作がされたかを判定する
@@ -32,8 +34,9 @@ protected:
 
 public:
 	ShapeFactory(Vector2D buttonPos,Vector2D buttonSize,unsigned int lightcolor);
-	~ShapeFactory();
-	void DrawPushedButtonLight()const;
+	virtual ~ShapeFactory();
+	void DrawPushedButtonLight()const;//現在選択されている当たり判定図形に相当するボタンの背後に長方形を描画する
+	virtual std::shared_ptr<MyShape> CreateMyShape()const=0;//当たり判定図形を作り出す
 };
 
 

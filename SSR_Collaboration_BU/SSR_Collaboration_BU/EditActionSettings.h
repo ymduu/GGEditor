@@ -9,6 +9,7 @@
 class EditAction;
 class BattleObject;
 class PosSetting;
+class ShapeFactory;
 
 //ステージ編集をおこなう際の「何を行うか」の設定を集約したクラス
 class EditActionSettings {
@@ -29,6 +30,7 @@ public:
 	//行為についてのデータ(GGEditor内で自由に変更できる)
 	std::shared_ptr<EditAction> m_pEditAction;//編集行為
 	std::shared_ptr<BattleObject> m_pBattleObject;//編集対象
+	std::shared_ptr<ShapeFactory> m_pShapeFactory;//EditPut時に置く図形
 	std::shared_ptr<PosSetting> m_pPosSetting;//位置合わせの手法
 
 	//関数
@@ -37,7 +39,7 @@ protected:
 
 public:
 	//コンストラクタとデストラクタ
-	EditActionSettings(std::shared_ptr<EditAction> pEditAction,std::shared_ptr<BattleObject> pBattleObject,std::shared_ptr<PosSetting> pPosSetting);
+	EditActionSettings(std::shared_ptr<EditAction> pEditAction,std::shared_ptr<BattleObject> pBattleObject,std::shared_ptr<ShapeFactory> pShapeFactory,std::shared_ptr<PosSetting> pPosSetting);
 	~EditActionSettings();
 	//メンバ変数のコピーを返す関数
 	Vector2D GetMAdjust()const{
@@ -57,6 +59,7 @@ public:
 	void PushScrollBar(float scrollpx,float maxX,float maxY,int mouseX,int mouseY,int leftUpPosX,int leftUpPosY,int mapSizeX,int mapSizeY);//マップのスクロールバーを押した時の処理
 	void PushScrollBar(Vector2D move);
 	void DrawEditButtonPushed()const;//現在選択されている編集ボタンに対して押されている様子を描画する
+	void DrawShapeFactoryButtonPushed()const;//現在選択されている図形設定ボタンに対して押されている様子を描画する
 	void PutObject(Vector2D point);//現在マウスを指している位置にオブジェクトを設置する
 	void RemoveObject(Vector2D point);//現在マウスを指している位置にあるオブジェクトを取り除く(vectorの頭の方から取り除かれる)
 	void SetEditObject(Vector2D point);//現在マウスを指している位置にあるオブジェクトを編集対象に設定する

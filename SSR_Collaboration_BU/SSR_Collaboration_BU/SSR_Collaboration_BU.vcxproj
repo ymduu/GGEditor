@@ -165,7 +165,9 @@
     <ClCompile Include="MyCircle.cpp" />
     <ClCompile Include="MyRectangle.cpp" />
     <ClCompile Include="MyShape.cpp" />
+    <ClCompile Include="RectangleFactory.cpp" />
     <ClCompile Include="ScrollBar.cpp" />
+    <ClCompile Include="ShapeFactory.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="ToolsLib.cpp" />
   </ItemGroup>
@@ -184,6 +186,7 @@
     <ClInclude Include="MyCircle.h" />
     <ClInclude Include="MyRectangle.h" />
     <ClInclude Include="MyShape.h" />
+    <ClInclude Include="RectangleFactory.h" />
     <ClInclude Include="ScrollBar.h" />
     <ClInclude Include="ShapeFactory.h" />
     <ClInclude Include="Terrain.h" />

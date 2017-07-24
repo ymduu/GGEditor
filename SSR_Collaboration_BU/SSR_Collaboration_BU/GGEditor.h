@@ -57,10 +57,6 @@ public:
 
 	//静的関数
 private:
-	static std::shared_ptr<EditAction> EditPutFactory();//オブジェクト設置の編集行為を作る関数
-	static std::shared_ptr<EditAction> EditRemoveFactory();//オブジェクト削除の編集行為を作る関数
-	static std::shared_ptr<EditAction> EditMoveFactory();//オブジェクト移動の編集行為を作る関数
-	static std::shared_ptr<EditAction> EditResizeFactory();//オブジェクトサイズ変更の編集行為を作る関数
 };
 
 #endif // !DEF_GGEDITOR_H

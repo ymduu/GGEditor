@@ -34,23 +34,6 @@ const int GGEditor::shapeButtonWidth=GGEditor::buttonWidth;
 const std::string GGEditor::actButtonStr[actButtonHeightNum*actButtonWidthNum]={"put","remove","move","expand"};
 
 //ä÷êîíËã`
-//ê√ìIä÷êî
-std::shared_ptr<EditAction> GGEditor::EditPutFactory(){
-	return std::shared_ptr<EditAction>(new EditPut(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0,0,buttonWidth/actButtonWidthNum,buttonHeight/actButtonHeightNum,GetColor(255,255,0)));
-}
-
-std::shared_ptr<EditAction> GGEditor::EditRemoveFactory(){
-	return std::shared_ptr<EditAction>(new EditRemove(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1,0,buttonWidth/actButtonWidthNum,buttonHeight/actButtonHeightNum,GetColor(255,255,0)));
-}
-
-std::shared_ptr<EditAction> GGEditor::EditMoveFactory(){
-	return std::shared_ptr<EditAction>(new EditMove(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*0,buttonHeight/actButtonHeightNum*1,buttonWidth/actButtonWidthNum,buttonHeight/actButtonHeightNum,GetColor(255,255,0)));
-}
-
-std::shared_ptr<EditAction> GGEditor::EditResizeFactory(){
-	return std::shared_ptr<EditAction>(new EditResize(leftUpPosX*2+mapSizeX+buttonWidth/actButtonWidthNum*1,buttonHeight/actButtonHeightNum*1,buttonWidth/actButtonWidthNum,buttonHeight/actButtonHeightNum,GetColor(255,255,0)));
-}
-
 //ìÆìIä÷êî
 GGEditor::GGEditor()
 	:m_actionSettings(

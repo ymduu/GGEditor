@@ -17,6 +17,8 @@
 #include"EditResize.h"
 
 #include"RectangleFactory.h"
+#include"CircleFactory.h"
+#include"AngledTriangleFactory.h"
 
 #include"ScrollBar.h"
 
@@ -37,10 +39,8 @@ const std::string GGEditor::actButtonStr[actButtonHeightNum*actButtonWidthNum]={
 //動的関数
 GGEditor::GGEditor()
 	:m_actionSettings(
-		//EditPutFactory()
 		std::shared_ptr<EditAction>(nullptr)
 		,std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,40)),0,0,-1,0,GetColor(128,128,128),false))
-		//,std::shared_ptr<ShapeFactory>(new RectangleFactory(Vector2D((float)(leftUpPosX*2+mapSizeX+shapeButtonWidth/shapeButtonWidthNum*0),(float)(buttonHeight+shapeButtonHeight/shapeButtonHeightNum*0)),Vector2D((float)(shapeButtonWidth/shapeButtonWidthNum),(float)(shapeButtonHeight/shapeButtonHeightNum)),GetColor(255,255,0)))
 		,std::shared_ptr<ShapeFactory>(nullptr)
 		,std::shared_ptr<PosSetting>(nullptr))
 {
@@ -113,6 +113,25 @@ GGEditor::GGEditor()
 		,Vector2D((float)(shapeButtonWidth/shapeButtonWidthNum),(float)(shapeButtonHeight/shapeButtonHeightNum))
 	)));
 	pRectangleFactoryButton=m_buttons.back();//最初から押されているようにする
+
+	//CircleFactoryボタン
+	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new CircleFactory::CircleFactoryButton(
+		Vector2D(
+		(float)(leftUpPosX*2+mapSizeX+shapeButtonWidth/shapeButtonWidthNum*1)
+			,(float)(buttonHeight+shapeButtonHeight/shapeButtonHeightNum*0)
+		)
+		,Vector2D((float)(shapeButtonWidth/shapeButtonWidthNum),(float)(shapeButtonHeight/shapeButtonHeightNum))
+	)));
+
+	//AngledTriangleFactoryボタン
+	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new AngledTriangleFactory::AngledTriangleFactoryButton(
+		Vector2D(
+		(float)(leftUpPosX*2+mapSizeX+shapeButtonWidth/shapeButtonWidthNum*2)
+			,(float)(buttonHeight+shapeButtonHeight/shapeButtonHeightNum*0)
+		)
+		,Vector2D((float)(shapeButtonWidth/shapeButtonWidthNum),(float)(shapeButtonHeight/shapeButtonHeightNum))
+	)));
+
 
 	//最初から押されているようにするボタンを押す(順番に注意！)
 	pRectangleFactoryButton->PushedProcess(m_actionSettings);

@@ -151,7 +151,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AngledTriangleFactory.cpp" />
     <ClCompile Include="BattleObject.cpp" />
+    <ClCompile Include="CircleFactory.cpp" />
     <ClCompile Include="EditAction.cpp" />
     <ClCompile Include="EditActionSettings.cpp" />
     <ClCompile Include="EditMove.cpp" />
@@ -172,7 +174,9 @@
     <ClCompile Include="ToolsLib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AngledTriangleFactory.h" />
     <ClInclude Include="ButtonHaving.h" />
+    <ClInclude Include="CircleFactory.h" />
     <ClInclude Include="EditAction.h" />
     <ClInclude Include="EditActionSettings.h" />
     <ClInclude Include="EditMove.h" />

@@ -108,6 +108,12 @@
     <ClCompile Include="RectangleFactory.cpp">
       <Filter>ソース ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
     </ClCompile>
+    <ClCompile Include="CircleFactory.cpp">
+      <Filter>ソース ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="AngledTriangleFactory.cpp">
+      <Filter>ソース ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ToolsLib.h">
@@ -165,6 +171,12 @@
       <Filter>ヘッダー ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
     </ClInclude>
     <ClInclude Include="RectangleFactory.h">
+      <Filter>ヘッダー ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleFactory.h">
+      <Filter>ヘッダー ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="AngledTriangleFactory.h">
       <Filter>ヘッダー ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
     </ClInclude>
   </ItemGroup>

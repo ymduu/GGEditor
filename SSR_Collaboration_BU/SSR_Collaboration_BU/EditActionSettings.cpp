@@ -4,13 +4,16 @@
 #include"DxLib.h"
 #include"GGEditor.h"
 #include"EditAction.h"
+#include"ShapeFactory.h"
+
 #include"Terrain.h"
 #include"MyAngledTriangle.h"
 #include"MyCircle.h"
 #include"MyRectangle.h"
+#include"RectangleFactory.h"
 
-EditActionSettings::EditActionSettings(std::shared_ptr<EditAction> pEditAction, std::shared_ptr<BattleObject> pBattleObject, std::shared_ptr<PosSetting> pPosSetting)
-	:m_adjust(0,0),m_pEditAction(pEditAction),m_pBattleObject(pBattleObject),m_pPosSetting(pPosSetting),m_pOriginObject(std::shared_ptr<BattleObject>(nullptr))
+EditActionSettings::EditActionSettings(std::shared_ptr<EditAction> pEditAction, std::shared_ptr<BattleObject> pBattleObject,std::shared_ptr<ShapeFactory> pShapeFactory,std::shared_ptr<PosSetting> pPosSetting)
+	:m_adjust(0,0),m_pEditAction(pEditAction),m_pBattleObject(pBattleObject),m_pShapeFactory(pShapeFactory),m_pPosSetting(pPosSetting),m_pOriginObject(std::shared_ptr<BattleObject>(nullptr))
 {
 	//ŽÀŒ±—p
 	m_objects.push_back(std::shared_ptr<BattleObject>(
@@ -120,6 +123,10 @@ void EditActionSettings::PushScrollBar(Vector2D move){
 
 void EditActionSettings::DrawEditButtonPushed()const{
 	m_pEditAction.get()->DrawPushedButton();
+}
+
+void EditActionSettings::DrawShapeFactoryButtonPushed()const{
+	m_pShapeFactory->DrawPushedButtonLight();
 }
 
 void EditActionSettings::PutObject(Vector2D point){

@@ -26,6 +26,10 @@ void BattleObject::Resize(Vector2D v){
 	m_hitJudgeShape.get()->Resize(v-m_pos);
 }
 
+void BattleObject::ChangeShape(std::shared_ptr<MyShape> pShape){
+	m_hitJudgeShape=pShape;
+}
+
 bool BattleObject::JudgePointInsideShape(Vector2D point)const{
 	return m_hitJudgeShape.get()->VJudgePosintInsideShape(point,m_pos);
 }

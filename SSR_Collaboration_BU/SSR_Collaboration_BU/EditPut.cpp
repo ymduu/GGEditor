@@ -1,6 +1,7 @@
 #include"DxLib.h"
 
 #include"EditPut.h"
+#include"ShapeFactory.h"
 #include"EditActionSettings.h"
 
 #include"BattleObject.h"
@@ -18,13 +19,11 @@ void EditPut::EditPutButton::PushedProcess(EditActionSettings &settings)const{
 		,(int)m_point.y
 		,(int)m_vec.x
 		,(int)m_vec.y
-		,GetColor(255,255,0)));;
-	settings.m_pBattleObject=std::shared_ptr<BattleObject>(new Terrain(std::shared_ptr<MyShape>(new MyRectangle(40,40)),0,0,-1,0,GetColor(128,128,128),false));
+		,GetColor(255,255,0)));
+	settings.m_pBattleObject=std::shared_ptr<BattleObject>(new Terrain(settings.m_pShapeFactory.get()->CreateMyShape(),0,0,-1,0,GetColor(128,128,128),false));
 }
 
-
-
-//---------------------EditMove---------------------
+//---------------------EditPut---------------------
 EditPut::EditPut(int buttonX,int buttonY,int buttonDX,int buttonDY,unsigned int pushedColor)
 	:EditAction(buttonX,buttonY,buttonDX,buttonDY,pushedColor){}
 

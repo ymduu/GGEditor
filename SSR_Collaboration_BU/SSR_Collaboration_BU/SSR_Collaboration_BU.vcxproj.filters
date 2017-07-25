@@ -43,6 +43,12 @@
     <Filter Include="ソース ファイル\StageEditor\ButtonHaving\EditAction">
       <UniqueIdentifier>{8496f0c0-aae9-4177-b0b0-02b8b881e21d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\StageEditor\ButtonHaving\ShapeFactory">
+      <UniqueIdentifier>{c83af13f-477f-426d-a548-67c1d4dc237b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\StageEditor\ButtonHaving\ShapeFactory">
+      <UniqueIdentifier>{b166f883-0a2d-4cc8-8b05-e42a0611e23c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -96,6 +102,18 @@
     <ClCompile Include="ScrollBar.cpp">
       <Filter>ソース ファイル\StageEditor\ButtonHaving</Filter>
     </ClCompile>
+    <ClCompile Include="ShapeFactory.cpp">
+      <Filter>ソース ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="RectangleFactory.cpp">
+      <Filter>ソース ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleFactory.cpp">
+      <Filter>ソース ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="AngledTriangleFactory.cpp">
+      <Filter>ソース ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ToolsLib.h">
@@ -148,6 +166,18 @@
     </ClInclude>
     <ClInclude Include="ScrollBar.h">
       <Filter>ヘッダー ファイル\StageEditor\ButtonHaving</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeFactory.h">
+      <Filter>ヘッダー ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleFactory.h">
+      <Filter>ヘッダー ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleFactory.h">
+      <Filter>ヘッダー ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="AngledTriangleFactory.h">
+      <Filter>ヘッダー ファイル\StageEditor\ButtonHaving\ShapeFactory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

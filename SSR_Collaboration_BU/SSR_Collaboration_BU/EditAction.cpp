@@ -27,6 +27,6 @@ bool EditAction::EditActionButton::JudgeButtonPushed()const{
 }
 
 //-----------------EditAction-----------------
-void EditAction::DrawPushedButton(){
+void EditAction::DrawPushedButton()const{
 	DrawBox(m_buttonX,m_buttonY,m_buttonX+m_buttonDX,m_buttonY+m_buttonDY,m_pushedColor,TRUE);
 }

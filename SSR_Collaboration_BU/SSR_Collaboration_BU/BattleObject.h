@@ -24,7 +24,7 @@ protected:
 	int m_kind;//オブジェクトの分類(暫定的にintにしている)
 	//protectedに戻しました(getterを作ったため)
 	Vector2D m_pos;//オブジェクトの位置
-	const std::shared_ptr<MyShape> m_hitJudgeShape;//当たり判定の形状
+	std::shared_ptr<MyShape> m_hitJudgeShape;//当たり判定の形状
 
 public:
 	//補正される側か？(プレイヤーキャラか？)
@@ -50,6 +50,7 @@ public:
 	void Move(Vector2D v);//ベクトルvだけ動かす(バトルの時等で用いる)
 	void Warp(Vector2D v);//ベクトルvへ動かす(ステージ編集で用いる)
 	void Resize(Vector2D v);//位置ベクトルvを参考に大きさを変更する(ステージ編集で用いる)
+	void ChangeShape(std::shared_ptr<MyShape> pShape);//当たり判定図形を変更する
 	bool JudgePointInsideShape(Vector2D point)const;
 	float getTop()const;
 	float getBottom()const;

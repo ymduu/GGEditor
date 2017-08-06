@@ -33,14 +33,22 @@ void EditMove::VNonPressEditing(Vector2D point,EditActionSettings &settings)cons
 
 void EditMove::VProcessAction(Vector2D point,EditActionSettings &settings)const{
 	//位置変更を行うBattleObjectが決まっているかどうかで行う行為が変わる
-	if(settings.m_pBattleObject.get()!=nullptr){
+	if(VGetPosSetKind(settings)==BASENONEXIST){
 		//編集対象が決まっている場合、その位置変更を行う
 		settings.m_pBattleObject.get()->Warp(point);
 		settings.InitEditObject();
-	} else{
+	}else{
 		//編集対象が決まっていない場合、pointの地点にあるBattleObjectを探す
 		settings.SetEditObject(point);
 	}
 }
 
-
+EditAction::PosSetKind EditMove::VGetPosSetKind(const EditActionSettings &settings)const{
+	if(settings.m_pBattleObject.get()!=nullptr){
+		//編集対象が決まっている場合
+		return BASENONEXIST;
+	}else{
+		//編集対象が決まっていない場合
+		return NONEDIT;
+	}
+}

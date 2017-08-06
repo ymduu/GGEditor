@@ -20,6 +20,8 @@
 #include"CircleFactory.h"
 #include"AngledTriangleFactory.h"
 
+#include"ConstPosSet.h"
+
 #include"ScrollBar.h"
 
 //定数の定義
@@ -33,7 +35,12 @@ const int GGEditor::shapeButtonHeightNum=1;
 const int GGEditor::shapeButtonWidthNum=3;
 const int GGEditor::shapeButtonHeight=GGEditor::buttonHeight/2;
 const int GGEditor::shapeButtonWidth=GGEditor::buttonWidth;
+const int GGEditor::posButtonWidth=GGEditor::buttonWidth;
+const int GGEditor::posButtonHeight=GGEditor::buttonHeight/2;
+const int GGEditor::posButtonWidthNum=3;
+const int GGEditor::posButtonHeightNum=1;
 const std::string GGEditor::actButtonStr[actButtonHeightNum*actButtonWidthNum]={"put","remove","move","expand"};
+const int GGEditor::baseSize=32;
 
 //関数定義
 //動的関数
@@ -47,7 +54,7 @@ GGEditor::GGEditor()
 	//ボタン一覧
 	
 	//最初から押されているようにするボタンをリストアップしながら行う
-	std::shared_ptr<ButtonHaving::Button> pPutButton,pRectangleFactoryButton;
+	std::shared_ptr<ButtonHaving::Button> pPutButton,pRectangleFactoryButton,pPosSettingButton;
 	
 	//上スクロールボタン
 	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new ScrollBar::ScrollButton(
@@ -132,10 +139,32 @@ GGEditor::GGEditor()
 		,Vector2D((float)(shapeButtonWidth/shapeButtonWidthNum),(float)(shapeButtonHeight/shapeButtonHeightNum))
 	)));
 
+	//1px位置調整ボタン
+	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new ConstPosSet::ConstPosSetButton(
+		Vector2D(
+		(float)(leftUpPosX*2+mapSizeX+posButtonWidth/posButtonWidthNum*0)
+			,(float)(buttonHeight+shapeButtonHeight+posButtonHeight/posButtonHeightNum*0)
+		)
+		,Vector2D((float)(posButtonWidth/posButtonWidthNum),(float)(posButtonHeight/posButtonHeightNum))
+		,1
+	)));
+	pPosSettingButton=m_buttons.back();
+
+	//32px位置調整ボタン
+	m_buttons.push_back(std::shared_ptr<ButtonHaving::Button>(new ConstPosSet::ConstPosSetButton(
+		Vector2D(
+		(float)(leftUpPosX*2+mapSizeX+posButtonWidth/posButtonWidthNum*1)
+			,(float)(buttonHeight+shapeButtonHeight+posButtonHeight/posButtonHeightNum*0)
+		)
+		,Vector2D((float)(posButtonWidth/posButtonWidthNum),(float)(posButtonHeight/posButtonHeightNum))
+		,baseSize
+	)));
+
 
 	//最初から押されているようにするボタンを押す(順番に注意！)
 	pRectangleFactoryButton->PushedProcess(m_actionSettings);
 	pPutButton->PushedProcess(m_actionSettings);
+	pPosSettingButton->PushedProcess(m_actionSettings);
 	
 	//フォント
 	m_font=CreateFontToHandle("メイリオ",16,1);
@@ -200,7 +229,10 @@ int GGEditor::Calculate() {
 void GGEditor::Draw() {
 	//デバッグ描画
 	clsDx();
-	printfDx("(%f,%f)\n",GetMousePointVector2D().x,GetMousePointVector2D().y);
+	Vector2D v=GetMousePointVector2D();
+	printfDx("(%f,%f)\n",v.x,v.y);//素の座標
+	v=m_actionSettings.m_pPosSetting->CalculatePos(v,m_actionSettings);
+	printfDx("(%f,%f)\n",v.x,v.y);//位置調整後の座標
 	for(auto o:*m_actionSettings.GetPMObject()){
 		printfDx("%d\n",o.get());
 	}
@@ -248,11 +280,17 @@ void GGEditor::Draw() {
 	}
 	SetDrawAreaFull();
 
+	//位置設定ガイドの描画
+	m_actionSettings.DrawPosSettingGuide(leftUpPosX,leftUpPosY,mapSizeX,mapSizeY);
+
 	//入力されている動作のボタンの描画
 	m_actionSettings.DrawEditButtonPushed();
 
 	//入力されている図形設定ボタンの描画
 	m_actionSettings.DrawShapeFactoryButtonPushed();
+	
+	//入力されている位置設定ボタンの描画
+	m_actionSettings.DrawPosSettingButtonPushed();
 	
 	//ボタン群の描画
 	for(std::shared_ptr<ButtonHaving::Button> &pb:m_buttons){

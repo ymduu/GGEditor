@@ -154,6 +154,7 @@
     <ClCompile Include="AngledTriangleFactory.cpp" />
     <ClCompile Include="BattleObject.cpp" />
     <ClCompile Include="CircleFactory.cpp" />
+    <ClCompile Include="ConstPosSet.cpp" />
     <ClCompile Include="EditAction.cpp" />
     <ClCompile Include="EditActionSettings.cpp" />
     <ClCompile Include="EditMove.cpp" />
@@ -167,6 +168,7 @@
     <ClCompile Include="MyCircle.cpp" />
     <ClCompile Include="MyRectangle.cpp" />
     <ClCompile Include="MyShape.cpp" />
+    <ClCompile Include="PosSetting.cpp" />
     <ClCompile Include="RectangleFactory.cpp" />
     <ClCompile Include="ScrollBar.cpp" />
     <ClCompile Include="ShapeFactory.cpp" />
@@ -177,6 +179,7 @@
     <ClInclude Include="AngledTriangleFactory.h" />
     <ClInclude Include="ButtonHaving.h" />
     <ClInclude Include="CircleFactory.h" />
+    <ClInclude Include="ConstPosSet.h" />
     <ClInclude Include="EditAction.h" />
     <ClInclude Include="EditActionSettings.h" />
     <ClInclude Include="EditMove.h" />
@@ -190,6 +193,7 @@
     <ClInclude Include="MyCircle.h" />
     <ClInclude Include="MyRectangle.h" />
     <ClInclude Include="MyShape.h" />
+    <ClInclude Include="PosSetting.h" />
     <ClInclude Include="RectangleFactory.h" />
     <ClInclude Include="ScrollBar.h" />
     <ClInclude Include="ShapeFactory.h" />

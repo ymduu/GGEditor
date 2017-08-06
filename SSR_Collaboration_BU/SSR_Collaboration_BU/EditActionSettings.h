@@ -60,6 +60,8 @@ public:
 	void PushScrollBar(Vector2D move);
 	void DrawEditButtonPushed()const;//現在選択されている編集ボタンに対して押されている様子を描画する
 	void DrawShapeFactoryButtonPushed()const;//現在選択されている図形設定ボタンに対して押されている様子を描画する
+	void DrawPosSettingButtonPushed()const;//現在選択されている位置設定ボタンに対して押されている様子を描画する
+	void DrawPosSettingGuide(int leftUpPosX,int leftUpPosY,int mapSizeX,int mapSizeY)const;//位置設定ガイドの描画
 	void PutObject(Vector2D point);//現在マウスを指している位置にオブジェクトを設置する
 	void RemoveObject(Vector2D point);//現在マウスを指している位置にあるオブジェクトを取り除く(vectorの頭の方から取り除かれる)
 	void SetEditObject(Vector2D point);//現在マウスを指している位置にあるオブジェクトを編集対象に設定する

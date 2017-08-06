@@ -3,6 +3,7 @@
 #include"EditActionSettings.h"
 #include"MyRectangle.h"
 #include"BattleObject.h"
+#include"GGEditor.h"
 
 //--------------------------RectangleFactory::RectangleFactoryButton--------------------------
 RectangleFactory::RectangleFactoryButton::RectangleFactoryButton(Vector2D point,Vector2D vec)
@@ -36,5 +37,5 @@ RectangleFactory::RectangleFactory(Vector2D buttonPos,Vector2D buttonSize,unsign
 RectangleFactory::~RectangleFactory(){}
 
 std::shared_ptr<MyShape> RectangleFactory::CreateMyShape()const{
-	return std::shared_ptr<MyShape>(new MyRectangle(60,40));
+	return std::shared_ptr<MyShape>(new MyRectangle((float)GGEditor::baseSize,(float)GGEditor::baseSize));
 }

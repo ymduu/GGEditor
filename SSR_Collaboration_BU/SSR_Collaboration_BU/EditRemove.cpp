@@ -30,3 +30,7 @@ void EditRemove::VNonPressEditing(Vector2D point,EditActionSettings &settings)co
 void EditRemove::VProcessAction(Vector2D point,EditActionSettings &settings)const{
 	settings.RemoveObject(point);
 }
+
+EditAction::PosSetKind EditRemove::VGetPosSetKind(const EditActionSettings &settings)const{
+	return NONEDIT;
+}

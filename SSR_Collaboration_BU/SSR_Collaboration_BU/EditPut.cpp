@@ -34,3 +34,7 @@ void EditPut::VNonPressEditing(Vector2D point,EditActionSettings &settings)const
 void EditPut::VProcessAction(Vector2D point,EditActionSettings &settings)const {
 	settings.PutObject(point);
 }
+
+EditAction::PosSetKind EditPut::VGetPosSetKind(const EditActionSettings &settings)const{
+	return BASENONEXIST;
+}

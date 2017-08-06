@@ -3,6 +3,7 @@
 #include"MyCircle.h"
 #include"EditActionSettings.h"
 #include"BattleObject.h"
+#include"GGEditor.h"
 
 //-----------------------CircleFactory::CircleFactoryButton-----------------------
 CircleFactory::CircleFactoryButton::CircleFactoryButton(Vector2D point,Vector2D vec)
@@ -35,5 +36,5 @@ CircleFactory::CircleFactory(Vector2D buttonPos,Vector2D buttonSize,unsigned int
 CircleFactory::~CircleFactory(){}
 
 std::shared_ptr<MyShape> CircleFactory::CreateMyShape()const{
-	return std::shared_ptr<MyShape>(new MyCircle(20));
+	return std::shared_ptr<MyShape>(new MyCircle((float)GGEditor::baseSize));
 }

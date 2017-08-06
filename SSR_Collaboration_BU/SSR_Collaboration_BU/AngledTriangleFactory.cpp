@@ -3,6 +3,7 @@
 #include"AngledTriangleFactory.h"
 #include"EditActionSettings.h"
 #include"BattleObject.h"
+#include"GGEditor.h"
 
 //-----------------------AngledTriangleFactory::AngledTriangleFactoryButton-----------------------
 AngledTriangleFactory::AngledTriangleFactoryButton::AngledTriangleFactoryButton(Vector2D point,Vector2D vec)
@@ -35,6 +36,6 @@ AngledTriangleFactory::AngledTriangleFactory(Vector2D buttonPos,Vector2D buttonS
 AngledTriangleFactory::~AngledTriangleFactory(){}
 
 std::shared_ptr<MyShape> AngledTriangleFactory::CreateMyShape()const{
-	return std::shared_ptr<MyShape>(new MyAngledTriangle(40,-40));
+	return std::shared_ptr<MyShape>(new MyAngledTriangle((float)GGEditor::baseSize,(float)(-GGEditor::baseSize)));
 }
 
